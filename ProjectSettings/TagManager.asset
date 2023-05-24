@@ -53,3 +53,6 @@ TagManager:
   - name: UI
     uniqueID: 706101965
     locked: 0
+  - name: Canvas
+    uniqueID: 2250336491
+    locked: 0

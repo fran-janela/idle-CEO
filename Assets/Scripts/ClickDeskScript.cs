@@ -44,11 +44,25 @@ public class ClickDeskScript : MonoBehaviour
                 }
             }
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (collider.OverlapPoint(mousePosition))
+            {
+                if (canClick)
+                {
+                    canClick = false;
+                    clickDelayTimer = 0.0f;
+                    DimAssets();
+                }
+            }
+        }
+
         if(!canClick){
             clickDelayTimer += Time.deltaTime;
             if (clickDelayTimer >= clickDelay)
             {
-                GameManager.IncrementMoney(1.0f);
+                GameManager.IncrementMoney(200.0f);
                 canClick = true;
                 BrightenAssets();
                 PVisualizer.GetComponent<ProgressVisualizer>().PlayMoneyAnimation();
