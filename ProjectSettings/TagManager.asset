@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Desk
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackProps
+    uniqueID: 81436011
+    locked: 0
+  - name: Desks
+    uniqueID: 2384605807
+    locked: 0
+  - name: Porps
+    uniqueID: 2309873711
+    locked: 0
+  - name: UI
+    uniqueID: 592523897
     locked: 0
