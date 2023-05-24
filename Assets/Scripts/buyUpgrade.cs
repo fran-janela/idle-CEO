@@ -21,6 +21,7 @@ public class buyUpgrade : MonoBehaviour
 
     public GameManager moneyScript;
 
+    public GameObject desk;
 
     void Start()
     {
@@ -40,6 +41,8 @@ public class buyUpgrade : MonoBehaviour
     public void buy()
     {
         if (BuyBar.fillAmount == 1f){
+            ClickDeskScript clickDeskScript =  desk.GetComponent<ClickDeskScript>();
+            clickDeskScript.clickDelay -= 0.5f;
             level += 1;
             BuyBar.fillAmount = 0;
             GameManager.multiplier += 1f;

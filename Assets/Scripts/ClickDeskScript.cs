@@ -7,7 +7,7 @@ public class ClickDeskScript : MonoBehaviour
     private bool canClick = true;
     private float clickDelayTimer = 0f;
 
-    public float clickDelay = 1f;
+    public float clickDelay = 10.0f;
 
     Collider2D collider;
     SpriteRenderer spriteRenderer;
@@ -62,6 +62,8 @@ public class ClickDeskScript : MonoBehaviour
             clickDelayTimer += Time.deltaTime;
             if (clickDelayTimer >= clickDelay)
             {
+                Debug.Log("Click");
+                Debug.Log(clickDelay);
                 GameManager.IncrementMoney(200.0f);
                 canClick = true;
                 BrightenAssets();
