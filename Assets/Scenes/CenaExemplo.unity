@@ -262,6 +262,10 @@ PrefabInstance:
       value: Space
       objectReference: {fileID: 0}
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: cost
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: desk
       value: 
       objectReference: {fileID: 1196448864}
@@ -273,6 +277,18 @@ PrefabInstance:
       propertyPath: moneyScript
       value: 
       objectReference: {fileID: 822376875}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: decreaseTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: increaseCost
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: increaseEarnings
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 218127367412356022, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -785,6 +801,10 @@ PrefabInstance:
       value: Style
       objectReference: {fileID: 0}
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: cost
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: desk
       value: 
       objectReference: {fileID: 1196448864}
@@ -796,6 +816,18 @@ PrefabInstance:
       propertyPath: moneyScript
       value: 
       objectReference: {fileID: 822376875}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: decreaseTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: increaseCost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: increaseEarnings
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 218127367412356022, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1328,6 +1360,10 @@ PrefabInstance:
       value: Table
       objectReference: {fileID: 0}
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: cost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: desk
       value: 
       objectReference: {fileID: 1196448864}
@@ -1339,6 +1375,14 @@ PrefabInstance:
       propertyPath: moneyScript
       value: 
       objectReference: {fileID: 822376875}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: increaseCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: increaseEarnings
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 218127367412356022, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1458,6 +1502,10 @@ PrefabInstance:
       value: Comfort
       objectReference: {fileID: 0}
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: cost
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: desk
       value: 
       objectReference: {fileID: 1196448864}
@@ -1469,6 +1517,18 @@ PrefabInstance:
       propertyPath: moneyScript
       value: 
       objectReference: {fileID: 822376875}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: decreaseTime
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: increaseCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: increaseEarnings
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 218127367412356022, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3334,6 +3394,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1066000768}
     m_Modifications:
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: cost
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: desk
       value: 
       objectReference: {fileID: 1196448864}
@@ -3345,6 +3409,10 @@ PrefabInstance:
       propertyPath: moneyScript
       value: 
       objectReference: {fileID: 822376875}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: increaseEarnings
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 218127367412356021, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: m_Color.a
       value: 1

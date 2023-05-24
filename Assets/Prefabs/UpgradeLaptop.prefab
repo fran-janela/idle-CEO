@@ -361,14 +361,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd38cd5dd341dd42b0c3ae527ec3876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 1000
-  moneyText: {fileID: 0}
   levelText: {fileID: 5009597871282805786}
   BuyBar: {fileID: 4569441711385126449}
   multiplier: 1
   level: 0
   canvasGroup: {fileID: 1613600991941345380}
   button: {fileID: 218127367595615789}
+  moneyScript: {fileID: 0}
+  desk: {fileID: 0}
+  increaseEarnings: 0.1
+  decreaseTime: 0.5
+  cost: 200
+  increaseCost: 1.5
+  costText: {fileID: 218127366652530906}
+  timeText: {fileID: 1938113998764596697}
+  earningsText: {fileID: 479944384767561563}
 --- !u!1 &218127367414276723
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +733,7 @@ GameObject:
   - component: {fileID: 2585314054632186727}
   - component: {fileID: 1525757980952692964}
   m_Layer: 5
-  m_Name: Cost
+  m_Name: Earning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -880,7 +887,7 @@ GameObject:
   - component: {fileID: 4536629864078824033}
   - component: {fileID: 479944384767561563}
   m_Layer: 5
-  m_Name: costText
+  m_Name: earningsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

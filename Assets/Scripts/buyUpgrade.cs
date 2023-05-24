@@ -23,6 +23,21 @@ public class buyUpgrade : MonoBehaviour
 
     public GameObject desk;
 
+    public float increaseEarnings = 0.1f;
+
+    public float decreaseTime = 0.5f;
+
+    public float cost = 200f;
+
+    public float increaseCost = 1.5f;
+
+
+    public TextMeshProUGUI costText;
+
+    public TextMeshProUGUI timeText;
+
+    public TextMeshProUGUI earningsText;
+
     void Start()
     {
         canvasGroup.alpha = 0.2f;
@@ -35,24 +50,34 @@ public class buyUpgrade : MonoBehaviour
         Color buttonColor = buttonImage.color;
         buttonColor.a = 1.0f;
         buttonImage.color = buttonColor;
-        
+
+        costText.text = "Buy $ " + cost.ToString();
+        ClickDeskScript clickDeskScript =  desk.GetComponent<ClickDeskScript>();
+        timeText.text = clickDeskScript.clickDelay.ToString() + "s";
+        earningsText.text = GameManager.money.ToString();
     }
 
     public void buy()
     {
         if (BuyBar.fillAmount == 1f){
             ClickDeskScript clickDeskScript =  desk.GetComponent<ClickDeskScript>();
-            clickDeskScript.clickDelay -= 0.5f;
-            level += 1;
+            clickDeskScript.clickDelay -= decreaseTime;
+            cost = cost + increaseCost*cost;
             BuyBar.fillAmount = 0;
-            GameManager.multiplier += 1f;
+            level += 1;
             levelText.text = level.ToString();
+            costText.text = "Buy $ " + cost.ToString();
+            timeText.text = clickDeskScript.clickDelay.ToString() + "s";
+            earningsText.text = GameManager.money.ToString();
         } 
-        if (GameManager.money >= 200){
+        if (GameManager.money >= cost){
             canvasGroup.alpha = 1f;
-            GameManager.DecrementMoney(200);
-            GameManager.multiplier += 0.1f;
             BuyBar.fillAmount += 0.25f;
+            GameManager.DecrementMoney(cost);
+            GameManager.multiplier += increaseEarnings;
+            ClickDeskScript clickDeskScript =  desk.GetComponent<ClickDeskScript>();
+            timeText.text = clickDeskScript.clickDelay.ToString() + "s";
+            earningsText.text = GameManager.money.ToString();
 
         } else {
             Debug.Log("Not enough money");

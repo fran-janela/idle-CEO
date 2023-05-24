@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public static void IncrementMoney(float amount)
     {
         GameManager.money += amount*multiplier + amount;
+        
     }
 
     public static void DecrementMoney(float amount)
