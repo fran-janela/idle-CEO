@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackProps
+    uniqueID: 454889521
+    locked: 0
+  - name: Desks
+    uniqueID: 954184077
+    locked: 0
+  - name: Props
+    uniqueID: 1128456523
+    locked: 0
+  - name: UI
+    uniqueID: 706101965
+    locked: 0
