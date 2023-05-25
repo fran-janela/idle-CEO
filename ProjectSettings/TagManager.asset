@@ -41,6 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1312918453
+    locked: 0
+  - name: Floor
+    uniqueID: 2599870491
+    locked: 0
+  - name: Walls
+    uniqueID: 4150890225
+    locked: 0
   - name: BackProps
     uniqueID: 454889521
     locked: 0
