@@ -10,8 +10,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = null; // This will remain null for unsupported platforms
 
-    [SerializeField] ResourceManagerScript _resourceManagerScript;
-
     private bool CR_running = false;
 
     IEnumerator Cooldown(float time)
@@ -75,7 +73,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
             // Grant a reward.
-            _resourceManagerScript.AddCoins(10);
+            GameManager.IncrementMoney(10000);
             Debug.Log("Grant a reward to the player of 10 coins.");
             // Load another ad:
             if (CR_running == false)
