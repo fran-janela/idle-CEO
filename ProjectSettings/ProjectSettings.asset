@@ -818,11 +818,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 62b38137-0fe5-45ac-b797-4d914a2f1c7d
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: idle-CEO
+  organizationId: fran-janela
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
