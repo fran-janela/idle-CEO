@@ -44,6 +44,8 @@ public class ClickDeskScript : MonoBehaviour
                 }
             }
         }
+
+        // For Test Purposes
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

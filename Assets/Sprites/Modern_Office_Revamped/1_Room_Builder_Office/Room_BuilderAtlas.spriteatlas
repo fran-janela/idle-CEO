@@ -1,0 +1,362 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Room_BuilderAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -796700508, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 227302817, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1335693337, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1920546634, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 15063961, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 625480825, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1831204449, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -603261750, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -505372469, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1158168784, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1083054855, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 221567692, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -2002459711, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 434266379, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1907392635, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1328821515, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1043060575, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -469621884, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1176535666, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1141738825, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1320885123, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1816808992, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -2097910802, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 956862767, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1658513543, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -2043153478, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1242382828, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1634728778, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1374066626, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 899968112, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -2077767277, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 834302888, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1870086682, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 614202269, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1587115287, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1159184828, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -450474465, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1764552614, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1823860249, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -345324735, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1230654914, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -214286114, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 461872762, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -460086821, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 479296916, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 350465938, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 2098216984, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -52603345, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1040288811, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1805533779, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1073790067, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -810331428, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 594224208, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1337385757, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 120998126, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -2119492290, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1832861079, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -646612473, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1091689935, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 633472291, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1178234901, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -10849476, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1229646572, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 642189466, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -952724496, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 204334734, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 450464001, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 53680267, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1008521255, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 169749610, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 251597724, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -72245625, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1727173783, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -2075438277, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1093583836, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -776351109, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 20809762, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1622925985, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 35747514, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1829032251, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 109365355, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -239784576, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1416772507, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 554158563, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 433806201, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -16290318, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -936978541, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -765555194, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -672754288, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -907120728, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1531135855, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -354117164, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1376637974, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -544889786, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 174400321, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1138365544, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1257498636, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 2094184240, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1334141708, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -764302587, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 340480589, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1231791486, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -65718178, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -218989829, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1528676320, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1272107405, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -510005397, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1684649714, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -359896324, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -2076091523, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1570137303, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 861517727, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1507602814, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1930072137, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1646036106, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1908570516, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1764004856, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1716350550, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 580739626, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 924247547, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 780867619, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 486352969, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1643692559, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 243164107, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 960439005, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 19969728, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1987373230, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 759689597, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1915467155, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1927327003, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1617641771, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1919931832, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 756363446, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1903625754, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 2071912798, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1152165322, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1650027233, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 234901803, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 599921438, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -594034242, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1706295874, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1716962689, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -384647473, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1596414452, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -351022351, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -2080133369, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 614475039, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 61954401, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1751881062, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 336365042, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1240285141, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1623097382, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1327358106, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -1338619939, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -2135029372, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1179597187, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -951592538, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: -986947822, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  - {fileID: 1243430818, guid: 3bbaf09bdfa39a04e9fb070cda610c0a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Room_Builder_Office_32x32_87
+  - Room_Builder_Office_32x32_14
+  - Room_Builder_Office_32x32_86
+  - Room_Builder_Office_32x32_15
+  - Room_Builder_Office_32x32_89
+  - Room_Builder_Office_32x32_12
+  - Room_Builder_Office_32x32_88
+  - Room_Builder_Office_32x32_13
+  - Room_Builder_Office_32x32_10
+  - Room_Builder_Office_32x32_11
+  - Room_Builder_Office_32x32_78
+  - Room_Builder_Office_32x32_79
+  - Room_Builder_Office_32x32_18
+  - Room_Builder_Office_32x32_74
+  - Room_Builder_Office_32x32_98
+  - Room_Builder_Office_32x32_19
+  - Room_Builder_Office_32x32_75
+  - Room_Builder_Office_32x32_69
+  - Room_Builder_Office_32x32_99
+  - Room_Builder_Office_32x32_76
+  - Room_Builder_Office_32x32_68
+  - Room_Builder_Office_32x32_96
+  - Room_Builder_Office_32x32_3
+  - Room_Builder_Office_32x32_77
+  - Room_Builder_Office_32x32_67
+  - Room_Builder_Office_32x32_97
+  - Room_Builder_Office_32x32_2
+  - Room_Builder_Office_32x32_70
+  - Room_Builder_Office_32x32_66
+  - Room_Builder_Office_32x32_94
+  - Room_Builder_Office_32x32_1
+  - Room_Builder_Office_32x32_71
+  - Room_Builder_Office_32x32_65
+  - Room_Builder_Office_32x32_95
+  - Room_Builder_Office_32x32_0
+  - Room_Builder_Office_32x32_72
+  - Room_Builder_Office_32x32_64
+  - Room_Builder_Office_32x32_92
+  - Room_Builder_Office_32x32_7
+  - Room_Builder_Office_32x32_73
+  - Room_Builder_Office_32x32_63
+  - Room_Builder_Office_32x32_93
+  - Room_Builder_Office_32x32_6
+  - Room_Builder_Office_32x32_62
+  - Room_Builder_Office_32x32_90
+  - Room_Builder_Office_32x32_5
+  - Room_Builder_Office_32x32_61
+  - Room_Builder_Office_32x32_91
+  - Room_Builder_Office_32x32_4
+  - Room_Builder_Office_32x32_60
+  - Room_Builder_Office_32x32_9
+  - Room_Builder_Office_32x32_8
+  - Room_Builder_Office_32x32_102
+  - Room_Builder_Office_32x32_103
+  - Room_Builder_Office_32x32_100
+  - Room_Builder_Office_32x32_101
+  - Room_Builder_Office_32x32_115
+  - Room_Builder_Office_32x32_146
+  - Room_Builder_Office_32x32_106
+  - Room_Builder_Office_32x32_114
+  - Room_Builder_Office_32x32_147
+  - Room_Builder_Office_32x32_107
+  - Room_Builder_Office_32x32_117
+  - Room_Builder_Office_32x32_144
+  - Room_Builder_Office_32x32_104
+  - Room_Builder_Office_32x32_116
+  - Room_Builder_Office_32x32_145
+  - Room_Builder_Office_32x32_105
+  - Room_Builder_Office_32x32_111
+  - Room_Builder_Office_32x32_142
+  - Room_Builder_Office_32x32_110
+  - Room_Builder_Office_32x32_143
+  - Room_Builder_Office_32x32_113
+  - Room_Builder_Office_32x32_140
+  - Room_Builder_Office_32x32_108
+  - Room_Builder_Office_32x32_112
+  - Room_Builder_Office_32x32_141
+  - Room_Builder_Office_32x32_109
+  - Room_Builder_Office_32x32_119
+  - Room_Builder_Office_32x32_118
+  - Room_Builder_Office_32x32_148
+  - Room_Builder_Office_32x32_149
+  - Room_Builder_Office_32x32_30
+  - Room_Builder_Office_32x32_31
+  - Room_Builder_Office_32x32_32
+  - Room_Builder_Office_32x32_52
+  - Room_Builder_Office_32x32_33
+  - Room_Builder_Office_32x32_23
+  - Room_Builder_Office_32x32_53
+  - Room_Builder_Office_32x32_34
+  - Room_Builder_Office_32x32_22
+  - Room_Builder_Office_32x32_50
+  - Room_Builder_Office_32x32_35
+  - Room_Builder_Office_32x32_21
+  - Room_Builder_Office_32x32_51
+  - Room_Builder_Office_32x32_45
+  - Room_Builder_Office_32x32_36
+  - Room_Builder_Office_32x32_20
+  - Room_Builder_Office_32x32_56
+  - Room_Builder_Office_32x32_44
+  - Room_Builder_Office_32x32_37
+  - Room_Builder_Office_32x32_27
+  - Room_Builder_Office_32x32_57
+  - Room_Builder_Office_32x32_47
+  - Room_Builder_Office_32x32_38
+  - Room_Builder_Office_32x32_26
+  - Room_Builder_Office_32x32_54
+  - Room_Builder_Office_32x32_46
+  - Room_Builder_Office_32x32_39
+  - Room_Builder_Office_32x32_25
+  - Room_Builder_Office_32x32_55
+  - Room_Builder_Office_32x32_41
+  - Room_Builder_Office_32x32_24
+  - Room_Builder_Office_32x32_40
+  - Room_Builder_Office_32x32_43
+  - Room_Builder_Office_32x32_58
+  - Room_Builder_Office_32x32_42
+  - Room_Builder_Office_32x32_29
+  - Room_Builder_Office_32x32_59
+  - Room_Builder_Office_32x32_28
+  - Room_Builder_Office_32x32_49
+  - Room_Builder_Office_32x32_48
+  - Room_Builder_Office_32x32_158
+  - Room_Builder_Office_32x32_128
+  - Room_Builder_Office_32x32_151
+  - Room_Builder_Office_32x32_129
+  - Room_Builder_Office_32x32_150
+  - Room_Builder_Office_32x32_153
+  - Room_Builder_Office_32x32_152
+  - Room_Builder_Office_32x32_124
+  - Room_Builder_Office_32x32_155
+  - Room_Builder_Office_32x32_125
+  - Room_Builder_Office_32x32_139
+  - Room_Builder_Office_32x32_154
+  - Room_Builder_Office_32x32_126
+  - Room_Builder_Office_32x32_138
+  - Room_Builder_Office_32x32_157
+  - Room_Builder_Office_32x32_127
+  - Room_Builder_Office_32x32_137
+  - Room_Builder_Office_32x32_156
+  - Room_Builder_Office_32x32_120
+  - Room_Builder_Office_32x32_136
+  - Room_Builder_Office_32x32_121
+  - Room_Builder_Office_32x32_135
+  - Room_Builder_Office_32x32_122
+  - Room_Builder_Office_32x32_134
+  - Room_Builder_Office_32x32_123
+  - Room_Builder_Office_32x32_133
+  - Room_Builder_Office_32x32_132
+  - Room_Builder_Office_32x32_131
+  - Room_Builder_Office_32x32_130
+  - Room_Builder_Office_32x32_81
+  - Room_Builder_Office_32x32_80
+  - Room_Builder_Office_32x32_83
+  - Room_Builder_Office_32x32_82
+  - Room_Builder_Office_32x32_85
+  - Room_Builder_Office_32x32_16
+  - Room_Builder_Office_32x32_84
+  - Room_Builder_Office_32x32_17
+  m_RenderDataMap: {}
+  m_Tag: Room_BuilderAtlas
+  m_IsVariant: 0
