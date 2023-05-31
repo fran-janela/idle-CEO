@@ -41,6 +41,7 @@ public class PanZoom : MonoBehaviour
             Vector3 direction = touchStart - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Camera.main.transform.position += direction;
         }
+        Zoom(Input.GetAxis("Mouse ScrollWheel"));
         
     }
 
