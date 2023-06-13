@@ -20,35 +20,32 @@ public class buyUpgradeTable : MonoBehaviour
 
     public int total_level = 5;
 
-    public float earnings = 10f;
-    public float earningsBase = 10f;
+    public float earnings = 5f;
+    public float earningsBase = 5f;
     public float multiplier;
     public int level = 0;
-    public float growthRate = 0;
-    public float balancing_production = 0;
+    public float growthRate = 0.1f;
+    public float balancing_production = 1f;
 
 
     
     public float decreaseTime = 0.2f;
 
+    public float delayTime = 4f;
+
 
     
     public float cost = 100f;
     public float baseCost = 100f;
-    public float balancing_cost = 0;
+    public float balancing_cost = 1f;
+    public int tableID; // ID do table atual
+    public ClickDeskScript clickDeskScript;
 
-
-    public static int tableIDCounter = 1; // Variável estática para controlar o ID dos laptops
-
-    public int tableID; // ID do laptop atual
+    public bool maxLevel = false;
 
 
     void Start()
     {
-        // define id do laptop atual
-        tableID = tableIDCounter;
-        tableIDCounter++;
-        Debug.Log("Table ID: " + tableID);
 
         // cor do upgrade começa bem clarinha, a barra de níveis começa zerada e o nível começa em 0
         canvasGroup.alpha = 0.2f;
@@ -64,27 +61,44 @@ public class buyUpgradeTable : MonoBehaviour
 
         // Atualizando os textos
         costText.text = "Buy $ " + cost.ToString();
-        ClickDeskScript clickDeskScript =  desk.GetComponent<ClickDeskScript>();
-        timeText.text = clickDeskScript.clickDelay.ToString() + "s";
-        earningsText.text = earningsBase.ToString();
+        timeText.text = delayTime.ToString() + "s";
+        earningsText.text = earningsBase.ToString();        
+
     }
+
+    public void  LateStart()
+    {
+        //carrega o script do gamemanager e salva os dados do laptop no dicionário
+                // tableID = desk.GetComponent<ClickDeskScript>().laptopTableSetID;
+        tableID = clickDeskScript.laptopTableSetID;
+        Debug.Log("Table ID: " + tableID);
+
+
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        Debug.Log("Game Manager: " + gameManager);
+        gameManager.SaveTableData(tableID, earnings, delayTime);
+    }
+
 
     public void buy()
     {
-        if (BuyBar.fillAmount == 1f){
-            ClickDeskScript clickDeskScript =  desk.GetComponent<ClickDeskScript>();
-            clickDeskScript.clickDelay -= decreaseTime;
+        if (BuyBar.fillAmount == 1f && level < total_level){
+            delayTime -= decreaseTime;
             BuyBar.fillAmount = 0;
             level += 1;
             levelText.text = level.ToString();
-            costText.text = "Buy $ " + cost.ToString();
-            timeText.text = clickDeskScript.clickDelay.ToString() + "s";
-            earningsText.text = earnings.ToString();
         } 
-        if (GameManager.money >= cost){
+        if (level == total_level){
+            // cor do botão fica mais escura
+            BuyBar.fillAmount = 1f;
+            canvasGroup.alpha = 0.2f;
+            maxLevel = true;
+        }
+        if (GameManager.money >= cost && !maxLevel){
             canvasGroup.alpha = 1f;
-            BuyBar.fillAmount += 1/total_level;
+            BuyBar.fillAmount += 1.0f/(float)10;
             GameManager.DecrementMoney(cost);
+            Debug.Log("Money porque compreiiii: " + GameManager.money);
 
             // Atualizando os valores do increase
             multiplier += 2f;
@@ -95,23 +109,27 @@ public class buyUpgradeTable : MonoBehaviour
             earningsText.text = earnings.ToString();
 
             //Atualizando os valores do custo
+            Debug.Log("Olha o base cost: " + baseCost + " e o growth rate: " + growthRate + " e o level: " + level + " e o balancing: " + balancing_cost);
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
-            costText.text = "Buy $ " + cost.ToString();
-
-            // Atualizando os textos
-            ClickDeskScript clickDeskScript =  desk.GetComponent<ClickDeskScript>();
-            timeText.text = clickDeskScript.clickDelay.ToString() + "s";
-            earningsText.text = earnings.ToString();
 
         } else {
             Debug.Log("Not enough money");
         }
+
+        costText.text = "Buy $ " + cost.ToString();
+        timeText.text = delayTime.ToString() + "s";
+        earningsText.text = earnings.ToString();
+
+        //carrega o script do gamemanager e salva os dados do laptop no dicionário
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.SaveTableData(tableID, earnings, delayTime);
 
     }
 
 
     void Update()
     {
+
         
     }
 }

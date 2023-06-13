@@ -7,7 +7,13 @@ public class GameManager : MonoBehaviour
     public class LaptopInfo
     {
         public float earnings;
-        public float decreaseTime;
+        public float delayTime;
+    }
+
+    public class TableInfo
+    {
+        public float earnings;
+        public float delayTime;
     }
 
     public static float money;
@@ -15,7 +21,9 @@ public class GameManager : MonoBehaviour
     public static float multiplier;
 
     public static Dictionary<int, LaptopInfo > laptopDictionary = new Dictionary<int, LaptopInfo>();
- 
+
+    public static Dictionary<int, TableInfo > tableDictionary = new Dictionary<int, TableInfo>();
+
     void Start()
     {
         money = 0.0f;
@@ -58,6 +66,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
+    public static TableInfo GetTableInfo(int tableID)
+    {
+        // Retorna as informações do laptop com o ID especificado
+        if (tableDictionary.ContainsKey(tableID))
+        {
+            return tableDictionary[tableID];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public static void LoadGameData()
     {
         // Carregar os dados do jogo, incluindo o dicionário dos laptops
@@ -82,15 +104,30 @@ public class GameManager : MonoBehaviour
         // Carregar outros dados do jogo, se necessário
     }
 
-    public void SaveLaptopData(int laptopID, float earnings, float decreaseTime)
+    public void SaveLaptopData(int laptopID, float earnings, float delayTime)
     {
         // Salvar os dados do laptop no dicionário
         LaptopInfo laptopInfo = new LaptopInfo();
         laptopInfo.earnings = earnings;
-        laptopInfo.decreaseTime = decreaseTime;
+        laptopInfo.delayTime = delayTime;
 
         laptopDictionary[laptopID] = laptopInfo;
-        Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earnings + " | Decrease Time: " + decreaseTime);
+        Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime);
+
+        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
+        SaveGameData();
+    }
+
+    
+    public void SaveTableData(int tableID, float earnings, float delayTime)
+    {
+        // Salvar os dados do laptop no dicionário
+        TableInfo tableInfo = new TableInfo();
+        tableInfo.earnings = earnings;
+        tableInfo.delayTime = delayTime;
+
+        tableDictionary[tableID] = tableInfo;
+        Debug.Log("Table ID: " + tableID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime);
 
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();

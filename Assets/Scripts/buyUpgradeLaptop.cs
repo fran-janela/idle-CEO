@@ -38,11 +38,10 @@ public class buyUpgradeLaptop : MonoBehaviour
     public float cost = 200f;
     public float baseCost = 200f;
     public float balancing_cost = 1f;
-
     public int laptopID; // ID do laptop atual
-
     public ClickDeskScript clickDeskScript;
 
+    public bool maxLevel = false;
     private bool lateStartExecuted;
 
 
@@ -87,15 +86,21 @@ public class buyUpgradeLaptop : MonoBehaviour
 
     public void buy()
     {
-        if (BuyBar.fillAmount == 1f){
+        if (BuyBar.fillAmount == 1f && level < total_level){
             delayTime -= decreaseTime;
             BuyBar.fillAmount = 0;
             level += 1;
             levelText.text = level.ToString();
         } 
-        if (GameManager.money >= cost){
+        if (level == total_level){
+            // cor do botão fica mais escura
+            BuyBar.fillAmount = 1f;
+            canvasGroup.alpha = 0.2f;
+            maxLevel = true;
+        }
+        if (GameManager.money >= cost && !maxLevel){
             canvasGroup.alpha = 1f;
-            BuyBar.fillAmount += 1/total_level;
+            BuyBar.fillAmount += 1.0f/(float)10;
             GameManager.DecrementMoney(cost);
             Debug.Log("Money porque compreiiii: " + GameManager.money);
 

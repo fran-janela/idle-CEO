@@ -11,11 +11,14 @@ public class loadMainUpdate : MonoBehaviour
 
     public buyUpgradeLaptop buyUpgradeLaptopScript;
 
+    public buyUpgradeTable buyUpgradeTableScript;
+
     void Start()
     {
         updateLaptop.SetActive(false);
         updateTable.SetActive(false);
         buyUpgradeLaptopScript.LateStart();
+        buyUpgradeTableScript.LateStart();
     }
 
     public void openUpdateLaptop(){
