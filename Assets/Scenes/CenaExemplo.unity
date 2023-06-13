@@ -915,7 +915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateLaptop: {fileID: 245787110}
   updateTable: {fileID: 1671211340}
-  buyUpgradeLaptopScript: {fileID: 0}
+  buyUpgradeLaptopScript: {fileID: 245787111}
 --- !u!1 &231790220
 GameObject:
   m_ObjectHideFlags: 0
@@ -7109,7 +7109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateLaptop: {fileID: 1766312609}
   updateTable: {fileID: 716917273}
-  buyUpgradeLaptopScript: {fileID: 0}
+  buyUpgradeLaptopScript: {fileID: 2138849347}
 --- !u!1 &1745875090
 GameObject:
   m_ObjectHideFlags: 0
