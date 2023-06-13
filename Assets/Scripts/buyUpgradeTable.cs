@@ -123,6 +123,7 @@ public class buyUpgradeTable : MonoBehaviour
         //carrega o script do gamemanager e salva os dados do laptop no dicionário
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SaveTableData(tableID, earnings, delayTime);
+        gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, BuyBar.fillAmount);
 
     }
 

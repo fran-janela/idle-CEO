@@ -5,9 +5,7 @@ using UnityEngine;
 public class loadMainUpdate : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject updateLaptop;
-
-    public GameObject updateTable;
+    public GameObject updateAll;
 
     public buyUpgradeLaptop buyUpgradeLaptopScript;
 
@@ -15,26 +13,17 @@ public class loadMainUpdate : MonoBehaviour
 
     void Start()
     {
-        updateLaptop.SetActive(false);
-        updateTable.SetActive(false);
+        updateAll.SetActive(false);
         buyUpgradeLaptopScript.LateStart();
         buyUpgradeTableScript.LateStart();
     }
 
-    public void openUpdateLaptop(){
-        updateLaptop.SetActive(true);
+    public void openUpdateAll(){
+        updateAll.SetActive(true);
     }
 
-    public void closeUpdateLaptop(){
-        updateLaptop.SetActive(false);
-    }
-
-    public void openUpdateTable(){
-        updateTable.SetActive(true);
-    }
-
-    public void closeUpdateTable(){
-        updateTable.SetActive(false);
+    public void closeUpdateAll(){
+        updateAll.SetActive(false);
     }
 
  

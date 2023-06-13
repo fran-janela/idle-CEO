@@ -49,6 +49,9 @@ public class buyUpgradeLaptop : MonoBehaviour
     {
 
         // cor do upgrade começa bem clarinha, a barra de níveis começa zerada e o nível começa em 0
+
+        // pega os parametros do laptopParamters no gamemanager
+
         canvasGroup.alpha = 0.2f;
         BuyBar.fillAmount = 0;
         levelText.text = "0";
@@ -63,7 +66,8 @@ public class buyUpgradeLaptop : MonoBehaviour
         // Atualizando os textos
         costText.text = "Buy $ " + cost.ToString();
         timeText.text = delayTime.ToString() + "s";
-        earningsText.text = earningsBase.ToString();        
+        earningsText.text = earningsBase.ToString();     
+
         // lateStartExecuted = false;
 
         // LateStart();
@@ -127,6 +131,7 @@ public class buyUpgradeLaptop : MonoBehaviour
         //carrega o script do gamemanager e salva os dados do laptop no dicionário
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SaveLaptopData(laptopID, earnings, delayTime);
+        gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, BuyBar.fillAmount);
 
     }
 

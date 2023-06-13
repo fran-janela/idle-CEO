@@ -10,6 +10,37 @@ public class GameManager : MonoBehaviour
         public float delayTime;
     }
 
+    public class LaptopParameters
+    {
+        public float earningsBase;
+        public float growthRate;
+        public float balancing_production;
+        public float decreaseTime;
+        public float baseCost;
+        public float balancing_cost;
+
+        public float multiplier;
+        public int level;
+
+        public float buyBar;
+    }
+
+    public class TableParameters
+    {
+        public float earningsBase;
+        public float growthRate;
+        public float balancing_production;
+        public float decreaseTime;
+        public float baseCost;
+        public float balancing_cost;
+
+        public float multiplier;
+
+        public int level;
+
+        public float buyBar;
+    }
+
     public class TableInfo
     {
         public float earnings;
@@ -21,7 +52,8 @@ public class GameManager : MonoBehaviour
     public static float multiplier;
 
     public static Dictionary<int, LaptopInfo > laptopDictionary = new Dictionary<int, LaptopInfo>();
-
+    public static Dictionary<int, LaptopParameters > laptopParametersDictionary = new Dictionary<int, LaptopParameters>();
+    public static Dictionary<int, TableParameters > tableParametersDictionary = new Dictionary<int, TableParameters>();
     public static Dictionary<int, TableInfo > tableDictionary = new Dictionary<int, TableInfo>();
 
     void Start()
@@ -39,6 +71,34 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public static void DecrementMoney(float amount)
+    {
+        if (GameManager.money >= amount)
+        {
+            GameManager.money -= amount;
+            GameManager.money = Mathf.Round(GameManager.money * 100f) / 100f;
+            // SaveGameData();
+        }
+    }
+
+    public static float CalculateProduction(float multiplication, float upgrade, float growthRate, float balancing)
+    {
+        return multiplication * 10f * Mathf.Log((upgrade + 1f) * growthRate) + balancing - upgrade;
+    }
+
+    public static float CalculateCost(float baseCost, float growthRate, float upgrade, float balancing)
+    {
+        if (upgrade == 0f)
+        {
+            Debug.Log("Custo total: " + baseCost * (growthRate  * balancing) + 1f);
+            return baseCost*growthRate*balancing + 1f;
+        }
+        Debug.Log("Custo total: " + baseCost * (growthRate * upgrade * balancing) + 1f);
+        return baseCost * (growthRate * upgrade  * balancing) + 1f;
+    }
+
+
+    // Funções para salvar e carregar os dados do jogo
     public static void SaveGameData()
     {
         // Salvar os dados do jogo, incluindo o dicionário dos laptops, usando PlayerPrefs ou outra forma de armazenamento persistente
@@ -49,7 +109,14 @@ public class GameManager : MonoBehaviour
 
         // Salvar os dados do dicionário dos laptops
         string laptopData = JsonUtility.ToJson(laptopDictionary);
+        string tableData = JsonUtility.ToJson(tableDictionary);
+        // string laptopParametersData = JsonUtility.ToJson(laptopParametersDictionary);
+        // string tableParametersData = JsonUtility.ToJson(tableParametersDictionary);
+
         PlayerPrefs.SetString("LaptopData", laptopData);
+        PlayerPrefs.SetString("TableData", tableData);
+        // PlayerPrefs.SetString("LaptopParametersData", laptopParametersData);
+        // PlayerPrefs.SetString("TableParametersData", tableParametersData);
         // Salvar outros dados do jogo, se necessário
     }
 
@@ -80,6 +147,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public static LaptopParameters GetLaptopParameters(int laptopID)
+    {
+        // Retorna as informações do laptop com o ID especificado
+        if (laptopParametersDictionary.ContainsKey(laptopID))
+        {
+            return laptopParametersDictionary[laptopID];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    
+    public static TableParameters GetTableParameters(int tableID)
+    {
+        // Retorna as informações do laptop com o ID especificado
+        if (tableParametersDictionary.ContainsKey(tableID))
+        {
+            return tableParametersDictionary[tableID];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public static void LoadGameData()
     {
         // Carregar os dados do jogo, incluindo o dicionário dos laptops
@@ -91,14 +185,24 @@ public class GameManager : MonoBehaviour
 
         // Carregar os dados do dicionário dos laptops
         string laptopData = PlayerPrefs.GetString("LaptopData", "");
+        string tableData = PlayerPrefs.GetString("TableData", "");
+        string laptopParametersData = PlayerPrefs.GetString("LaptopParametersData", "");
+        string tableParametersData = PlayerPrefs.GetString("TableParametersData", "");
+
         if (!string.IsNullOrEmpty(laptopData))
         {
             laptopDictionary = JsonUtility.FromJson<Dictionary<int, LaptopInfo>>(laptopData);
+            tableDictionary = JsonUtility.FromJson<Dictionary<int, TableInfo>>(tableData);
+            laptopParametersDictionary = JsonUtility.FromJson<Dictionary<int, LaptopParameters>>(laptopParametersData);
+            tableParametersDictionary = JsonUtility.FromJson<Dictionary<int, TableParameters>>(tableParametersData);
         }
         else
         {
             // Se não houver dados salvos, inicializar o dicionário dos laptops vazio
             laptopDictionary = new Dictionary<int, LaptopInfo>();
+            tableDictionary = new Dictionary<int, TableInfo>();
+            laptopParametersDictionary = new Dictionary<int, LaptopParameters>();
+            tableParametersDictionary = new Dictionary<int, TableParameters>();
         }
 
         // Carregar outros dados do jogo, se necessário
@@ -112,10 +216,10 @@ public class GameManager : MonoBehaviour
         laptopInfo.delayTime = delayTime;
 
         laptopDictionary[laptopID] = laptopInfo;
-        Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime);
+        Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime + " | Level: " );
 
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
-        SaveGameData();
+        // SaveGameData();
     }
 
     
@@ -127,10 +231,56 @@ public class GameManager : MonoBehaviour
         tableInfo.delayTime = delayTime;
 
         tableDictionary[tableID] = tableInfo;
-        Debug.Log("Table ID: " + tableID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime);
+        Debug.Log("Table ID: " + tableID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime + " | Level: " );
 
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
-        SaveGameData();
+        // SaveGameData();
+    }
+
+    
+    public void SaveTableParameters(int tableID, float earningsBase, float growthRate, float balancing_production, float decreaseTime, float baseCost, float balancing_cost, float multiplier, int level, float buyBar)
+    {
+        // Salvar os dados do laptop no dicionário
+        TableParameters tableParameters = new TableParameters();
+        tableParameters.earningsBase = earningsBase;
+        tableParameters.growthRate = growthRate;
+        tableParameters.balancing_production = balancing_production;
+        tableParameters.decreaseTime = decreaseTime;
+        tableParameters.baseCost = baseCost;
+        tableParameters.balancing_cost = balancing_cost;
+        tableParameters.multiplier = multiplier;
+        tableParameters.level = level;
+        tableParameters.buyBar = buyBar;
+
+
+        tableParametersDictionary[tableID] = tableParameters;
+
+        Debug.Log("Table ID: " + tableID + " | Earnings: " + earningsBase + " | Decrease Time: " + decreaseTime + " | Level: " + level);
+
+        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
+        // SaveGameData();
+    }
+
+    public void SaveLaptopParameters (int laptopID, float earningsBase, float growthRate, float balancing_production, float decreaseTime, float baseCost, float balancing_cost, float multiplier, int level, float buyBar)
+    {
+        // Salvar os dados do laptop no dicionário
+        LaptopParameters laptopParameters = new LaptopParameters();
+        laptopParameters.earningsBase = earningsBase;
+        laptopParameters.growthRate = growthRate;
+        laptopParameters.balancing_production = balancing_production;
+        laptopParameters.decreaseTime = decreaseTime;
+        laptopParameters.baseCost = baseCost;
+        laptopParameters.balancing_cost = balancing_cost;
+        laptopParameters.multiplier = multiplier;
+        laptopParameters.level = level;
+        laptopParameters.buyBar = buyBar;
+
+        laptopParametersDictionary[laptopID] = laptopParameters;
+
+        Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earningsBase + " | Decrease Time: " + decreaseTime + " | Level: " + level);
+
+        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
+        // SaveGameData();
     }
 
     public void apertaTeclaApagar()
@@ -144,30 +294,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public static void DecrementMoney(float amount)
-    {
-        if (GameManager.money >= amount)
-        {
-            GameManager.money -= amount;
-            GameManager.money = Mathf.Round(GameManager.money * 100f) / 100f;
-        }
-    }
-
-    public static float CalculateProduction(float multiplication, float upgrade, float growthRate, float balancing)
-    {
-        return multiplication * 10f * Mathf.Log((upgrade + 1f) * growthRate) + balancing - upgrade;
-    }
-
-    public static float CalculateCost(float baseCost, float growthRate, float upgrade, float balancing)
-    {
-        if (upgrade == 0f)
-        {
-            Debug.Log("Custo total: " + baseCost * (growthRate  * balancing) + 1f);
-            return baseCost*growthRate*balancing + 1f;
-        }
-        Debug.Log("Custo total: " + baseCost * (growthRate * upgrade * balancing) + 1f);
-        return baseCost * (growthRate * upgrade  * balancing) + 1f;
-    }
 }
 
 
