@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 218127366652530907}
   - component: {fileID: 218127366652530906}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: costText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,24 +358,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 218127367412356025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd38cd5dd341dd42b0c3ae527ec3876, type: 3}
+  m_Script: {fileID: 11500000, guid: 912f1e183eff55b418580a4a38f416b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   levelText: {fileID: 5009597871282805786}
-  BuyBar: {fileID: 4569441711385126449}
-  multiplier: 1
-  level: 0
   canvasGroup: {fileID: 1613600991941345380}
+  BuyBar: {fileID: 4569441711385126449}
   button: {fileID: 218127367595615789}
-  moneyScript: {fileID: 0}
   desk: {fileID: 0}
-  increaseEarnings: 0.1
-  decreaseTime: 0.5
-  cost: 200
-  increaseCost: 1.5
-  costText: {fileID: 218127366652530906}
   timeText: {fileID: 1938113998764596697}
   earningsText: {fileID: 479944384767561563}
+  costText: {fileID: 218127366652530906}
+  total_level: 5
+  earnings: 10
+  earningsBase: 10
+  multiplier: 0
+  level: 0
+  growthRate: 0
+  balancing_production: 0
+  decreaseTime: 0.5
+  delayTime: 5
+  cost: 200
+  baseCost: 200
+  balancing_cost: 0
+  laptopID: 0
 --- !u!1 &218127367414276723
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +471,7 @@ GameObject:
   - component: {fileID: 218127367595615786}
   - component: {fileID: 218127367595615789}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,7 +581,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 218127367412356018}
-        m_TargetAssemblyTypeName: buyUpgrade, Assembly-CSharp
+        m_TargetAssemblyTypeName: buyUpgradeLaptop, Assembly-CSharp
         m_MethodName: buy
         m_Mode: 1
         m_Arguments:

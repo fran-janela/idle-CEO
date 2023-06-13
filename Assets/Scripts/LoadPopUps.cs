@@ -7,6 +7,10 @@ public class LoadPopUps : MonoBehaviour
     // Start is called before the first frame update
     public GameObject popUpUpdates;
     public GameObject popUpActions;
+
+    public GameObject updateLaptop;
+
+    public GameObject updateTable;
     private bool open = false;
 
 

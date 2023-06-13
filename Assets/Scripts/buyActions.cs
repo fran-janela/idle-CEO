@@ -56,19 +56,16 @@ public class buyActions : MonoBehaviour
         }
 
     }
-
     void Update()
     {
         if (StartTimer == true)
         {
             currentTimer -= Time.deltaTime;
 
-            Debug.Log(currentTimer);
-
             // Atualizar a exibição do tempo na UI
             timeText.text = Timer.ToString("0.0") + "s";
 
-                        // Calcular a porcentagem completada do timer
+            // Calcular a porcentagem completada do timer
             float fillPercentage = 1f - (currentTimer / Timer);
             BuyBar.fillAmount = fillPercentage;
 
@@ -79,11 +76,16 @@ public class buyActions : MonoBehaviour
                 currentTimer = 0;
 
                 // Executar as ações de incrementar o dinheiro
-                GameManager.IncrementMoney(5000f);
+                GameManager.IncrementMoney(5000);
                 earningsText.text = GameManager.money.ToString();
+
+                // Reiniciar o timer
+                StartTimer = true;
+                currentTimer = Timer;
             }
         }
     }
+}
 
 
 
@@ -106,4 +108,4 @@ public class buyActions : MonoBehaviour
     //     }
         
     // }
-}
+

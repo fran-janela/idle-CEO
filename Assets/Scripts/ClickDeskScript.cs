@@ -9,6 +9,11 @@ public class ClickDeskScript : MonoBehaviour
 
     public float clickDelay = 10.0f;
 
+
+    public static int laptopTableSetCounter= 1; // Variável estática para controlar o ID dos laptops
+
+    public int laptopTableSetID; // ID do laptop atual
+
     Collider2D collider;
     SpriteRenderer spriteRenderer;
 
@@ -21,9 +26,14 @@ public class ClickDeskScript : MonoBehaviour
 
     void Start()
     {
+        laptopTableSetID = laptopTableSetCounter;
+        laptopTableSetCounter++;
+
+        Debug.Log("DeskSet ID: " + laptopTableSetID);
         collider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         propSpriteRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+
     }
 
     void FixedUpdate()
@@ -66,7 +76,21 @@ public class ClickDeskScript : MonoBehaviour
             {
                 Debug.Log("Click");
                 Debug.Log(clickDelay);
-                GameManager.IncrementMoney(200.0f);
+                // pegue o dicionário de laptops do GameManager e pegue as informações do laptop atual que possui o mesmo ID que o laptopTableSetID
+                // use essas informações para incrementar o dinheiro do jogador
+                // use o método IncrementMoney do GameManager para incrementar o dinheiro do jogador
+                // update o clickDelay para o valor do decreaseTime do laptop atual
+                Debug.Log ("Olha o ID do laptop: " + laptopTableSetID);
+                GameManager.LaptopInfo laptopInfo = GameManager.GetLaptopInfo(laptopTableSetID);
+                Debug.Log("Info do laptop: " + laptopInfo);
+                Debug.Log("Os earnings do laptop: " + laptopInfo.earnings + " e o decreaseTime: " + laptopInfo.decreaseTime);
+                if (laptopInfo != null)
+                {
+                    clickDelay = laptopInfo.decreaseTime;
+                    Debug.Log("earnings do laptop " + laptopTableSetID + ": " + laptopInfo.earnings);
+
+                    GameManager.IncrementMoney(laptopInfo.earnings);
+                }
                 canClick = true;
                 BrightenAssets();
                 PVisualizer.GetComponent<ProgressVisualizer>().PlayMoneyAnimation();
