@@ -76,21 +76,20 @@ public class ClickDeskScript : MonoBehaviour
             {
                 Debug.Log("Click");
                 Debug.Log(clickDelay);
-                // pegue o dicionário de laptops do GameManager e pegue as informações do laptop atual que possui o mesmo ID que o laptopTableSetID
-                // use essas informações para incrementar o dinheiro do jogador
-                // use o método IncrementMoney do GameManager para incrementar o dinheiro do jogador
-                // update o clickDelay para o valor do decreaseTime do laptop atual
+
                 Debug.Log ("Olha o ID do laptop: " + laptopTableSetID);
                 GameManager.LaptopInfo laptopInfo = GameManager.GetLaptopInfo(laptopTableSetID);
-                Debug.Log("Info do laptop: " + laptopInfo);
-                Debug.Log("Os earnings do laptop: " + laptopInfo.earnings + " e o decreaseTime: " + laptopInfo.decreaseTime);
-                if (laptopInfo != null)
-                {
-                    clickDelay = laptopInfo.decreaseTime;
-                    Debug.Log("earnings do laptop " + laptopTableSetID + ": " + laptopInfo.earnings);
+                GameManager.TableInfo tableInfo = GameManager.GetTableInfo(laptopTableSetID);
+                Debug.Log("Os earnings do laptop: " + laptopInfo.earnings + " e o delayTime: " + laptopInfo.delayTime);
+                Debug.Log("Os earnings da mesa: " + tableInfo.earnings + " e o delayTime: " + tableInfo.delayTime);
 
-                    GameManager.IncrementMoney(laptopInfo.earnings);
+                clickDelay = (laptopInfo.delayTime + tableInfo.delayTime)/(float)2;
+                if (clickDelay < 0.0f)
+                {
+                    clickDelay = 0.0f;
                 }
+                GameManager.IncrementMoney(laptopInfo.earnings + tableInfo.earnings);
+                
                 canClick = true;
                 BrightenAssets();
                 PVisualizer.GetComponent<ProgressVisualizer>().PlayMoneyAnimation();
