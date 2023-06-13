@@ -60,14 +60,14 @@ public class GameManager : MonoBehaviour
     {
         money = 0.0f;
         multiplier = 0.0f;
-        // LoadGameData();
+        LoadGameData();
     }
 
     public static void IncrementMoney(float amount)
     {
         GameManager.money += amount;
         GameManager.money = Mathf.Round(GameManager.money * 100f) / 100f;
-        // SaveGameData();
+        SaveGameData();
         
     }
 
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         {
             GameManager.money -= amount;
             GameManager.money = Mathf.Round(GameManager.money * 100f) / 100f;
-            // SaveGameData();
+            SaveGameData();
         }
     }
 
@@ -101,23 +101,17 @@ public class GameManager : MonoBehaviour
     // Funções para salvar e carregar os dados do jogo
     public static void SaveGameData()
     {
-        // Salvar os dados do jogo, incluindo o dicionário dos laptops, usando PlayerPrefs ou outra forma de armazenamento persistente
-        // Aqui está um exemplo usando PlayerPrefs:
-
-        // Salvar o dinheiro do jogador
         PlayerPrefs.SetFloat("Money", money);
 
-        // Salvar os dados do dicionário dos laptops
         string laptopData = JsonUtility.ToJson(laptopDictionary);
         string tableData = JsonUtility.ToJson(tableDictionary);
-        // string laptopParametersData = JsonUtility.ToJson(laptopParametersDictionary);
-        // string tableParametersData = JsonUtility.ToJson(tableParametersDictionary);
+        string laptopParametersData = JsonUtility.ToJson(laptopParametersDictionary);
+        string tableParametersData = JsonUtility.ToJson(tableParametersDictionary);
 
         PlayerPrefs.SetString("LaptopData", laptopData);
         PlayerPrefs.SetString("TableData", tableData);
-        // PlayerPrefs.SetString("LaptopParametersData", laptopParametersData);
-        // PlayerPrefs.SetString("TableParametersData", tableParametersData);
-        // Salvar outros dados do jogo, se necessário
+        PlayerPrefs.SetString("LaptopParametersData", laptopParametersData);
+        PlayerPrefs.SetString("TableParametersData", tableParametersData);
     }
 
     public static LaptopInfo GetLaptopInfo(int laptopID)
@@ -176,9 +170,7 @@ public class GameManager : MonoBehaviour
 
     public static void LoadGameData()
     {
-        // Carregar os dados do jogo, incluindo o dicionário dos laptops
 
-        // Carregar o dinheiro do jogador
         money = PlayerPrefs.GetFloat("Money", 0.0f);
 
         //
@@ -192,20 +184,37 @@ public class GameManager : MonoBehaviour
         if (!string.IsNullOrEmpty(laptopData))
         {
             laptopDictionary = JsonUtility.FromJson<Dictionary<int, LaptopInfo>>(laptopData);
+            Debug.Log("Laptop Dictionary: " + laptopDictionary);
+        }
+        else {
+            laptopDictionary = new Dictionary<int, LaptopInfo>();
+        }
+        if (!string.IsNullOrEmpty(tableData))
+        {
             tableDictionary = JsonUtility.FromJson<Dictionary<int, TableInfo>>(tableData);
+            Debug.Log("Table Dictionary: " + tableDictionary);
+        }
+        else {
+            tableDictionary = new Dictionary<int, TableInfo>();
+        }
+        if (!string.IsNullOrEmpty(laptopParametersData))
+        {
             laptopParametersDictionary = JsonUtility.FromJson<Dictionary<int, LaptopParameters>>(laptopParametersData);
-            tableParametersDictionary = JsonUtility.FromJson<Dictionary<int, TableParameters>>(tableParametersData);
+            Debug.Log("Laptop Parameters Dictionary: " + laptopParametersDictionary);
         }
         else
         {
-            // Se não houver dados salvos, inicializar o dicionário dos laptops vazio
-            laptopDictionary = new Dictionary<int, LaptopInfo>();
-            tableDictionary = new Dictionary<int, TableInfo>();
             laptopParametersDictionary = new Dictionary<int, LaptopParameters>();
+        }
+        if (!string.IsNullOrEmpty(tableParametersData))
+        {
+            tableParametersDictionary = JsonUtility.FromJson<Dictionary<int, TableParameters>>(tableParametersData);
+            Debug.Log("Table Parameters Dictionary: " + tableParametersDictionary);
+        }
+        else
+        {
             tableParametersDictionary = new Dictionary<int, TableParameters>();
         }
-
-        // Carregar outros dados do jogo, se necessário
     }
 
     public void SaveLaptopData(int laptopID, float earnings, float delayTime)
@@ -219,22 +228,22 @@ public class GameManager : MonoBehaviour
         Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime + " | Level: " );
 
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
-        // SaveGameData();
+        SaveGameData();
     }
 
-    
     public void SaveTableData(int tableID, float earnings, float delayTime)
     {
         // Salvar os dados do laptop no dicionário
         TableInfo tableInfo = new TableInfo();
         tableInfo.earnings = earnings;
         tableInfo.delayTime = delayTime;
-
-        tableDictionary[tableID] = tableInfo;
         Debug.Log("Table ID: " + tableID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime + " | Level: " );
 
+        tableDictionary[tableID] = tableInfo;
+        Debug.Log("Laptop ID: " + tableID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime + " | Level: " );
+
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
-        // SaveGameData();
+        SaveGameData();
     }
 
     
@@ -258,7 +267,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Table ID: " + tableID + " | Earnings: " + earningsBase + " | Decrease Time: " + decreaseTime + " | Level: " + level);
 
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
-        // SaveGameData();
+        SaveGameData();
     }
 
     public void SaveLaptopParameters (int laptopID, float earningsBase, float growthRate, float balancing_production, float decreaseTime, float baseCost, float balancing_cost, float multiplier, int level, float buyBar)
@@ -280,17 +289,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earningsBase + " | Decrease Time: " + decreaseTime + " | Level: " + level);
 
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
-        // SaveGameData();
+        SaveGameData();
     }
 
     public void apertaTeclaApagar()
     // se apertar a tecla q
     {  if (Input.GetKeyDown(KeyCode.Q))
         PlayerPrefs.DeleteAll();
-        // acho que não deletou o money
-        PlayerPrefs.DeleteKey("Money");
-        PlayerPrefs.DeleteKey("LaptopData");
-
     }
 
 

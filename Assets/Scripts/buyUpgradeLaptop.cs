@@ -48,14 +48,10 @@ public class buyUpgradeLaptop : MonoBehaviour
     void Start()
     {
 
-        // cor do upgrade começa bem clarinha, a barra de níveis começa zerada e o nível começa em 0
-
-        // pega os parametros do laptopParamters no gamemanager
-
-        canvasGroup.alpha = 0.2f;
-        BuyBar.fillAmount = 0;
-        levelText.text = "0";
-        multiplier = 0f;
+        // canvasGroup.alpha = 0.2f;
+        // BuyBar.fillAmount = 0;
+        // levelText.text = "0";
+        // multiplier = 0f;
 
         // cor do botão começa toda em 1
         Image buttonImage = button.GetComponent<Image>();
@@ -68,24 +64,74 @@ public class buyUpgradeLaptop : MonoBehaviour
         timeText.text = delayTime.ToString() + "s";
         earningsText.text = earningsBase.ToString();     
 
-        // lateStartExecuted = false;
-
-        // LateStart();
-        //faço ele ser active false depois do late start
     }
 
-    public void  LateStart()
+    // public void  LateStart()
+    // {
+    //     //carrega o script do gamemanager e salva os dados do laptop no dicionário
+    //             // laptopID = desk.GetComponent<ClickDeskScript>().laptopTableSetID;
+    //     laptopID = clickDeskScript.laptopTableSetID;
+    //     Debug.Log("Laptop ID: " + laptopID);
+
+
+    //     GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    //     Debug.Log("Game Manager: " + gameManager);
+    //     gameManager.SaveLaptopData(laptopID, earnings, delayTime);
+    // }
+
+    public void LateStart()
     {
-        //carrega o script do gamemanager e salva os dados do laptop no dicionário
-                // laptopID = desk.GetComponent<ClickDeskScript>().laptopTableSetID;
         laptopID = clickDeskScript.laptopTableSetID;
         Debug.Log("Laptop ID: " + laptopID);
 
-
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        Debug.Log("Game Manager: " + gameManager);
+        GameManager.LaptopInfo laptopInfo = GameManager.GetLaptopInfo(laptopID);
+        GameManager.LaptopParameters laptopParameters = GameManager.GetLaptopParameters(laptopID);
+
+        // Verifique se os objetos são nulos antes de acessar suas propriedades
+        if (laptopInfo != null)
+        {
+            earnings = laptopInfo.earnings;
+            delayTime = laptopInfo.delayTime;
+        }
+
+        if (laptopParameters != null)
+        {
+            Debug.Log("Laptop Parameters não é null");
+            earningsBase = laptopParameters.earningsBase;
+            multiplier = laptopParameters.multiplier;
+            level = laptopParameters.level;
+            growthRate = laptopParameters.growthRate;
+            balancing_production = laptopParameters.balancing_production;
+            decreaseTime = laptopParameters.decreaseTime;
+            baseCost = laptopParameters.baseCost;
+            balancing_cost = laptopParameters.balancing_cost;
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
+            if (level == total_level){
+                BuyBar.fillAmount = 1f;
+                canvasGroup.alpha = 0.2f;
+                maxLevel = true;
+            } else {
+                Debug.Log("Level não é igual ao total level");
+                Debug.Log("BuyBar.fillAmount: " + laptopParameters.buyBar);
+                BuyBar.fillAmount = laptopParameters.buyBar;
+            }
+        }
+        if (laptopParameters == null) {
+            canvasGroup.alpha = 0.2f;
+            BuyBar.fillAmount = 0;
+            levelText.text = "0";
+            multiplier = 0f;
+        }
+
+        // Salvar os dados do laptop no dicionário
         gameManager.SaveLaptopData(laptopID, earnings, delayTime);
+        Debug.Log("Mandando os dados pro LaptopParameters : " + laptopID + " " + earningsBase + " " + growthRate + " " + balancing_production + " " + decreaseTime + " " + baseCost + " " + balancing_cost + " " + multiplier + " " + level + " " + BuyBar.fillAmount);
+        gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, BuyBar.fillAmount);
+
+
     }
+
 
 
     public void buy()

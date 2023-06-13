@@ -68,8 +68,6 @@ public class buyUpgradeTable : MonoBehaviour
 
     public void  LateStart()
     {
-        //carrega o script do gamemanager e salva os dados do laptop no dicionário
-                // tableID = desk.GetComponent<ClickDeskScript>().laptopTableSetID;
         tableID = clickDeskScript.laptopTableSetID;
         Debug.Log("Table ID: " + tableID);
 
@@ -120,7 +118,6 @@ public class buyUpgradeTable : MonoBehaviour
         timeText.text = delayTime.ToString() + "s";
         earningsText.text = earnings.ToString();
 
-        //carrega o script do gamemanager e salva os dados do laptop no dicionário
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SaveTableData(tableID, earnings, delayTime);
         gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, BuyBar.fillAmount);
