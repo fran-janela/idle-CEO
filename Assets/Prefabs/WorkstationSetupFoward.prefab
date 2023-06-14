@@ -1031,7 +1031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: growthRate
-      value: 0.8
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: balancing_cost

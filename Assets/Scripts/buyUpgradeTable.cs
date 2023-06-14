@@ -89,6 +89,7 @@ public class buyUpgradeTable : MonoBehaviour
             baseCost = tableParameters.baseCost;
             balancing_cost = tableParameters.balancing_cost;
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
+            costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
             if (level == total_level){
                 BuyBar.fillAmount = 1f;
                 canvasGroup.alpha = 0.2f;
@@ -103,6 +104,7 @@ public class buyUpgradeTable : MonoBehaviour
             BuyBar.fillAmount = 0f;
             levelText.text = "0";
             multiplier = 0f;
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
         }
          if (tableInfo != null)
         {
@@ -111,7 +113,7 @@ public class buyUpgradeTable : MonoBehaviour
             delayTime = tableInfo.delayTime;
         }
 
-        
+
         gameManager.SaveTableData(tableID, earnings, delayTime);
         float fillAmount = BuyBar.fillAmount;
         gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);

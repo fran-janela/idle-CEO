@@ -1028,7 +1028,7 @@ PrefabInstance:
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: desk
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8350688396344495430}
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: growthRate
       value: 0.8
@@ -1040,7 +1040,7 @@ PrefabInstance:
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: clickDeskScript
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7193035553395660723}
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: balancing_production
       value: 1
@@ -1289,11 +1289,11 @@ PrefabInstance:
     - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
       propertyPath: desk
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8350688396344495430}
     - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
       propertyPath: clickDeskScript
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7193035553395660723}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
 --- !u!224 &7335146679706323798 stripped

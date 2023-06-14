@@ -113,19 +113,13 @@ public class GameManager : MonoBehaviour
 
     public static void ResetGameData()
     {
-    // Redefinir apenas os dados relevantes para test
-    float money = 0.0f;
-    string laptopDataToJSON = JsonHelper.ToJson(new LaptopInfo[48], true);
-    string tableDataToJSON = JsonHelper.ToJson(new TableInfo[48], true);
-    string laptopParametersDataToJSON = JsonHelper.ToJson(new LaptopParameters[48], true);
-    string tableParametersDataToJSON = JsonHelper.ToJson(new TableParameters[48], true);
 
-    PlayerPrefs.SetString("LaptopData", laptopDataToJSON);
-    PlayerPrefs.SetString("TableData", tableDataToJSON);
-    PlayerPrefs.SetString("LaptopParametersData", laptopParametersDataToJSON);
-    PlayerPrefs.SetString("TableParametersData", tableParametersDataToJSON);
-    PlayerPrefs.SetFloat("Money", money);
-    SaveGameData();
+        PlayerPrefs.SetString("LaptopData", "");
+        PlayerPrefs.SetString("TableData", "");
+        PlayerPrefs.SetString("LaptopParametersData", "");
+        PlayerPrefs.SetString("TableParametersData", "");
+        PlayerPrefs.SetFloat("Money", 0.0f);
+        SaveGameData();
     }
 
     public static void IncrementMoney(float amount)
@@ -155,11 +149,11 @@ public class GameManager : MonoBehaviour
     {
         if (upgrade == 0f)
         {
-            Debug.Log("Custo total: " + baseCost * (growthRate  * balancing) + 1f);
-            return baseCost*growthRate*balancing + 1f;
+            Debug.Log("Custo total: " + (baseCost + (baseCost*growthRate*balancing) + 1f));
+            return baseCost + (baseCost*growthRate*balancing) + 1f;
         }
-        Debug.Log("Custo total: " + baseCost * (growthRate * upgrade * balancing) + 1f);
-        return baseCost * (growthRate * upgrade  * balancing) + 1f;
+        Debug.Log("Custo total: " + (baseCost + (baseCost* growthRate * upgrade  * balancing) + 1f));
+        return baseCost + (baseCost* growthRate * upgrade  * balancing) + 1f;
     }
 
 
