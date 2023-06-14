@@ -9,6 +9,7 @@ public class buyUpgradeTable : MonoBehaviour
     // public TextMeshProUGUI moneyText;
 
     public TextMeshProUGUI levelText;
+    public int room_id;
     public CanvasGroup canvasGroup;
     public Image BuyBar; 
     public Button button;
@@ -114,7 +115,7 @@ public class buyUpgradeTable : MonoBehaviour
         }
 
 
-        gameManager.SaveTableData(tableID, earnings, delayTime);
+        gameManager.SaveTableData(tableID, earnings, delayTime, room_id);
         float fillAmount = BuyBar.fillAmount;
         gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
     }
@@ -161,7 +162,7 @@ public class buyUpgradeTable : MonoBehaviour
         earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.SaveTableData(tableID, earnings, delayTime);
+        gameManager.SaveTableData(tableID, earnings, delayTime, room_id);
         float fillAmount = BuyBar.fillAmount;
         Debug.Log("OLHA O FILLLLLL aMOUNT TABLE: " + fillAmount);
         gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
