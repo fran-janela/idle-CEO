@@ -12,21 +12,18 @@ public class buyActions : MonoBehaviour
 
     public Button button;
 
-    public float cost = 200f;
 
     public TextMeshProUGUI costText;
 
     public TextMeshProUGUI earningsText;
-
     public TextMeshProUGUI timeText;
 
+
+    public float earnings = 5000f;
+    public float cost = 200f;
     public float Timer;
-
     public float currentTimer;
-
     public bool StartTimer = false;
-
-
 
     void Start()
     {
@@ -40,7 +37,7 @@ public class buyActions : MonoBehaviour
         buttonImage.color = buttonColor;
         timeText.text = Timer.ToString() + "s";
         costText.text = "Buy $ " + cost.ToString();
-        earningsText.text = GameManager.money.ToString();
+        earningsText.text = earnings.ToString();
     }
 
     public void buyActionOnClick()
