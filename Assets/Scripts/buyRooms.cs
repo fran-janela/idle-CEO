@@ -8,6 +8,7 @@ public class buyRooms : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public GameObject room1;
     public CanvasGroup canvasGroupPopUp;
     public Button button;
     public Collider2D roomCollider;
@@ -26,6 +27,9 @@ public class buyRooms : MonoBehaviour
         buttonImage.color = buttonColor;
 
         roomCollider.enabled = false;
+
+        //mudar o alfa da cor do room1
+        room1.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.64f);
         
     }
 
@@ -42,6 +46,7 @@ public class buyRooms : MonoBehaviour
             buttonColor.a = 0.2f;
             buttonImage.color = buttonColor;
             GameManager.DecrementMoney(cost_room);
+            room1.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
             roomCollider.enabled = true;
         }
     }
