@@ -76,9 +76,6 @@ public class buyUpgradeTable : MonoBehaviour
         GameManager.TableInfo tableInfo = GameManager.GetTableInfo(tableID);
         GameManager.TableParameters tableParameters = GameManager.GetTableParameters(tableID);
 
-        earnings = tableInfo.earnings;
-        delayTime = tableInfo.delayTime;
-
         if (tableParameters != null)
         {
             Debug.Log("Table Parameters não é null");
@@ -100,13 +97,19 @@ public class buyUpgradeTable : MonoBehaviour
                 Debug.Log("BuyBar.fillAmount TABLEEEEEEEE: " + tableParameters.buyBar);
                 BuyBar.fillAmount = tableParameters.buyBar;
             }
-        }
-        else {
+        } else {
             canvasGroup.alpha = 0.2f;
-            BuyBar.fillAmount = 0;
+            BuyBar.fillAmount = 0f;
             levelText.text = "0";
             multiplier = 0f;
         }
+         if (tableInfo != null)
+        {
+            Debug.Log("Table Info não é null");
+            earnings = tableInfo.earnings;
+            delayTime = tableInfo.delayTime;
+        }
+
         gameManager.SaveTableData(tableID, earnings, delayTime);
         float fillAmount = BuyBar.fillAmount;
         gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);

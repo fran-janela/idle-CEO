@@ -48,11 +48,6 @@ public class buyUpgradeLaptop : MonoBehaviour
     void Start()
     {
 
-        // canvasGroup.alpha = 0.2f;
-        // BuyBar.fillAmount = 0;
-        // levelText.text = "0";
-        // multiplier = 0f;
-
         // cor do botão começa toda em 1
         Image buttonImage = button.GetComponent<Image>();
         Color buttonColor = buttonImage.color;
@@ -63,21 +58,10 @@ public class buyUpgradeLaptop : MonoBehaviour
         costText.text = "Buy $ " + cost.ToString();
         timeText.text = delayTime.ToString() + "s";
         earningsText.text = earningsBase.ToString();     
+        levelText.text = level.ToString();
 
     }
 
-    // public void  LateStart()
-    // {
-    //     //carrega o script do gamemanager e salva os dados do laptop no dicionário
-    //             // laptopID = desk.GetComponent<ClickDeskScript>().laptopTableSetID;
-    //     laptopID = clickDeskScript.laptopTableSetID;
-    //     Debug.Log("Laptop ID: " + laptopID);
-
-
-    //     GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-    //     Debug.Log("Game Manager: " + gameManager);
-    //     gameManager.SaveLaptopData(laptopID, earnings, delayTime);
-    // }
 
     public void LateStart()
     {
@@ -88,13 +72,8 @@ public class buyUpgradeLaptop : MonoBehaviour
         GameManager.LaptopInfo laptopInfo = GameManager.GetLaptopInfo(laptopID);
         GameManager.LaptopParameters laptopParameters = GameManager.GetLaptopParameters(laptopID);
 
-        // Verifique se os objetos são nulos antes de acessar suas propriedades
-    
-
-        earnings = laptopInfo.earnings;
-        delayTime = laptopInfo.delayTime;
+        // Verifique se os objetos são nulos antes de acessar suas propriedade
         
-
         if (laptopParameters != null)
         {
             Debug.Log("Laptop Parameters não é null");
@@ -122,6 +101,12 @@ public class buyUpgradeLaptop : MonoBehaviour
             BuyBar.fillAmount = 0;
             levelText.text = "0";
             multiplier = 0f;
+        }
+        if (laptopInfo != null)
+        {
+            Debug.Log("Laptop Info não é null");
+            earnings = laptopInfo.earnings;
+            delayTime = laptopInfo.delayTime;
         }
 
         // Salvar os dados do laptop no dicionário
