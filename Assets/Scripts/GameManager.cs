@@ -104,6 +104,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
         money = 0.0f;
         multiplier = 0.0f;
         LoadGameData();
@@ -237,20 +238,24 @@ public class GameManager : MonoBehaviour
         string laptopParametersData = PlayerPrefs.GetString("LaptopParametersData", "");
         string tableParametersData = PlayerPrefs.GetString("TableParametersData", "");
 
-        if (laptopData != "{}")
+        Debug.Log("Laptop Data: ANTESSSSSSSS AQUIIIIIIIIII OLHAAA " + laptopData);
+
+        if (laptopData != "")
         {
             dictLaptopInfo = JsonHelper.FromJson<LaptopInfo>(laptopData);
             Debug.Log("Laptop Data: " + dictLaptopInfo[0].id + " | " + dictLaptopInfo[0].earnings + " | " + dictLaptopInfo[0].delayTime);
             Debug.Log("Laptop Data: " + dictLaptopInfo[1].id + " | " + dictLaptopInfo[1].earnings + " | " + dictLaptopInfo[1].delayTime);
         }
         else {
+
+            Debug.Log("CRIEI NOVO Laptop Data: YEH" );
             dictLaptopInfo = new LaptopInfo[48];
             for (int i = 0; i < dictLaptopInfo.Length; i++)
             {
                 dictLaptopInfo[i] = new LaptopInfo();
             }
         }
-        if (tableData != "{}")
+        if (tableData != "")
         {
             Debug.Log("Table Data: " + tableData);
             dictTableInfo = JsonHelper.FromJson<TableInfo>(tableData);
@@ -265,7 +270,7 @@ public class GameManager : MonoBehaviour
                 dictTableInfo[i] = new TableInfo();
             }
         }
-        if (laptopParametersData != "{}")
+        if (laptopParametersData != "")
         {
             dictLaptopParameters = JsonHelper.FromJson<LaptopParameters>(laptopParametersData);
             Debug.Log("Laptop Parameters: " + dictLaptopParameters[0].id + " | " + dictLaptopParameters[0].earningsBase + " | " + dictLaptopParameters[0].growthRate + " | " + dictLaptopParameters[0].balancing_production + " | " + dictLaptopParameters[0].decreaseTime + " | " + dictLaptopParameters[0].baseCost + " | " + dictLaptopParameters[0].balancing_cost + " | " + dictLaptopParameters[0].multiplier + " | " + dictLaptopParameters[0].level + " | " + dictLaptopParameters[0].buyBar);
@@ -280,7 +285,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("CRIEI NOVO LAPTOP PARAMETERS: YEH" );
             Debug.Log("Elemento id do dictLaptopParameters: " + dictLaptopParameters[0].id);
         }
-        if (tableParametersData != "{}")
+        if (tableParametersData != "")
         {
             dictTableParameters = JsonHelper.FromJson<TableParameters>(tableParametersData);
             Debug.Log("Table Parameters: " + dictTableParameters[0].id + " | " + dictTableParameters[0].earningsBase + " | " + dictTableParameters[0].growthRate + " | " + dictTableParameters[0].balancing_production + " | " + dictTableParameters[0].decreaseTime + " | " + dictTableParameters[0].baseCost + " | " + dictTableParameters[0].balancing_cost + " | " + dictTableParameters[0].multiplier + " | " + dictTableParameters[0].level + " | " + dictTableParameters[0].buyBar);
