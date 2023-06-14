@@ -104,7 +104,7 @@ public class buyUpgradeTable : MonoBehaviour
             balancing_production += 5f;
             earnings += GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production)*earningsBase;
             // GameManager.IncrementMoney(earnings);
-            earningsText.text = earnings.ToString();
+            earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
 
             //Atualizando os valores do custo
             Debug.Log("Olha o base cost: " + baseCost + " e o growth rate: " + growthRate + " e o level: " + level + " e o balancing: " + balancing_cost);
@@ -114,13 +114,15 @@ public class buyUpgradeTable : MonoBehaviour
             Debug.Log("Not enough money");
         }
 
-        costText.text = "Buy $ " + cost.ToString();
+        costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
         timeText.text = delayTime.ToString() + "s";
-        earningsText.text = earnings.ToString();
+        earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SaveTableData(tableID, earnings, delayTime);
-        gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, BuyBar.fillAmount);
+        float fillAmount = BuyBar.fillAmount;
+        Debug.Log("OLHA O FILLLLLL aMOUNT TABLE: " + fillAmount);
+        gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
 
     }
 

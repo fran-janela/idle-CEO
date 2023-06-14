@@ -89,11 +89,11 @@ public class buyUpgradeLaptop : MonoBehaviour
         GameManager.LaptopParameters laptopParameters = GameManager.GetLaptopParameters(laptopID);
 
         // Verifique se os objetos são nulos antes de acessar suas propriedades
-        if (laptopInfo != null)
-        {
-            earnings = laptopInfo.earnings;
-            delayTime = laptopInfo.delayTime;
-        }
+    
+
+        earnings = laptopInfo.earnings;
+        delayTime = laptopInfo.delayTime;
+        
 
         if (laptopParameters != null)
         {
@@ -117,7 +117,7 @@ public class buyUpgradeLaptop : MonoBehaviour
                 BuyBar.fillAmount = laptopParameters.buyBar;
             }
         }
-        if (laptopParameters == null) {
+        else {
             canvasGroup.alpha = 0.2f;
             BuyBar.fillAmount = 0;
             levelText.text = "0";
@@ -159,25 +159,26 @@ public class buyUpgradeLaptop : MonoBehaviour
             growthRate += 1.1f;
             balancing_production += 5f;
             earnings += GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production)*earningsBase;
-            // GameManager.IncrementMoney(earnings);
-            earningsText.text = earnings.ToString();
+            // GameManager.IncrementMoney(earnings)
+            earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
 
             //Atualizando os valores do custo
-            Debug.Log("Olha o base cost: " + baseCost + " e o growth rate: " + growthRate + " e o level: " + level + " e o balancing: " + balancing_cost);
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
 
         } else {
             Debug.Log("Not enough money");
         }
 
-        costText.text = "Buy $ " + cost.ToString();
+        costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
         timeText.text = delayTime.ToString() + "s";
-        earningsText.text = earnings.ToString();
+        earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
 
         //carrega o script do gamemanager e salva os dados do laptop no dicionário
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SaveLaptopData(laptopID, earnings, delayTime);
-        gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, BuyBar.fillAmount);
+        float fillAmount = BuyBar.fillAmount;
+        Debug.Log("OLHA O FILLLLLL aMOUNT : " + fillAmount);
+        gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
 
     }
 
