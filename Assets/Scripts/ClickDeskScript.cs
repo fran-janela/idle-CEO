@@ -10,14 +10,17 @@ public class ClickDeskScript : MonoBehaviour
     public float clickDelay = 10.0f;
 
 
-    public static int laptopTableSetCounter= 1; // Variável estática para controlar o ID dos laptops
+    public static int laptopTableSetCounter = 1; // Variável estática para controlar o ID dos laptops
 
     public int laptopTableSetID; // ID do laptop atual
 
     Collider2D collider;
-    SpriteRenderer spriteRenderer;
 
-    SpriteRenderer propSpriteRenderer;
+    public Collider2D RunButtonCollider;
+
+    public SpriteRenderer ButtonUpSpriteRenderer, ButtonDownSpriteRenderer;
+
+    public Canvas UpgradeCanvas;
 
     public GameObject PVisualizer;
 
@@ -31,35 +34,32 @@ public class ClickDeskScript : MonoBehaviour
 
         Debug.Log("DeskSet ID: " + laptopTableSetID);
         collider = GetComponent<Collider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        propSpriteRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
 
     }
 
     void FixedUpdate()
     {
-        if (Input.touchCount > 0)
-        {
-            for (int i = 0; i < Input.touchCount; i++)
-            {
-                Touch touch = Input.GetTouch(i);
-                Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-                if (collider.OverlapPoint(touchPosition))
-                {
-                    if (touch.phase == TouchPhase.Began && canClick){
-                        canClick = false;
-                        clickDelayTimer = 0.0f;
-                        DimAssets();
-                    }
-                }
-            }
-        }
+    //     if (Input.touchCount > 0)
+    //     {
+    //         for (int i = 0; i < Input.touchCount; i++)
+    //         {
+    //             Touch touch = Input.GetTouch(i);
+    //             Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+    //             if (collider.OverlapPoint(touchPosition))
+    //             {
+    //                 if (touch.phase == TouchPhase.Began && canClick){
+    //                     canClick = false;
+    //                     clickDelayTimer = 0.0f;
+    //                     DimAssets();
+    //                 }
+    //             }
+    //         }
+    //     }
 
-        // For Test Purposes
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (collider.OverlapPoint(mousePosition))
+            if (RunButtonCollider.OverlapPoint(mousePosition))
             {
                 if (canClick)
                 {
@@ -67,6 +67,10 @@ public class ClickDeskScript : MonoBehaviour
                     clickDelayTimer = 0.0f;
                     DimAssets();
                 }
+            }
+            else if (collider.OverlapPoint(mousePosition))
+            {
+                UpgradeCanvas.GetComponent<loadMainUpdate>().openUpdateAll();
             }
         }
 
@@ -99,13 +103,14 @@ public class ClickDeskScript : MonoBehaviour
 
     private void DimAssets()
     {
-        spriteRenderer.color = Dim;
-        propSpriteRenderer.color = Dim;
+        ButtonUpSpriteRenderer.enabled = false;
+        ButtonDownSpriteRenderer.enabled = true;
+        ButtonDownSpriteRenderer.color = Dim;
     }
 
     private void BrightenAssets()
     {
-        spriteRenderer.color = Bright;
-        propSpriteRenderer.color = Bright;
+        ButtonUpSpriteRenderer.enabled = true;
+        ButtonDownSpriteRenderer.enabled = false;
     }
 }
