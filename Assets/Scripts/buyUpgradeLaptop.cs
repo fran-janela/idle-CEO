@@ -127,7 +127,8 @@ public class buyUpgradeLaptop : MonoBehaviour
         // Salvar os dados do laptop no dicionário
         gameManager.SaveLaptopData(laptopID, earnings, delayTime);
         Debug.Log("Mandando os dados pro LaptopParameters : " + laptopID + " " + earningsBase + " " + growthRate + " " + balancing_production + " " + decreaseTime + " " + baseCost + " " + balancing_cost + " " + multiplier + " " + level + " " + BuyBar.fillAmount);
-        gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, BuyBar.fillAmount);
+        float fillAmount = BuyBar.fillAmount;
+        gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
 
 
     }

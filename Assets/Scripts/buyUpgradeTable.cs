@@ -48,10 +48,10 @@ public class buyUpgradeTable : MonoBehaviour
     {
 
         // cor do upgrade começa bem clarinha, a barra de níveis começa zerada e o nível começa em 0
-        canvasGroup.alpha = 0.2f;
-        BuyBar.fillAmount = 0;
-        levelText.text = "0";
-        multiplier = 0f;
+        // canvasGroup.alpha = 0.2f;
+        // BuyBar.fillAmount = 0;
+        // levelText.text = "0";
+        // multiplier = 0f;
 
         // cor do botão começa toda em 1
         Image buttonImage = button.GetComponent<Image>();
@@ -73,8 +73,43 @@ public class buyUpgradeTable : MonoBehaviour
 
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        Debug.Log("Game Manager: " + gameManager);
+        GameManager.TableInfo tableInfo = GameManager.GetTableInfo(tableID);
+        GameManager.TableParameters tableParameters = GameManager.GetTableParameters(tableID);
+
+        earnings = tableInfo.earnings;
+        delayTime = tableInfo.delayTime;
+
+        if (tableParameters != null)
+        {
+            Debug.Log("Table Parameters não é null");
+            earningsBase = tableParameters.earningsBase;
+            multiplier = tableParameters.multiplier;
+            level = tableParameters.level;
+            growthRate = tableParameters.growthRate;
+            balancing_production = tableParameters.balancing_production;
+            decreaseTime = tableParameters.decreaseTime;
+            baseCost = tableParameters.baseCost;
+            balancing_cost = tableParameters.balancing_cost;
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
+            if (level == total_level){
+                BuyBar.fillAmount = 1f;
+                canvasGroup.alpha = 0.2f;
+                maxLevel = true;
+            } else {
+                Debug.Log("Level não é igual ao total level");
+                Debug.Log("BuyBar.fillAmount TABLEEEEEEEE: " + tableParameters.buyBar);
+                BuyBar.fillAmount = tableParameters.buyBar;
+            }
+        }
+        else {
+            canvasGroup.alpha = 0.2f;
+            BuyBar.fillAmount = 0;
+            levelText.text = "0";
+            multiplier = 0f;
+        }
         gameManager.SaveTableData(tableID, earnings, delayTime);
+        float fillAmount = BuyBar.fillAmount;
+        gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
     }
 
 
