@@ -763,6 +763,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3064821051472721233, guid: e9e352080433a6346b870b43b98fd427, type: 3}
+      propertyPath: actionsID
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e352080433a6346b870b43b98fd427, type: 3}
 --- !u!224 &268400664 stripped
@@ -78971,7 +78975,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0025024414, y: -132.45094}
+  m_AnchoredPosition: {x: 0.0025024414, y: -132.45096}
   m_SizeDelta: {x: -0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &681826506
@@ -79498,6 +79502,10 @@ PrefabInstance:
     - target: {fileID: 3064821051472721233, guid: e9e352080433a6346b870b43b98fd427, type: 3}
       propertyPath: cost
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064821051472721233, guid: e9e352080433a6346b870b43b98fd427, type: 3}
+      propertyPath: actionsID
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e352080433a6346b870b43b98fd427, type: 3}
@@ -96460,6 +96468,10 @@ PrefabInstance:
       propertyPath: earnings
       value: 10000
       objectReference: {fileID: 0}
+    - target: {fileID: 3064821051472721233, guid: e9e352080433a6346b870b43b98fd427, type: 3}
+      propertyPath: actionsID
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e352080433a6346b870b43b98fd427, type: 3}
 --- !u!224 &1554661625 stripped
@@ -97287,6 +97299,10 @@ PrefabInstance:
     - target: {fileID: 745233895108991493, guid: e9e352080433a6346b870b43b98fd427, type: 3}
       propertyPath: m_text
       value: 20% TV Ads
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064821051472721233, guid: e9e352080433a6346b870b43b98fd427, type: 3}
+      propertyPath: actionsID
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e352080433a6346b870b43b98fd427, type: 3}

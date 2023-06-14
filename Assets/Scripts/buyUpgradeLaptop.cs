@@ -138,6 +138,7 @@ public class buyUpgradeLaptop : MonoBehaviour
             BuyBar.fillAmount = 1f;
             canvasGroup.alpha = 0.2f;
             maxLevel = true;
+            button.interactable = false;
         }
         if (GameManager.money >= cost && !maxLevel){
             canvasGroup.alpha = 1f;
