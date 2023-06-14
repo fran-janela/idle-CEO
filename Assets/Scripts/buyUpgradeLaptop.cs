@@ -99,6 +99,7 @@ public class buyUpgradeLaptop : MonoBehaviour
         else {
             canvasGroup.alpha = 0.2f;
             BuyBar.fillAmount = 0;
+            level = 0;
             levelText.text = "0";
             multiplier = 0f;
         }

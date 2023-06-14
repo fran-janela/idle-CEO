@@ -105,9 +105,27 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //PlayerPrefs.DeleteAll();
+        //ResetGameData();
         money = 0.0f;
         multiplier = 0.0f;
         LoadGameData();
+    }
+
+    public static void ResetGameData()
+    {
+    // Redefinir apenas os dados relevantes para test
+    float money = 0.0f;
+    string laptopDataToJSON = JsonHelper.ToJson(new LaptopInfo[48], true);
+    string tableDataToJSON = JsonHelper.ToJson(new TableInfo[48], true);
+    string laptopParametersDataToJSON = JsonHelper.ToJson(new LaptopParameters[48], true);
+    string tableParametersDataToJSON = JsonHelper.ToJson(new TableParameters[48], true);
+
+    PlayerPrefs.SetString("LaptopData", laptopDataToJSON);
+    PlayerPrefs.SetString("TableData", tableDataToJSON);
+    PlayerPrefs.SetString("LaptopParametersData", laptopParametersDataToJSON);
+    PlayerPrefs.SetString("TableParametersData", tableParametersDataToJSON);
+    PlayerPrefs.SetFloat("Money", money);
+    SaveGameData();
     }
 
     public static void IncrementMoney(float amount)

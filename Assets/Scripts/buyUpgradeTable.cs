@@ -62,7 +62,8 @@ public class buyUpgradeTable : MonoBehaviour
         // Atualizando os textos
         costText.text = "Buy $ " + cost.ToString();
         timeText.text = delayTime.ToString() + "s";
-        earningsText.text = earningsBase.ToString();        
+        earningsText.text = earningsBase.ToString();       
+        levelText.text = level.ToString(); 
 
     }
 
@@ -110,6 +111,7 @@ public class buyUpgradeTable : MonoBehaviour
             delayTime = tableInfo.delayTime;
         }
 
+        
         gameManager.SaveTableData(tableID, earnings, delayTime);
         float fillAmount = BuyBar.fillAmount;
         gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);

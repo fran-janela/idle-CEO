@@ -375,13 +375,13 @@ MonoBehaviour:
   earningsBase: 10
   multiplier: 0
   level: 0
-  growthRate: 0
-  balancing_production: 0
+  growthRate: 0.2
+  balancing_production: 1
   decreaseTime: 0.5
   delayTime: 5
   cost: 200
   baseCost: 200
-  balancing_cost: 0
+  balancing_cost: 1
   laptopID: 0
   clickDeskScript: {fileID: 0}
   maxLevel: 0

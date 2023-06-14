@@ -96067,9 +96067,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4320952556566600061, guid: 3d16d9af1170e0145b928fd47d082e85, type: 3}
+      propertyPath: cost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320952556566600061, guid: 3d16d9af1170e0145b928fd47d082e85, type: 3}
       propertyPath: desk
       value: 
       objectReference: {fileID: 921963506}
+    - target: {fileID: 4320952556566600061, guid: 3d16d9af1170e0145b928fd47d082e85, type: 3}
+      propertyPath: level
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320952556566600061, guid: 3d16d9af1170e0145b928fd47d082e85, type: 3}
+      propertyPath: earnings
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320952556566600061, guid: 3d16d9af1170e0145b928fd47d082e85, type: 3}
+      propertyPath: delayTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320952556566600061, guid: 3d16d9af1170e0145b928fd47d082e85, type: 3}
+      propertyPath: growthRate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320952556566600061, guid: 3d16d9af1170e0145b928fd47d082e85, type: 3}
+      propertyPath: multiplier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4320952556566600061, guid: 3d16d9af1170e0145b928fd47d082e85, type: 3}
       propertyPath: clickDeskScript
       value: 
