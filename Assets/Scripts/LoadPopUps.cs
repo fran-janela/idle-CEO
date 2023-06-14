@@ -5,29 +5,25 @@ using UnityEngine;
 public class LoadPopUps : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject popUpUpdates;
+    public GameObject popUpExpansion;
     public GameObject popUpActions;
-
-    public GameObject updateLaptop;
-
-    public GameObject updateTable;
     private bool open = false;
 
 
     void Start()
     {
-        popUpUpdates.SetActive(false);
+        popUpExpansion.SetActive(false);
         popUpActions.SetActive(false);
     }
 
 
-    public void loadPopUpUpdates(){
+    public void loadpopUpExpansion(){
         if (!open){
             open = true;
-            popUpUpdates.SetActive(true);
+            popUpExpansion.SetActive(true);
         } else {
             open = false;
-            popUpUpdates.SetActive(false);
+            popUpExpansion.SetActive(false);
         }
     }
 
