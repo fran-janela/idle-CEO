@@ -15,22 +15,42 @@ public class buyRooms : MonoBehaviour
 
     public float cost_room = 100000f;
 
+    public int id_room;
+
     private bool bought = false;
 
     void Start()
     {
-        canvasGroupPopUp.alpha = 0.2f;
+        LateStart();
+    }
 
-        Image buttonImage = button.GetComponent<Image>();
-        Color buttonColor = buttonImage.color;
-        buttonColor.a = 1.0f;
-        buttonImage.color = buttonColor;
+    public void LateStart(){
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        GameManager.ExpandInfo roomInfo = GameManager.GetExpandInfo(id_room);
 
-        roomCollider.enabled = false;
+        if (roomInfo != null){
+            bought = roomInfo.owned;
+            if (bought == true){
+                Image buttonImage = button.GetComponent<Image>();
+                Color buttonColor = buttonImage.color;
+                buttonColor.a = 0.2f;
+                buttonImage.color = buttonColor;
+                button.interactable = false;
+                room1.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
+                roomCollider.enabled = true;
+            } else{
+                Image buttonImage = button.GetComponent<Image>();
+                Color buttonColor = buttonImage.color;
+                buttonColor.a = 1.0f;
+                buttonImage.color = buttonColor;
+                canvasGroupPopUp.alpha = 0.2f;
+            }
+        } else{
+            bought = false;
+            canvasGroupPopUp.alpha = 0.2f;
+        }
 
-        //mudar o alfa da cor do room1
-        room1.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.64f);
-        
+        gameManager.SaveExpandData(id_room, bought);
     }
 
     // Update is called once per frame
@@ -49,6 +69,9 @@ public class buyRooms : MonoBehaviour
             room1.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
             roomCollider.enabled = true;
         }
+
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.SaveExpandData(id_room, bought);
     }
     void Update()
     {

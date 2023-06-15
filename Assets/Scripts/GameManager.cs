@@ -106,6 +106,16 @@ public class GameManager : MonoBehaviour
         public int managers_room;
     }
 
+    [System.Serializable]
+
+    public class ExpandInfo
+    {
+        public int room_id;
+
+        public bool owned;
+    }
+
+
     public static float money;
 
     public static float multiplier;
@@ -124,6 +134,8 @@ public class GameManager : MonoBehaviour
 
     public static ManagerInfo[] dictManagerInfo = new ManagerInfo[4];
 
+    public static ExpandInfo[] dictExpandInfo = new ExpandInfo[4];
+
     public AudioSource musicSource;
 
     void Start()
@@ -138,6 +150,7 @@ public class GameManager : MonoBehaviour
 
     public static void ResetGameData()
     {
+        PlayerPrefs.SetString("ExpandData", "");
         PlayerPrefs.SetString("ManagerData", "");
         PlayerPrefs.SetString("ActionData", "");
         PlayerPrefs.SetString("LaptopData", "");
@@ -198,6 +211,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(tableParametersDataToJSON);
         string actionDataToJSON = JsonHelper.ToJson(dictActionInfo, true);
         string managerDataToJSON = JsonHelper.ToJson(dictManagerInfo, true);
+        string expandDataToJSON = JsonHelper.ToJson(dictExpandInfo, true);
 
         PlayerPrefs.SetString("LaptopData", laptopDataToJSON);
         PlayerPrefs.SetString("TableData", tableDataToJSON);
@@ -205,6 +219,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString("TableParametersData", tableParametersDataToJSON);
         PlayerPrefs.SetString("ActionData", actionDataToJSON);
         PlayerPrefs.SetString("ManagerData", managerDataToJSON);
+        PlayerPrefs.SetString("ExpandData", expandDataToJSON);
     }
 
     public static LaptopInfo GetLaptopInfo(int laptopID)
@@ -295,6 +310,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+   public static ExpandInfo GetExpandInfo(int room_id)
+    {
+        // Retorna as informações do laptop com o ID especificado
+        if (dictExpandInfo[room_id-1].room_id == room_id)
+        {
+            return dictExpandInfo[room_id-1];
+        }
+        else
+        {
+            return null;
+        }
+    }
 
     public static void LoadGameData()
     {
@@ -310,6 +337,7 @@ public class GameManager : MonoBehaviour
         string tableParametersData = PlayerPrefs.GetString("TableParametersData", "");
         string actionData = PlayerPrefs.GetString("ActionData", "");
         string managerData = PlayerPrefs.GetString("ManagerData", "");
+        string expandData = PlayerPrefs.GetString("ExpandData", "");
 
         Debug.Log("action Data: ANTESSSSSSSS AQUIIIIIIIIII OLHAAA " + actionData);
 
@@ -394,6 +422,18 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < dictManagerInfo.Length; i++)
             {
                 dictManagerInfo[i] = new ManagerInfo();
+            }
+        }
+        if (expandData != ""){
+            dictExpandInfo = JsonHelper.FromJson<ExpandInfo>(expandData);
+            Debug.Log("Expand Info: " + dictExpandInfo[0].room_id + " | " + dictExpandInfo[0].owned);
+        }
+        else {
+            Debug.Log("CRIEI NOVO EXPAND INFO: YEH" );
+            dictExpandInfo = new ExpandInfo[4];
+            for (int i = 0; i < dictExpandInfo.Length; i++)
+            {
+                dictExpandInfo[i] = new ExpandInfo();
             }
         }
 
@@ -509,6 +549,22 @@ public class GameManager : MonoBehaviour
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
     }
+
+    public void SaveExpandData(int room_id, bool owned)
+    {
+        // Salvar os dados do laptop no dicionário
+        ExpandInfo expandInfo = new ExpandInfo();
+        expandInfo.room_id = room_id;
+        expandInfo.owned = owned;
+
+        dictExpandInfo[room_id-1] = expandInfo;
+
+        Debug.Log("Expand ID: " + room_id + " | Owned: " + owned);
+
+        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
+        SaveGameData();
+    }
+
 
     public void apertaTeclaApagar()
     // se apertar a tecla q
