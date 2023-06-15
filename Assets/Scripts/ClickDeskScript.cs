@@ -27,6 +27,9 @@ public class ClickDeskScript : MonoBehaviour
     private Color Dim = new Color(0.3f, 0.3f, 0.3f, 1f);
     private Color Bright = new Color(1f, 1f, 1f, 1f);
 
+
+    public GameObject clickBlocker;
+
     void Start()
     {
         laptopTableSetID = laptopTableSetCounter;
@@ -39,23 +42,30 @@ public class ClickDeskScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+    if (Input.GetMouseButtonDown(0))
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D clickCollider = Physics2D.OverlapPoint(mousePosition);
+
+        if (clickCollider != null && clickCollider.gameObject == clickBlocker)
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (RunButtonCollider.OverlapPoint(mousePosition))
+            // O clique ocorreu no botão de execução
+            return ;
+
+        } else if (collider.OverlapPoint(mousePosition)){
+            UpgradeCanvas.GetComponent<loadMainUpdate>().openUpdateAll();
+        } else if (RunButtonCollider.OverlapPoint(mousePosition) && clickCollider.gameObject == RunButtonCollider.gameObject){
+            Debug.Log("Clique no botão de execução");
+            if (canClick)
             {
-                if (canClick)
-                {
-                    canClick = false;
-                    clickDelayTimer = 0.0f;
-                    DimAssets();
-                }
-            }
-            else if (collider.OverlapPoint(mousePosition))
-            {
-                UpgradeCanvas.GetComponent<loadMainUpdate>().openUpdateAll();
+                canClick = false;
+                clickDelayTimer = 0f;
+                DimAssets();
             }
         }
+        
+        
+    }
 
         if(!canClick){
             clickDelayTimer += Time.deltaTime;
