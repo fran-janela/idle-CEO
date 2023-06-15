@@ -14,7 +14,7 @@ public class LoadPopUps : MonoBehaviour
 
     void Start()
     {
-        popUpExpansion.SetActive(false);
+        popUpManagers.SetActive(false);
         popUpExpansion.SetActive(false);
         popUpActions.SetActive(false);
     }

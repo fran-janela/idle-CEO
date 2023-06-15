@@ -113,12 +113,15 @@ public class GameManager : MonoBehaviour
 
     public static ActionInfo[] dictActionInfo = new ActionInfo[4];
 
+    public AudioSource musicSource;
+
     void Start()
     {
         PlayerPrefs.DeleteAll();
         ResetGameData();
         money = 0.0f;
         multiplier = 0.0f;
+        musicSource.Play();
         LoadGameData();
     }
 
