@@ -17,7 +17,7 @@ public class buyUpgradeLaptop : MonoBehaviour
     public TextMeshProUGUI earningsText;
     public TextMeshProUGUI costText;
 
-
+    public int room_id;
     public int total_level = 5;
 
     public float earnings = 10f;
@@ -125,7 +125,7 @@ public class buyUpgradeLaptop : MonoBehaviour
         }
 
         // Salvar os dados do laptop no dicionário
-        gameManager.SaveLaptopData(laptopID, earnings, delayTime);
+        gameManager.SaveLaptopData(laptopID, earnings, delayTime, room_id);
         Debug.Log("Mandando os dados pro LaptopParameters : " + laptopID + " " + earningsBase + " " + growthRate + " " + balancing_production + " " + decreaseTime + " " + baseCost + " " + balancing_cost + " " + multiplier + " " + level + " " + BuyBar.fillAmount);
         float fillAmount = BuyBar.fillAmount;
         gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
@@ -192,7 +192,7 @@ public class buyUpgradeLaptop : MonoBehaviour
 
         //carrega o script do gamemanager e salva os dados do laptop no dicionário
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.SaveLaptopData(laptopID, earnings, delayTime);
+        gameManager.SaveLaptopData(laptopID, earnings, delayTime, room_id);
         float fillAmount = BuyBar.fillAmount;
         Debug.Log("OLHA O FILLLLLL aMOUNT : " + fillAmount);
         gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);

@@ -12,35 +12,59 @@ public class buyActions : MonoBehaviour
 
     public Button button;
 
-    public float cost = 200f;
 
     public TextMeshProUGUI costText;
 
     public TextMeshProUGUI earningsText;
-
     public TextMeshProUGUI timeText;
 
+
+    public float earnings = 5000f;
+    public float cost = 200f;
     public float Timer;
-
     public float currentTimer;
-
     public bool StartTimer = false;
 
-
+    public int actionsID;
 
     void Start()
     {
-        canvasGroup.alpha = 0.2f;
+        LateStart();
         BuyBar.fillAmount = 0;
-        // moneyText.text = GameManager.money.ToString();
-
-        Image buttonImage = button.GetComponent<Image>();
-        Color buttonColor = buttonImage.color;
-        buttonColor.a = 1.0f;
-        buttonImage.color = buttonColor;
         timeText.text = Timer.ToString() + "s";
         costText.text = "Buy $ " + cost.ToString();
-        earningsText.text = GameManager.money.ToString();
+        earningsText.text = earnings.ToString();
+
+    }
+
+    public void LateStart(){        
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        GameManager.ActionInfo actionInfo = GameManager.GetActionInfo(actionsID);
+
+        if (actionInfo != null){
+            Debug.Log("ACTION INFO É DIFERENTE DE NULL");
+            StartTimer = actionInfo.bought;
+            if (StartTimer == true){
+                Image buttonImage = button.GetComponent<Image>();
+                Color buttonColor = buttonImage.color;
+                buttonColor.a = 0.2f;
+                buttonImage.color = buttonColor;
+                button.interactable = false;
+            } else{
+                Debug.Log("É FALSEEEEEEEEEEEEEEEEEEEEE");
+                Image buttonImage = button.GetComponent<Image>();
+                Color buttonColor = buttonImage.color;
+                buttonColor.a = 1.0f;
+                buttonImage.color = buttonColor;
+                canvasGroup.alpha = 0.2f;
+            }
+        } else {
+            Debug.Log("ACTION INFO É NULL");
+            StartTimer = false;
+            canvasGroup.alpha = 0.2f;
+        }
+
+        gameManager.SaveActionData(actionsID, StartTimer);
     }
 
     public void buyActionOnClick()
@@ -54,6 +78,9 @@ public class buyActions : MonoBehaviour
         else {
             Debug.Log("Not enough money");
         }
+
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.SaveActionData(actionsID, StartTimer);
 
     }
     void Update()
@@ -72,7 +99,7 @@ public class buyActions : MonoBehaviour
             if (currentTimer <= 0)
             {
                 // Quando o tempo acabar
-                StartTimer = false;
+                // StartTimer = false;
                 currentTimer = 0;
 
                 // Executar as ações de incrementar o dinheiro
@@ -86,26 +113,3 @@ public class buyActions : MonoBehaviour
         }
     }
 }
-
-
-
-    // void Update()
-    // {
-    //     if (StartTimer == true){
-    //         currentTimer += Time.deltaTime;
-    //         BuyBar.fillAmount += 1f/(Timer * Time.deltaTime);
-    //         if (currentTimer == Timer){
-    //             BuyBar.fillAmount = 1f;
-    //             StartTimer = false;
-    //             currentTimer = 0;
-    //             GameManager.IncrementMoney(5000f);
-    //             earningsText.text = GameManager.money.ToString();
-    //         } if (currentTimer > Timer){
-    //             BuyBar.fillAmount = 0f;
-    //             StartTimer = false;
-    //             currentTimer = 0;
-    //         }
-    //     }
-        
-    // }
-

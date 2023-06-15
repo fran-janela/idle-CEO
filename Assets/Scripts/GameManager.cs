@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         public int id;
         public float earnings;
         public float delayTime;
+        public int  room_id;
     }
 
     [System.Serializable]
@@ -88,6 +89,14 @@ public class GameManager : MonoBehaviour
         public int id;
         public float earnings;
         public float delayTime;
+        public int room_id;
+    }
+
+    [System.Serializable]
+    public class ActionInfo
+    {
+        public int id;
+        public bool bought;
     }
 
     public static float money;
@@ -102,6 +111,8 @@ public class GameManager : MonoBehaviour
 
     public static TableInfo[] dictTableInfo = new TableInfo[48];
 
+    public static ActionInfo[] dictActionInfo = new ActionInfo[4];
+
     void Start()
     {
         //PlayerPrefs.DeleteAll();
@@ -113,7 +124,7 @@ public class GameManager : MonoBehaviour
 
     public static void ResetGameData()
     {
-
+        PlayerPrefs.SetString("ActionData", "");
         PlayerPrefs.SetString("LaptopData", "");
         PlayerPrefs.SetString("TableData", "");
         PlayerPrefs.SetString("LaptopParametersData", "");
@@ -170,11 +181,13 @@ public class GameManager : MonoBehaviour
         Debug.Log(laptopParametersDataToJSON);
         string tableParametersDataToJSON = JsonHelper.ToJson(dictTableParameters, true);
         Debug.Log(tableParametersDataToJSON);
+        string actionDataToJSON = JsonHelper.ToJson(dictActionInfo, true);
 
         PlayerPrefs.SetString("LaptopData", laptopDataToJSON);
         PlayerPrefs.SetString("TableData", tableDataToJSON);
         PlayerPrefs.SetString("LaptopParametersData", laptopParametersDataToJSON);
         PlayerPrefs.SetString("TableParametersData", tableParametersDataToJSON);
+        PlayerPrefs.SetString("ActionData", actionDataToJSON);
 
     }
 
@@ -209,10 +222,10 @@ public class GameManager : MonoBehaviour
     public static LaptopParameters GetLaptopParameters(int laptopID)
     {
         // Retorna as informações do laptop com o ID especificado
-        Debug.Log("LAPTOP ID AQUI NO PARAMTERES: " + laptopID);
-        //print o length do dictLaptopParameters
-        Debug.Log("dictLaptopParameters.Length: " + dictLaptopParameters.Length);
-        Debug.Log("dictLaptopParameters[laptopID-1].id: " + dictLaptopParameters[0].id + " e laptopID: " + laptopID);
+        // Debug.Log("LAPTOP ID AQUI NO PARAMTERES: " + laptopID);
+        // //print o length do dictLaptopParameters
+        // Debug.Log("dictLaptopParameters.Length: " + dictLaptopParameters.Length);
+        // Debug.Log("dictLaptopParameters[laptopID-1].id: " + dictLaptopParameters[0].id + " e laptopID: " + laptopID);
         if (dictLaptopParameters[laptopID-1].id == laptopID)
         {
             return dictLaptopParameters[laptopID-1];
@@ -236,6 +249,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public static ActionInfo GetActionInfo(int actionID)
+    {
+        // Retorna as informações do laptop com o ID especificado
+        Debug.Log("ACTION ID AQUI NO PARAMTERES: " + actionID);
+        Debug.Log("dictActionInfo.Length: " + dictActionInfo.Length);
+        Debug.Log("DICT INFO" + dictActionInfo[0]);
+        if (dictActionInfo[actionID-1].id == actionID)
+        {
+            return dictActionInfo[actionID-1];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 
     public static void LoadGameData()
     {
@@ -249,14 +278,15 @@ public class GameManager : MonoBehaviour
         string tableData = PlayerPrefs.GetString("TableData", "");
         string laptopParametersData = PlayerPrefs.GetString("LaptopParametersData", "");
         string tableParametersData = PlayerPrefs.GetString("TableParametersData", "");
+        string actionData = PlayerPrefs.GetString("ActionData", "");
 
-        Debug.Log("Laptop Data: ANTESSSSSSSS AQUIIIIIIIIII OLHAAA " + laptopData);
+        Debug.Log("action Data: ANTESSSSSSSS AQUIIIIIIIIII OLHAAA " + actionData);
 
         if (laptopData != "")
         {
             dictLaptopInfo = JsonHelper.FromJson<LaptopInfo>(laptopData);
-            Debug.Log("Laptop Data: " + dictLaptopInfo[0].id + " | " + dictLaptopInfo[0].earnings + " | " + dictLaptopInfo[0].delayTime);
-            Debug.Log("Laptop Data: " + dictLaptopInfo[1].id + " | " + dictLaptopInfo[1].earnings + " | " + dictLaptopInfo[1].delayTime);
+            Debug.Log("Laptop Data: " + dictLaptopInfo[0].id + " | " + dictLaptopInfo[0].earnings + " | " + dictLaptopInfo[0].delayTime  + " | " + dictLaptopInfo[0].room_id);
+            Debug.Log("Laptop Data: " + dictLaptopInfo[1].id + " | " + dictLaptopInfo[1].earnings + " | " + dictLaptopInfo[1].delayTime + " | " + dictLaptopInfo[1].room_id);
         }
         else {
 
@@ -271,8 +301,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Table Data: " + tableData);
             dictTableInfo = JsonHelper.FromJson<TableInfo>(tableData);
-            Debug.Log("Table Data: " + dictTableInfo[0].id + " | " + dictTableInfo[0].earnings + " | " + dictTableInfo[0].delayTime);
-            Debug.Log("Table Data: " + dictTableInfo[1].id + " | " + dictTableInfo[1].earnings + " | " + dictTableInfo[1].delayTime);
+            Debug.Log("Table Data: " + dictTableInfo[0].id + " | " + dictTableInfo[0].earnings + " | " + dictTableInfo[0].delayTime + " | " + dictTableInfo[0].room_id);
+            Debug.Log("Table Data: " + dictTableInfo[1].id + " | " + dictTableInfo[1].earnings + " | " + dictTableInfo[1].delayTime + " | " + dictTableInfo[1].room_id);
         }
         else {
             // Debug.Log("CRIEI NOVO Table Data: YEH" );
@@ -310,35 +340,50 @@ public class GameManager : MonoBehaviour
                 dictTableParameters[i] = new TableParameters();
             }
         }
+        if (actionData != "")
+        {
+            dictActionInfo = JsonHelper.FromJson<ActionInfo>(actionData);
+            Debug.Log("Action Info: " + dictActionInfo[0].id + " | " + dictActionInfo[0].bought);
+        }
+        else {
+            Debug.Log("CRIEI NOVO ACTION INFO: YEH" );
+            dictActionInfo = new ActionInfo[4];
+            for (int i = 0; i < dictActionInfo.Length; i++)
+            {
+                dictActionInfo[i] = new ActionInfo();
+            }
+        }
 
     }
 
-    public void SaveLaptopData(int laptopID, float earnings, float delayTime)
+    public void SaveLaptopData(int laptopID, float earnings, float delayTime, int room_id)
     {
         // Salvar os dados do laptop no dicionário
         LaptopInfo laptopInfo = new LaptopInfo();
         laptopInfo.id = laptopID;
         laptopInfo.earnings = earnings;
         laptopInfo.delayTime = delayTime;
+        laptopInfo.room_id = room_id;
 
         dictLaptopInfo[laptopID-1] = laptopInfo;
 
-        Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime + " | Level: " );
+        Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime + " | Room ID: " + room_id);
 
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
     }
 
-    public void SaveTableData(int tableID, float earnings, float delayTime)
+    public void SaveTableData(int tableID, float earnings, float delayTime, int room_id)
     {
         // Salvar os dados do laptop no dicionário
         TableInfo tableInfo = new TableInfo();
         tableInfo.id = tableID;
         tableInfo.earnings = earnings;
         tableInfo.delayTime = delayTime;
+        tableInfo.room_id = room_id;
 
         dictTableInfo[tableID-1] = tableInfo;
-        Debug.Log("Table ID: " + tableID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime + " | Level: " );
+        Debug.Log("Table ID: " + tableID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime + " | Room ID: " + room_id);
 
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
@@ -387,6 +432,21 @@ public class GameManager : MonoBehaviour
         dictLaptopParameters[laptopID-1] = laptopParameters;
 
         Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earningsBase + " | Decrease Time: " + decreaseTime + " | Level: " + level);
+
+        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
+        SaveGameData();
+    }
+
+    public void SaveActionData(int actionID, bool bought)
+    {
+        // Salvar os dados do laptop no dicionário
+        ActionInfo actionInfo = new ActionInfo();
+        actionInfo.id = actionID;
+        actionInfo.bought = bought;
+
+        dictActionInfo[actionID-1] = actionInfo;
+
+        Debug.Log("Action ID: " + actionID + " | Bought: " + bought);
 
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
