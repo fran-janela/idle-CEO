@@ -73,7 +73,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
             // Grant a reward.
-            GameManager.IncrementMoney(10000);
+            GameManager.IncrementMoney(GameManager.money); //dobrando o que ele já tem
             Debug.Log("Grant a reward to the player of 10 coins.");
             // Load another ad:
             if (CR_running == false)

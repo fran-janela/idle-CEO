@@ -7,11 +7,14 @@ public class LoadPopUps : MonoBehaviour
     // Start is called before the first frame update
     public GameObject popUpExpansion;
     public GameObject popUpActions;
+
+    public GameObject popUpManagers;
     private bool open = false;
 
 
     void Start()
     {
+        popUpManagers.SetActive(false);
         popUpExpansion.SetActive(false);
         popUpActions.SetActive(false);
     }
@@ -34,6 +37,16 @@ public class LoadPopUps : MonoBehaviour
         } else {
             open = false;
             popUpActions.SetActive(false);
+        }
+    }
+
+    public void loadPopUpManagers(){
+        if (!open){
+            open = true;
+            popUpManagers.SetActive(true);
+        } else {
+            open = false;
+            popUpManagers.SetActive(false);
         }
     }
 

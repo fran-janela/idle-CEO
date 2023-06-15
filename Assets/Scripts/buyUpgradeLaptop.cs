@@ -12,12 +12,12 @@ public class buyUpgradeLaptop : MonoBehaviour
     public CanvasGroup canvasGroup;
     public Image BuyBar; 
     public Button button;
-    public GameObject desk;
+    public GameObject laptop;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI earningsText;
     public TextMeshProUGUI costText;
 
-
+    public int room_id;
     public int total_level = 5;
 
     public float earnings = 10f;
@@ -33,8 +33,9 @@ public class buyUpgradeLaptop : MonoBehaviour
 
     public float delayTime = 5f;
 
+    public GameObject progress;
+    public GameObject runButton;
 
-    
     public float cost = 200f;
     public float baseCost = 200f;
     public float balancing_cost = 1f;
@@ -85,7 +86,10 @@ public class buyUpgradeLaptop : MonoBehaviour
             decreaseTime = laptopParameters.decreaseTime;
             baseCost = laptopParameters.baseCost;
             balancing_cost = laptopParameters.balancing_cost;
+            Debug.Log("OLHA O BALANCING COST: " + balancing_cost + "BASE COST: " + baseCost + "GROWTH RATE: " + growthRate + "LEVEL: " + level + "MULTIPLIER: " + multiplier + "BALANCING PRODUCTION: " + balancing_production + "DECREASE TIME: " + decreaseTime);
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
+            Debug.Log("OLHA O CUSTO AQUIIIIIIIII: " + cost);
+            costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
             if (level == total_level){
                 BuyBar.fillAmount = 1f;
                 canvasGroup.alpha = 0.2f;
@@ -102,6 +106,7 @@ public class buyUpgradeLaptop : MonoBehaviour
             level = 0;
             levelText.text = "0";
             multiplier = 0f;
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
         }
         if (laptopInfo != null)
         {
@@ -109,9 +114,18 @@ public class buyUpgradeLaptop : MonoBehaviour
             earnings = laptopInfo.earnings;
             delayTime = laptopInfo.delayTime;
         }
+        if (level == 0)
+        {
+            progress.SetActive(false);
+            runButton.SetActive(false);
+            if (laptopID == 1)
+                cost = 0;
+            else
+                cost = baseCost;
+        }
 
         // Salvar os dados do laptop no dicionário
-        gameManager.SaveLaptopData(laptopID, earnings, delayTime);
+        gameManager.SaveLaptopData(laptopID, earnings, delayTime, room_id);
         Debug.Log("Mandando os dados pro LaptopParameters : " + laptopID + " " + earningsBase + " " + growthRate + " " + balancing_production + " " + decreaseTime + " " + baseCost + " " + balancing_cost + " " + multiplier + " " + level + " " + BuyBar.fillAmount);
         float fillAmount = BuyBar.fillAmount;
         gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
@@ -123,19 +137,28 @@ public class buyUpgradeLaptop : MonoBehaviour
 
     public void buy()
     {
-        if (BuyBar.fillAmount == 1f && level < total_level){
-            delayTime -= decreaseTime;
-            BuyBar.fillAmount = 0;
+        if (level == 0 && GameManager.money >= cost)
+        {
+            progress.SetActive(true);
+            runButton.SetActive(true);
+            Color tmp = laptop.GetComponent<SpriteRenderer>().color;
+            tmp.a = 1f;
+            laptop.GetComponent<SpriteRenderer>().color = tmp;
             level += 1;
             levelText.text = level.ToString();
-        } 
-        if (level == total_level){
-            // cor do botão fica mais escura
-            BuyBar.fillAmount = 1f;
-            canvasGroup.alpha = 0.2f;
-            maxLevel = true;
+            canvasGroup.alpha = 1f;
+            BuyBar.fillAmount = 0;
+            GameManager.DecrementMoney(cost);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
         }
         if (GameManager.money >= cost && !maxLevel){
+            if (BuyBar.fillAmount == 1f && level < total_level)
+            {
+                delayTime -= decreaseTime;
+                BuyBar.fillAmount = 0;
+                level += 1;
+                levelText.text = level.ToString();
+            }
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount += 1.0f/(float)10;
             GameManager.DecrementMoney(cost);
@@ -146,23 +169,30 @@ public class buyUpgradeLaptop : MonoBehaviour
             growthRate += 1.1f;
             balancing_production += 5f;
             earnings += GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production)*earningsBase;
-            // GameManager.IncrementMoney(earnings)
             earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
 
             //Atualizando os valores do custo
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
+            Debug.Log("OLHAAAAAAAAAAAAA O Custo: " + cost);
+            costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
 
         } else {
             Debug.Log("Not enough money");
         }
-
+        if (level == total_level)
+        {
+            // cor do botão fica mais escura
+            BuyBar.fillAmount = 1f;
+            canvasGroup.alpha = 0.2f;
+            maxLevel = true;
+        }
         costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
         timeText.text = delayTime.ToString() + "s";
         earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
 
         //carrega o script do gamemanager e salva os dados do laptop no dicionário
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.SaveLaptopData(laptopID, earnings, delayTime);
+        gameManager.SaveLaptopData(laptopID, earnings, delayTime, room_id);
         float fillAmount = BuyBar.fillAmount;
         Debug.Log("OLHA O FILLLLLL aMOUNT : " + fillAmount);
         gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);

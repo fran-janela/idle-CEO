@@ -1030,8 +1030,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: laptop
+      value: 
+      objectReference: {fileID: 292202653669973418}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: progress
+      value: 
+      objectReference: {fileID: 3262770651455193961}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: runButton
+      value: 
+      objectReference: {fileID: 7656828436741116580}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}  
+      propertyPath: room_id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: growthRate
-      value: 0.8
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: balancing_cost
@@ -1164,7 +1180,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
   m_PrefabInstance: {fileID: 7281763208930889154}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7352395366235512443}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 912f1e183eff55b418580a4a38f416b6, type: 3}
@@ -1173,6 +1189,11 @@ MonoBehaviour:
 --- !u!224 &7352395366235512436 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 218127367412356022, guid: c089d18331cae854c85b543d675291d5, type: 3}
+  m_PrefabInstance: {fileID: 7281763208930889154}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7352395366235512443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 218127367412356025, guid: c089d18331cae854c85b543d675291d5, type: 3}
   m_PrefabInstance: {fileID: 7281763208930889154}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7357035735669863659
@@ -1293,6 +1314,30 @@ PrefabInstance:
     - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
       propertyPath: desk
       value: 
+      objectReference: {fileID: 4765579806649939916}
+    - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
+      propertyPath: chair
+      value: 
+      objectReference: {fileID: 1676497198966123366}
+    - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
+      propertyPath: computer
+      value: 
+      objectReference: {fileID: 292202653669973418}
+    - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
+      propertyPath: progress
+      value: 
+      objectReference: {fileID: 3262770651455193961}
+    - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
+      propertyPath: runButton
+      value: 
+      objectReference: {fileID: 7656828436741116580}
+    - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
+      propertyPath: laptopCode
+      value: 
+      objectReference: {fileID: 7352395366235512443}
+    - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
+      propertyPath: room_id
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
       propertyPath: clickDeskScript
