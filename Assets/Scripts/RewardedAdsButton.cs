@@ -61,9 +61,11 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     public void ShowAd()
     {
         // Disable the button:
-        _showAdButton.interactable = false;
-        // Then show the ad:
-        Advertisement.Show(_adUnitId, this);
+        if (GameManager.menuOpen != true) {
+            _showAdButton.interactable = false;
+            // Then show the ad:
+            Advertisement.Show(_adUnitId, this);
+        }
     }
  
     // Implement the Show Listener's OnUnityAdsShowComplete callback method to determine if the user gets a reward:

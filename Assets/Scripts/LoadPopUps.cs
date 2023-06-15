@@ -21,7 +21,7 @@ public class LoadPopUps : MonoBehaviour
 
 
     public void loadpopUpExpansion(){
-        if (!open){
+        if (!open && GameManager.menuOpen == false){
             open = true;
             popUpExpansion.SetActive(true);
         } else {
@@ -31,7 +31,7 @@ public class LoadPopUps : MonoBehaviour
     }
 
     public void loadPopUpActions(){
-        if (!open){
+        if (!open && GameManager.menuOpen == false){
             open = true;
             popUpActions.SetActive(true);
         } else {
@@ -41,7 +41,7 @@ public class LoadPopUps : MonoBehaviour
     }
 
     public void loadPopUpManagers(){
-        if (!open){
+        if (!open && GameManager.menuOpen == false){
             open = true;
             popUpManagers.SetActive(true);
         } else {

@@ -50,7 +50,8 @@ public class ClickDeskScript : MonoBehaviour
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Collider2D clickCollider = Physics2D.OverlapPoint(mousePosition);
-
+        List<GameObject> unityGameObjects = new List<GameObject>();
+        Debug.Log(clickCollider);
         if (clickCollider != null && clickCollider.gameObject == clickBlocker)
         {
             // O clique ocorreu no botão de execução

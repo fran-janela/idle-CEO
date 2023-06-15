@@ -110,6 +110,8 @@ public class GameManager : MonoBehaviour
 
     public static float multiplier;
 
+    public static bool menuOpen = false;
+
     public static LaptopInfo[] dictLaptopInfo = new LaptopInfo[48];
 
     public static LaptopParameters[] dictLaptopParameters = new LaptopParameters[48];
