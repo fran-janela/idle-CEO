@@ -122,9 +122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: buyActions, Assembly-CSharp
-        m_MethodName: buyActionOnClick
+      - m_Target: {fileID: 4140133252135133147}
+        m_TargetAssemblyTypeName: buyManagers, Assembly-CSharp
+        m_MethodName: buyManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -545,6 +545,7 @@ GameObject:
   - component: {fileID: 5241801843436719771}
   - component: {fileID: 314927130979038409}
   - component: {fileID: 2367124132920596493}
+  - component: {fileID: 4140133252135133147}
   m_Layer: 5
   m_Name: Manager1
   m_TagString: Untagged
@@ -612,6 +613,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4140133252135133147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5339697607313285509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e4bf6d5e5602b64f9aa6586825d9e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuyBar: {fileID: 1861716840694978934}
+  canvasGroup: {fileID: 6532721574024181420}
+  button: {fileID: 1496449773441785195}
+  num_managers_text: {fileID: 1520581676257012248}
+  managers_room: 0
+  total_managers_room: 0
+  cost: 200
+  room_id: 0
 --- !u!1 &6117835096969110055
 GameObject:
   m_ObjectHideFlags: 0

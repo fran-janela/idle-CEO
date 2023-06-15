@@ -32,9 +32,13 @@ public class ClickDeskScript : MonoBehaviour
 
     void Start()
     {
-        laptopTableSetID = laptopTableSetCounter;
-        laptopTableSetCounter++;
-
+        if (laptopTableSetID != 0)
+        {
+            laptopTableSetCounter++; 
+        } else {
+            laptopTableSetID = laptopTableSetCounter;
+            laptopTableSetCounter++;
+        }
         Debug.Log("DeskSet ID: " + laptopTableSetID);
         collider = GetComponent<Collider2D>();
 

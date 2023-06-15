@@ -99,6 +99,13 @@ public class GameManager : MonoBehaviour
         public bool bought;
     }
 
+    [System.Serializable]
+    public class ManagerInfo
+    {
+        public int room_id;
+        public int managers_room;
+    }
+
     public static float money;
 
     public static float multiplier;
@@ -112,6 +119,8 @@ public class GameManager : MonoBehaviour
     public static TableInfo[] dictTableInfo = new TableInfo[48];
 
     public static ActionInfo[] dictActionInfo = new ActionInfo[4];
+
+    public static ManagerInfo[] dictManagerInfo = new ManagerInfo[4];
 
     public AudioSource musicSource;
 
@@ -127,6 +136,7 @@ public class GameManager : MonoBehaviour
 
     public static void ResetGameData()
     {
+        PlayerPrefs.SetString("ManagerData", "");
         PlayerPrefs.SetString("ActionData", "");
         PlayerPrefs.SetString("LaptopData", "");
         PlayerPrefs.SetString("TableData", "");
@@ -185,13 +195,14 @@ public class GameManager : MonoBehaviour
         string tableParametersDataToJSON = JsonHelper.ToJson(dictTableParameters, true);
         Debug.Log(tableParametersDataToJSON);
         string actionDataToJSON = JsonHelper.ToJson(dictActionInfo, true);
+        string managerDataToJSON = JsonHelper.ToJson(dictManagerInfo, true);
 
         PlayerPrefs.SetString("LaptopData", laptopDataToJSON);
         PlayerPrefs.SetString("TableData", tableDataToJSON);
         PlayerPrefs.SetString("LaptopParametersData", laptopParametersDataToJSON);
         PlayerPrefs.SetString("TableParametersData", tableParametersDataToJSON);
         PlayerPrefs.SetString("ActionData", actionDataToJSON);
-
+        PlayerPrefs.SetString("ManagerData", managerDataToJSON);
     }
 
     public static LaptopInfo GetLaptopInfo(int laptopID)
@@ -200,6 +211,20 @@ public class GameManager : MonoBehaviour
         if (dictLaptopInfo[laptopID-1].id == laptopID)
         {
             return dictLaptopInfo[laptopID-1];
+        }
+        else
+        {
+            return null;
+        }
+
+    }
+
+    public static ManagerInfo GetManagerInfo(int room_id_passado)
+    {
+        // Retorna as informações do laptop com o ID especificado
+        if (dictManagerInfo[room_id_passado-1].room_id == room_id_passado)
+        {
+            return dictManagerInfo[room_id_passado-1];
         }
         else
         {
@@ -282,6 +307,7 @@ public class GameManager : MonoBehaviour
         string laptopParametersData = PlayerPrefs.GetString("LaptopParametersData", "");
         string tableParametersData = PlayerPrefs.GetString("TableParametersData", "");
         string actionData = PlayerPrefs.GetString("ActionData", "");
+        string managerData = PlayerPrefs.GetString("ManagerData", "");
 
         Debug.Log("action Data: ANTESSSSSSSS AQUIIIIIIIIII OLHAAA " + actionData);
 
@@ -354,6 +380,18 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < dictActionInfo.Length; i++)
             {
                 dictActionInfo[i] = new ActionInfo();
+            }
+        }
+        if (managerData != ""){
+            dictManagerInfo = JsonHelper.FromJson<ManagerInfo>(managerData);
+            Debug.Log("Manager Info: " + dictManagerInfo[0].room_id + " | " + dictManagerInfo[0].managers_room);
+        }
+        else {
+            Debug.Log("CRIEI NOVO MANAGER INFO: YEH" );
+            dictManagerInfo = new ManagerInfo[4];
+            for (int i = 0; i < dictManagerInfo.Length; i++)
+            {
+                dictManagerInfo[i] = new ManagerInfo();
             }
         }
 
@@ -450,6 +488,21 @@ public class GameManager : MonoBehaviour
         dictActionInfo[actionID-1] = actionInfo;
 
         Debug.Log("Action ID: " + actionID + " | Bought: " + bought);
+
+        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
+        SaveGameData();
+    }
+
+    public void SaveManagerData(int room_id, int managers_room)
+    {
+        // Salvar os dados do laptop no dicionário
+        ManagerInfo managerInfo = new ManagerInfo();
+        managerInfo.room_id = room_id;
+        managerInfo.managers_room = managers_room;
+
+        dictManagerInfo[room_id-1] = managerInfo;
+
+        Debug.Log("Manager ID: " + room_id + " | Managers: " + managers_room);
 
         // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
