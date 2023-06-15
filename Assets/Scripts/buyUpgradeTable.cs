@@ -33,8 +33,10 @@ public class buyUpgradeTable : MonoBehaviour
 
     public float delayTime = 4f;
 
+    public GameObject computer;
+    public GameObject chair;
+    public GameObject laptopCode;
 
-    
     public float cost = 100f;
     public float baseCost = 100f;
     public float balancing_cost = 1f;
@@ -76,7 +78,6 @@ public class buyUpgradeTable : MonoBehaviour
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         GameManager.TableInfo tableInfo = GameManager.GetTableInfo(tableID);
         GameManager.TableParameters tableParameters = GameManager.GetTableParameters(tableID);
-
         if (tableParameters != null)
         {
             Debug.Log("Table Parameters não é null");
@@ -94,7 +95,8 @@ public class buyUpgradeTable : MonoBehaviour
                 BuyBar.fillAmount = 1f;
                 canvasGroup.alpha = 0.2f;
                 maxLevel = true;
-            } else {
+            }
+            else {
                 Debug.Log("Level não é igual ao total level");
                 Debug.Log("BuyBar.fillAmount TABLEEEEEEEE: " + tableParameters.buyBar);
                 BuyBar.fillAmount = tableParameters.buyBar;
@@ -106,11 +108,24 @@ public class buyUpgradeTable : MonoBehaviour
             multiplier = 0f;
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
         }
-         if (tableInfo != null)
+        if (tableInfo != null)
         {
             Debug.Log("Table Info não é null");
             earnings = tableInfo.earnings;
             delayTime = tableInfo.delayTime;
+        }
+        if (level == 0)
+        {
+            computer.SetActive(false);
+            chair.SetActive(false);
+            laptopCode.SetActive(false);
+            Color tmp = desk.GetComponent<SpriteRenderer>().color;
+            tmp.a = 0.5f;
+            desk.GetComponent<SpriteRenderer>().color = tmp;
+            if (tableID == 1)
+                cost = 0;
+            else
+                cost = baseCost;
         }
 
 
@@ -122,19 +137,33 @@ public class buyUpgradeTable : MonoBehaviour
 
     public void buy()
     {
-        if (BuyBar.fillAmount == 1f && level < total_level){
-            delayTime -= decreaseTime;
-            BuyBar.fillAmount = 0;
+        if (level == 0 && GameManager.money >= cost)
+        {
+            computer.SetActive(true);
+            chair.SetActive(true);
+            laptopCode.SetActive(true);
+            Color tmp = desk.GetComponent<SpriteRenderer>().color;
+            tmp.a = 1f;
+            desk.GetComponent<SpriteRenderer>().color = tmp;
+            Color tmp2 = computer.GetComponent<SpriteRenderer>().color;
+            tmp2.a = 0.5f;
+            computer.GetComponent<SpriteRenderer>().color = tmp2;
+            Debug.Log("COMPRA primeiro Nível");
             level += 1;
             levelText.text = level.ToString();
-        } 
-        if (level == total_level){
-            // cor do botão fica mais escura
-            BuyBar.fillAmount = 1f;
-            canvasGroup.alpha = 0.2f;
-            maxLevel = true;
+            canvasGroup.alpha = 1f;
+            BuyBar.fillAmount = 0;
+            GameManager.DecrementMoney(cost);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
         }
-        if (GameManager.money >= cost && !maxLevel){
+        else if (GameManager.money >= cost && !maxLevel){
+            if (BuyBar.fillAmount >= 1f)
+            {
+                delayTime -= decreaseTime;
+                BuyBar.fillAmount = 0;
+                level += 1;
+                levelText.text = level.ToString();
+            }
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount += 1.0f/(float)10;
             GameManager.DecrementMoney(cost);
@@ -155,6 +184,13 @@ public class buyUpgradeTable : MonoBehaviour
         } else {
             Debug.Log("Not enough money");
         }
+        if (level == total_level)
+        {
+            // cor do botão fica mais escura
+            BuyBar.fillAmount = 1f;
+            canvasGroup.alpha = 0.2f;
+            maxLevel = true;
+        }
 
         costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
         timeText.text = delayTime.ToString() + "s";
@@ -165,7 +201,7 @@ public class buyUpgradeTable : MonoBehaviour
         float fillAmount = BuyBar.fillAmount;
         Debug.Log("OLHA O FILLLLLL aMOUNT TABLE: " + fillAmount);
         gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
-
+        PlayerPrefs.DeleteAll();
     }
 
 

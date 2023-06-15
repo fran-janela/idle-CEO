@@ -39,23 +39,6 @@ public class ClickDeskScript : MonoBehaviour
 
     void FixedUpdate()
     {
-    //     if (Input.touchCount > 0)
-    //     {
-    //         for (int i = 0; i < Input.touchCount; i++)
-    //         {
-    //             Touch touch = Input.GetTouch(i);
-    //             Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-    //             if (collider.OverlapPoint(touchPosition))
-    //             {
-    //                 if (touch.phase == TouchPhase.Began && canClick){
-    //                     canClick = false;
-    //                     clickDelayTimer = 0.0f;
-    //                     DimAssets();
-    //                 }
-    //             }
-    //         }
-    //     }
-
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

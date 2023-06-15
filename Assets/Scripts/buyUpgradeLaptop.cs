@@ -12,7 +12,7 @@ public class buyUpgradeLaptop : MonoBehaviour
     public CanvasGroup canvasGroup;
     public Image BuyBar; 
     public Button button;
-    public GameObject desk;
+    public GameObject laptop;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI earningsText;
     public TextMeshProUGUI costText;
@@ -33,8 +33,9 @@ public class buyUpgradeLaptop : MonoBehaviour
 
     public float delayTime = 5f;
 
+    public GameObject progress;
+    public GameObject runButton;
 
-    
     public float cost = 200f;
     public float baseCost = 200f;
     public float balancing_cost = 1f;
@@ -113,6 +114,15 @@ public class buyUpgradeLaptop : MonoBehaviour
             earnings = laptopInfo.earnings;
             delayTime = laptopInfo.delayTime;
         }
+        if (level == 0)
+        {
+            progress.SetActive(false);
+            runButton.SetActive(false);
+            if (laptopID == 1)
+                cost = 0;
+            else
+                cost = baseCost;
+        }
 
         // Salvar os dados do laptop no dicionário
         gameManager.SaveLaptopData(laptopID, earnings, delayTime);
@@ -127,19 +137,28 @@ public class buyUpgradeLaptop : MonoBehaviour
 
     public void buy()
     {
-        if (BuyBar.fillAmount == 1f && level < total_level){
-            delayTime -= decreaseTime;
-            BuyBar.fillAmount = 0;
+        if (level == 0 && GameManager.money >= cost)
+        {
+            progress.SetActive(true);
+            runButton.SetActive(true);
+            Color tmp = laptop.GetComponent<SpriteRenderer>().color;
+            tmp.a = 1f;
+            laptop.GetComponent<SpriteRenderer>().color = tmp;
             level += 1;
             levelText.text = level.ToString();
-        } 
-        if (level == total_level){
-            // cor do botão fica mais escura
-            BuyBar.fillAmount = 1f;
-            canvasGroup.alpha = 0.2f;
-            maxLevel = true;
+            canvasGroup.alpha = 1f;
+            BuyBar.fillAmount = 0;
+            GameManager.DecrementMoney(cost);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
         }
         if (GameManager.money >= cost && !maxLevel){
+            if (BuyBar.fillAmount == 1f && level < total_level)
+            {
+                delayTime -= decreaseTime;
+                BuyBar.fillAmount = 0;
+                level += 1;
+                levelText.text = level.ToString();
+            }
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount += 1.0f/(float)10;
             GameManager.DecrementMoney(cost);
@@ -160,7 +179,13 @@ public class buyUpgradeLaptop : MonoBehaviour
         } else {
             Debug.Log("Not enough money");
         }
-
+        if (level == total_level)
+        {
+            // cor do botão fica mais escura
+            BuyBar.fillAmount = 1f;
+            canvasGroup.alpha = 0.2f;
+            maxLevel = true;
+        }
         costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
         timeText.text = delayTime.ToString() + "s";
         earningsText.text = Mathf.Round(earnings*100f/100f).ToString();

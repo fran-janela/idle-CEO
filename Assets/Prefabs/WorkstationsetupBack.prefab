@@ -117,6 +117,82 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!1 &436125795726147433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3088411152810788442}
+  - component: {fileID: 9094051404341946441}
+  - component: {fileID: 3389550113476910323}
+  m_Layer: 6
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3088411152810788442
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436125795726147433}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 511198549721377853}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 980, y: 1820}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9094051404341946441
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436125795726147433}
+  m_CullTransparentMesh: 1
+--- !u!114 &3389550113476910323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436125795726147433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1423717027071261808
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +617,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3088411152810788442}
   - {fileID: 4320952556566600057}
   - {fileID: 7335146679706323798}
   m_Father: {fileID: 4170118757275281677}
@@ -1030,6 +1107,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8350688396344495430}
     - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: laptop
+      value: 
+      objectReference: {fileID: 7839852257526984742}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: progress
+      value: 
+      objectReference: {fileID: 1423717027071261808}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
+      propertyPath: runButton
+      value: 
+      objectReference: {fileID: 7502663622426330940}
+    - target: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: growthRate
       value: 0.8
       objectReference: {fileID: 0}
@@ -1055,7 +1144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 218127367412356022, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 218127367412356022, guid: c089d18331cae854c85b543d675291d5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1155,6 +1244,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c089d18331cae854c85b543d675291d5, type: 3}
+--- !u!1 &4320952556566600054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 218127367412356025, guid: c089d18331cae854c85b543d675291d5, type: 3}
+  m_PrefabInstance: {fileID: 4103318964699941583}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4320952556566600057 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 218127367412356022, guid: c089d18331cae854c85b543d675291d5, type: 3}
@@ -1165,7 +1259,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 218127367412356018, guid: c089d18331cae854c85b543d675291d5, type: 3}
   m_PrefabInstance: {fileID: 4103318964699941583}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4320952556566600054}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 912f1e183eff55b418580a4a38f416b6, type: 3}
@@ -1212,7 +1306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2630375457833389575, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2630375457833389575, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1290,6 +1384,18 @@ PrefabInstance:
       propertyPath: desk
       value: 
       objectReference: {fileID: 8350688396344495430}
+    - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
+      propertyPath: chair
+      value: 
+      objectReference: {fileID: 6286199082203085949}
+    - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
+      propertyPath: computer
+      value: 
+      objectReference: {fileID: 7839852257526984742}
+    - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
+      propertyPath: laptopCode
+      value: 
+      objectReference: {fileID: 4320952556566600054}
     - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
       propertyPath: clickDeskScript
       value: 
