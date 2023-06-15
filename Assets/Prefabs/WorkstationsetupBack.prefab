@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateAll: {fileID: 7837801184532086245}
+  button: {fileID: 2423020134225068686}
   buyUpgradeLaptopScript: {fileID: 4320952556566600061}
   buyUpgradeTableScript: {fileID: 7335146679706323803}
 --- !u!114 &3010593993171856548
@@ -284,7 +285,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 51176663212663214}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 545841163406587931}
+        m_TargetAssemblyTypeName: loadMainUpdate, Assembly-CSharp
+        m_MethodName: closeUpdateAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &3003968841089782995
 BoxCollider2D:
   m_ObjectHideFlags: 0
