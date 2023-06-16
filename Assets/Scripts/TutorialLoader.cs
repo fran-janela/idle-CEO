@@ -11,7 +11,15 @@ public class TutorialLoader : MonoBehaviour
     public GameObject loadingScreen;
     public Slider slider;
 
+    public Canvas canvasMainGame;
+
+    public Canvas canvasTutorial;
+
     public TextMeshProUGUI progrssText;
+
+    public void Start(){
+        canvasMainGame.enabled = false;
+    }
 
     public void SceneLoader()
     {
@@ -23,7 +31,9 @@ public class TutorialLoader : MonoBehaviour
         }
         else
         {
-            StartCoroutine(LoadAsynchronously(2));
+            canvasTutorial.enabled = false;
+            canvasMainGame.enabled = true;
+
             // UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
         }
     }
