@@ -202,7 +202,6 @@ public class buyUpgradeTable : MonoBehaviour
         float fillAmount = BuyBar.fillAmount;
         Debug.Log("OLHA O FILLLLLL aMOUNT TABLE: " + fillAmount);
         gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
-        PlayerPrefs.DeleteAll();
     }
 
 
