@@ -122,8 +122,6 @@ public class GameManager : MonoBehaviour
 
     public static bool menuOpen = false;
 
-    public static int tutorial = 0;
-
     public static LaptopInfo[] dictLaptopInfo = new LaptopInfo[48];
 
     public static LaptopParameters[] dictLaptopParameters = new LaptopParameters[48];
@@ -140,16 +138,24 @@ public class GameManager : MonoBehaviour
 
     public AudioSource musicSource;
 
+    public GameObject desksRoom2;
+    public GameObject desksRoom3;
+    public GameObject desksRoom4;
+
+    public GameObject squareRoom2;
+
+    public GameObject squareRoom3;
+
+    public GameObject squareRoom4;
+
     void Start()
     {
-        PlayerPrefs.DeleteAll();
-        ResetGameData();
+        //PlayerPrefs.DeleteAll();
+        //ResetGameData();
         money = 0.0f;
         multiplier = 0.0f;
         musicSource.Play();
-        LoadGameData();
-        money = 100000000.0f;
-        SaveGameData();
+        LoadGameData(desksRoom2, desksRoom3, desksRoom4, squareRoom2, squareRoom3, squareRoom4);
     }
 
     public static void ResetGameData()
@@ -162,7 +168,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString("LaptopParametersData", "");
         PlayerPrefs.SetString("TableParametersData", "");
         PlayerPrefs.SetFloat("Money", 0.0f);
-        PlayerPrefs.SetInt("Tutorial", 0);
         SaveGameData();
     }
 
@@ -205,7 +210,6 @@ public class GameManager : MonoBehaviour
     public static void SaveGameData()
     {
         PlayerPrefs.SetFloat("Money", money);
-        PlayerPrefs.SetInt("Tutorial", tutorial);
 
         string laptopDataToJSON = JsonHelper.ToJson(dictLaptopInfo, true);
         Debug.Log(laptopDataToJSON);
@@ -272,11 +276,6 @@ public class GameManager : MonoBehaviour
 
     public static LaptopParameters GetLaptopParameters(int laptopID)
     {
-        // Retorna as informações do laptop com o ID especificado
-        // Debug.Log("LAPTOP ID AQUI NO PARAMTERES: " + laptopID);
-        // //print o length do dictLaptopParameters
-        // Debug.Log("dictLaptopParameters.Length: " + dictLaptopParameters.Length);
-        // Debug.Log("dictLaptopParameters[laptopID-1].id: " + dictLaptopParameters[0].id + " e laptopID: " + laptopID);
         if (dictLaptopParameters[laptopID-1].id == laptopID)
         {
             return dictLaptopParameters[laptopID-1];
@@ -303,9 +302,6 @@ public class GameManager : MonoBehaviour
     public static ActionInfo GetActionInfo(int actionID)
     {
         // Retorna as informações do laptop com o ID especificado
-        Debug.Log("ACTION ID AQUI NO PARAMTERES: " + actionID);
-        Debug.Log("dictActionInfo.Length: " + dictActionInfo.Length);
-        Debug.Log("DICT INFO" + dictActionInfo[0]);
         if (dictActionInfo[actionID-1].id == actionID)
         {
             return dictActionInfo[actionID-1];
@@ -329,11 +325,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void LoadGameData()
+    public static void LoadGameData(GameObject desksRoom2, GameObject desksRoom3, GameObject desksRoom4, GameObject squareRoom2, GameObject squareRoom3, GameObject squareRoom4)
     {
 
         money = PlayerPrefs.GetFloat("Money", 0.0f);
-        tutorial = PlayerPrefs.GetInt("Tutorial", 0);
 
         //
 
@@ -346,13 +341,10 @@ public class GameManager : MonoBehaviour
         string managerData = PlayerPrefs.GetString("ManagerData", "");
         string expandData = PlayerPrefs.GetString("ExpandData", "");
 
-        Debug.Log("action Data: ANTESSSSSSSS AQUIIIIIIIIII OLHAAA " + actionData);
 
         if (laptopData != "")
         {
             dictLaptopInfo = JsonHelper.FromJson<LaptopInfo>(laptopData);
-            Debug.Log("Laptop Data: " + dictLaptopInfo[0].id + " | " + dictLaptopInfo[0].earnings + " | " + dictLaptopInfo[0].delayTime  + " | " + dictLaptopInfo[0].room_id);
-            Debug.Log("Laptop Data: " + dictLaptopInfo[1].id + " | " + dictLaptopInfo[1].earnings + " | " + dictLaptopInfo[1].delayTime + " | " + dictLaptopInfo[1].room_id);
         }
         else {
 
@@ -365,10 +357,7 @@ public class GameManager : MonoBehaviour
         }
         if (tableData != "")
         {
-            Debug.Log("Table Data: " + tableData);
             dictTableInfo = JsonHelper.FromJson<TableInfo>(tableData);
-            Debug.Log("Table Data: " + dictTableInfo[0].id + " | " + dictTableInfo[0].earnings + " | " + dictTableInfo[0].delayTime + " | " + dictTableInfo[0].room_id);
-            Debug.Log("Table Data: " + dictTableInfo[1].id + " | " + dictTableInfo[1].earnings + " | " + dictTableInfo[1].delayTime + " | " + dictTableInfo[1].room_id);
         }
         else {
             // Debug.Log("CRIEI NOVO Table Data: YEH" );
@@ -381,8 +370,8 @@ public class GameManager : MonoBehaviour
         if (laptopParametersData != "")
         {
             dictLaptopParameters = JsonHelper.FromJson<LaptopParameters>(laptopParametersData);
-            Debug.Log("Laptop Parameters: " + dictLaptopParameters[0].id + " | " + dictLaptopParameters[0].earningsBase + " | " + dictLaptopParameters[0].growthRate + " | " + dictLaptopParameters[0].balancing_production + " | " + dictLaptopParameters[0].decreaseTime + " | " + dictLaptopParameters[0].baseCost + " | " + dictLaptopParameters[0].balancing_cost + " | " + dictLaptopParameters[0].multiplier + " | " + dictLaptopParameters[0].level + " | " + dictLaptopParameters[0].buyBar);
-            Debug.Log("Laptop Parameters: " + dictLaptopParameters[1].id + " | " + dictLaptopParameters[1].earningsBase + " | " + dictLaptopParameters[1].growthRate + " | " + dictLaptopParameters[1].balancing_production + " | " + dictLaptopParameters[1].decreaseTime + " | " + dictLaptopParameters[1].baseCost + " | " + dictLaptopParameters[1].balancing_cost + " | " + dictLaptopParameters[1].multiplier + " | " + dictLaptopParameters[1].level + " | " + dictLaptopParameters[1].buyBar);
+            // Debug.Log("Laptop Parameters: " + dictLaptopParameters[0].id + " | " + dictLaptopParameters[0].earningsBase + " | " + dictLaptopParameters[0].growthRate + " | " + dictLaptopParameters[0].balancing_production + " | " + dictLaptopParameters[0].decreaseTime + " | " + dictLaptopParameters[0].baseCost + " | " + dictLaptopParameters[0].balancing_cost + " | " + dictLaptopParameters[0].multiplier + " | " + dictLaptopParameters[0].level + " | " + dictLaptopParameters[0].buyBar);
+            // Debug.Log("Laptop Parameters: " + dictLaptopParameters[1].id + " | " + dictLaptopParameters[1].earningsBase + " | " + dictLaptopParameters[1].growthRate + " | " + dictLaptopParameters[1].balancing_production + " | " + dictLaptopParameters[1].decreaseTime + " | " + dictLaptopParameters[1].baseCost + " | " + dictLaptopParameters[1].balancing_cost + " | " + dictLaptopParameters[1].multiplier + " | " + dictLaptopParameters[1].level + " | " + dictLaptopParameters[1].buyBar);
         }
         else {
             dictLaptopParameters = new LaptopParameters[48];
@@ -390,14 +379,14 @@ public class GameManager : MonoBehaviour
             {
                 dictLaptopParameters[i] = new LaptopParameters();
             }
-            Debug.Log("CRIEI NOVO LAPTOP PARAMETERS: YEH" );
-            Debug.Log("Elemento id do dictLaptopParameters: " + dictLaptopParameters[0].id);
+            // Debug.Log("CRIEI NOVO LAPTOP PARAMETERS: YEH" );
+            // Debug.Log("Elemento id do dictLaptopParameters: " + dictLaptopParameters[0].id);
         }
         if (tableParametersData != "")
         {
             dictTableParameters = JsonHelper.FromJson<TableParameters>(tableParametersData);
-            Debug.Log("Table Parameters: " + dictTableParameters[0].id + " | " + dictTableParameters[0].earningsBase + " | " + dictTableParameters[0].growthRate + " | " + dictTableParameters[0].balancing_production + " | " + dictTableParameters[0].decreaseTime + " | " + dictTableParameters[0].baseCost + " | " + dictTableParameters[0].balancing_cost + " | " + dictTableParameters[0].multiplier + " | " + dictTableParameters[0].level + " | " + dictTableParameters[0].buyBar);
-            Debug.Log("Table Parameters: " + dictTableParameters[1].id + " | " + dictTableParameters[1].earningsBase + " | " + dictTableParameters[1].growthRate + " | " + dictTableParameters[1].balancing_production + " | " + dictTableParameters[1].decreaseTime + " | " + dictTableParameters[1].baseCost + " | " + dictTableParameters[1].balancing_cost + " | " + dictTableParameters[1].multiplier + " | " + dictTableParameters[1].level + " | " + dictTableParameters[1].buyBar);
+            // Debug.Log("Table Parameters: " + dictTableParameters[0].id + " | " + dictTableParameters[0].earningsBase + " | " + dictTableParameters[0].growthRate + " | " + dictTableParameters[0].balancing_production + " | " + dictTableParameters[0].decreaseTime + " | " + dictTableParameters[0].baseCost + " | " + dictTableParameters[0].balancing_cost + " | " + dictTableParameters[0].multiplier + " | " + dictTableParameters[0].level + " | " + dictTableParameters[0].buyBar);
+            // Debug.Log("Table Parameters: " + dictTableParameters[1].id + " | " + dictTableParameters[1].earningsBase + " | " + dictTableParameters[1].growthRate + " | " + dictTableParameters[1].balancing_production + " | " + dictTableParameters[1].decreaseTime + " | " + dictTableParameters[1].baseCost + " | " + dictTableParameters[1].balancing_cost + " | " + dictTableParameters[1].multiplier + " | " + dictTableParameters[1].level + " | " + dictTableParameters[1].buyBar);
         }
         else {
             dictTableParameters = new TableParameters[48];
@@ -409,10 +398,9 @@ public class GameManager : MonoBehaviour
         if (actionData != "")
         {
             dictActionInfo = JsonHelper.FromJson<ActionInfo>(actionData);
-            Debug.Log("Action Info: " + dictActionInfo[0].id + " | " + dictActionInfo[0].bought);
+            // Debug.Log("Action Info: " + dictActionInfo[0].id + " | " + dictActionInfo[0].bought);
         }
         else {
-            Debug.Log("CRIEI NOVO ACTION INFO: YEH" );
             dictActionInfo = new ActionInfo[4];
             for (int i = 0; i < dictActionInfo.Length; i++)
             {
@@ -421,10 +409,8 @@ public class GameManager : MonoBehaviour
         }
         if (managerData != ""){
             dictManagerInfo = JsonHelper.FromJson<ManagerInfo>(managerData);
-            Debug.Log("Manager Info: " + dictManagerInfo[0].room_id + " | " + dictManagerInfo[0].managers_room);
         }
         else {
-            Debug.Log("CRIEI NOVO MANAGER INFO: YEH" );
             dictManagerInfo = new ManagerInfo[4];
             for (int i = 0; i < dictManagerInfo.Length; i++)
             {
@@ -433,10 +419,39 @@ public class GameManager : MonoBehaviour
         }
         if (expandData != ""){
             dictExpandInfo = JsonHelper.FromJson<ExpandInfo>(expandData);
-            Debug.Log("Expand Info: " + dictExpandInfo[0].room_id + " | " + dictExpandInfo[0].owned);
+            for (int i = 0; i < dictExpandInfo.Length; i++)
+            {
+                if (dictExpandInfo[i].room_id == 2){
+                    if (dictExpandInfo[i].owned){
+                        Debug.Log("DEU TRUE E O ID É 2");
+                        desksRoom2.SetActive(true);
+                        squareRoom2.SetActive(false);
+                    } else{
+                        Debug.Log("DEU FALSE E O ID É 2");
+                        desksRoom2.SetActive(false);
+                        squareRoom2.SetActive(true);
+                    }
+                } else if (dictExpandInfo[i].room_id == 3){
+                    if (dictExpandInfo[i].owned){
+                        desksRoom3.SetActive(true);
+                        squareRoom3.SetActive(false);
+                    } else{
+                        desksRoom3.SetActive(false);
+                        squareRoom3.SetActive(true);
+                    }
+                } else if (dictExpandInfo[i].room_id == 4){
+                    if (dictExpandInfo[i].owned){
+                        desksRoom4.SetActive(true);
+                        squareRoom4.SetActive(false);
+                    } else{
+                        desksRoom4.SetActive(false);
+                        squareRoom4.SetActive(true);
+                    }
+                }
+                Debug.Log("Expand Info: " + dictExpandInfo[i].room_id + " | " + dictExpandInfo[i].owned);
+            }
         }
         else {
-            Debug.Log("CRIEI NOVO EXPAND INFO: YEH" );
             dictExpandInfo = new ExpandInfo[4];
             for (int i = 0; i < dictExpandInfo.Length; i++)
             {
@@ -459,13 +474,11 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime + " | Room ID: " + room_id);
 
-        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
     }
 
     public void SaveTableData(int tableID, float earnings, float delayTime, int room_id)
     {
-        // Salvar os dados do laptop no dicionário
         TableInfo tableInfo = new TableInfo();
         tableInfo.id = tableID;
         tableInfo.earnings = earnings;
@@ -475,14 +488,12 @@ public class GameManager : MonoBehaviour
         dictTableInfo[tableID-1] = tableInfo;
         Debug.Log("Table ID: " + tableID + " | Earnings: " + earnings + " | Decrease Time: " + delayTime + " | Room ID: " + room_id);
 
-        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
     }
 
     
     public void SaveTableParameters(int tableID, float earningsBase, float growthRate, float balancing_production, float decreaseTime, float baseCost, float balancing_cost, float multiplier, int level, float buyBar)
     {
-        // Salvar os dados do laptop no dicionário
         TableParameters tableParameters = new TableParameters();
         tableParameters.id = tableID;
         tableParameters.earningsBase = earningsBase;
@@ -500,13 +511,11 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Table ID: " + tableID + " | Earnings: " + earningsBase + " | Decrease Time: " + decreaseTime + " | Level: " + level);
 
-        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
     }
 
     public void SaveLaptopParameters (int laptopID, float earningsBase, float growthRate, float balancing_production, float decreaseTime, float baseCost, float balancing_cost, float multiplier, int level, float buyBar)
     {
-        // Salvar os dados do laptop no dicionário
         LaptopParameters laptopParameters = new LaptopParameters();
         laptopParameters.id = laptopID;
         laptopParameters.earningsBase = earningsBase;
@@ -523,7 +532,6 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Laptop ID: " + laptopID + " | Earnings: " + earningsBase + " | Decrease Time: " + decreaseTime + " | Level: " + level);
 
-        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
     }
 
@@ -538,7 +546,6 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Action ID: " + actionID + " | Bought: " + bought);
 
-        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
     }
 
@@ -553,22 +560,45 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Manager ID: " + room_id + " | Managers: " + managers_room);
 
-        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
     }
 
     public void SaveExpandData(int room_id, bool owned)
     {
-        // Salvar os dados do laptop no dicionário
         ExpandInfo expandInfo = new ExpandInfo();
         expandInfo.room_id = room_id;
         expandInfo.owned = owned;
 
         dictExpandInfo[room_id-1] = expandInfo;
 
+        if (room_id == 2){
+            if (owned){
+                desksRoom2.SetActive(true);
+                squareRoom2.SetActive(false);
+            } else{
+                desksRoom2.SetActive(false);
+                squareRoom2.SetActive(true);
+            }
+        } else if (room_id == 3){
+            if (owned){
+                desksRoom3.SetActive(true);
+                squareRoom3.SetActive(false);
+            } else{
+                desksRoom3.SetActive(false);
+                squareRoom3.SetActive(true);
+            }
+        } else if (room_id == 4){
+            if (owned){
+                desksRoom4.SetActive(true);
+                squareRoom4.SetActive(false);
+            } else{
+                desksRoom4.SetActive(false);
+                squareRoom4.SetActive(true);
+            }
+        }
+
         Debug.Log("Expand ID: " + room_id + " | Owned: " + owned);
 
-        // Salvar os dados do jogo após cada atualização no dicionário dos laptops (opcional)
         SaveGameData();
     }
 

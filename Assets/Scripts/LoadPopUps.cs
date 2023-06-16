@@ -7,8 +7,11 @@ public class LoadPopUps : MonoBehaviour
     // Start is called before the first frame update
     public GameObject popUpExpansion;
     public GameObject popUpActions;
-
     public GameObject popUpManagers;
+
+    public buyActions popUpActionsScript;
+    public buyRooms popUpExpansionScript;
+    public buyManagers popUpManagersScript;
     private bool open = false;
 
 
