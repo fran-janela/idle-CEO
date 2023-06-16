@@ -122,6 +122,8 @@ public class GameManager : MonoBehaviour
 
     public static bool menuOpen = false;
 
+    public static int tutorial = 0;
+
     public static LaptopInfo[] dictLaptopInfo = new LaptopInfo[48];
 
     public static LaptopParameters[] dictLaptopParameters = new LaptopParameters[48];
@@ -158,6 +160,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString("LaptopParametersData", "");
         PlayerPrefs.SetString("TableParametersData", "");
         PlayerPrefs.SetFloat("Money", 0.0f);
+        PlayerPrefs.SetInt("Tutorial", 0);
         SaveGameData();
     }
 
@@ -200,6 +203,7 @@ public class GameManager : MonoBehaviour
     public static void SaveGameData()
     {
         PlayerPrefs.SetFloat("Money", money);
+        PlayerPrefs.SetInt("Tutorial", tutorial);
 
         string laptopDataToJSON = JsonHelper.ToJson(dictLaptopInfo, true);
         Debug.Log(laptopDataToJSON);
@@ -327,6 +331,7 @@ public class GameManager : MonoBehaviour
     {
 
         money = PlayerPrefs.GetFloat("Money", 0.0f);
+        tutorial = PlayerPrefs.GetInt("Tutorial", 0);
 
         //
 
