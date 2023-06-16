@@ -46,7 +46,7 @@ public class ClickDeskScript : MonoBehaviour
 
     void FixedUpdate()
     {
-    if (Input.GetMouseButtonDown(0))
+    if (Input.GetMouseButtonDown(0) && GameManager.menuOpen == false)
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Collider2D clickCollider = Physics2D.OverlapPoint(mousePosition);

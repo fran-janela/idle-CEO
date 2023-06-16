@@ -36,12 +36,14 @@ public class PanZoom : MonoBehaviour
 
             Zoom(difference * 0.01f);
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && GameManager.menuOpen == false)
         {
             Vector3 direction = touchStart - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Camera.main.transform.position += direction;
         }
-        Zoom(Input.GetAxis("Mouse ScrollWheel"));
+        if (GameManager.menuOpen == false){
+            Zoom(Input.GetAxis("Mouse ScrollWheel"));
+        }
         
     }
 
