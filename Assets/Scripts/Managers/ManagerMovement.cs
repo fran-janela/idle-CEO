@@ -17,21 +17,10 @@ public class ManagerMovement : MonoBehaviour
     public Animator bodyAnimator;
 
     // Targets for the AI to follow
-    public List<Transform> targets;
-    private List<Transform> queue;
-
-    private int currentTarget = 0;
 
     void Start()
     {
-        queue = new List<Transform>();
-        for (int i = 0; i < targets.Count; i++)
-        {
-            queue.Add(targets[i]);
-            Debug.Log("Target " + i + ": " + targets[i]);
-        }
-        // Set the first target
-        aiDestinationSetter.target = queue[0];
+
     }
     void Update()
     {
@@ -56,17 +45,9 @@ public class ManagerMovement : MonoBehaviour
         bodyAnimator.SetFloat("Speed", speed);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    public void setManagerTarget(Transform target)
     {
-        if (collision.gameObject.tag == "Target")
-        {
-            if (collision.gameObject.transform == queue[currentTarget])
-            {
-                queue.RemoveAt(currentTarget);
-                currentTarget = Random.Range(0, queue.Count);
-                aiDestinationSetter.target = queue[currentTarget];
-            }
-        }
+        aiDestinationSetter.target = target;
     }
 
 }

@@ -148,6 +148,8 @@ public class GameManager : MonoBehaviour
         multiplier = 0.0f;
         musicSource.Play();
         LoadGameData();
+        money = 100000000.0f;
+        SaveGameData();
     }
 
     public static void ResetGameData()

@@ -73,7 +73,7 @@ public class buyUpgradeTable : MonoBehaviour
     public void  LateStart()
     {
         tableID = clickDeskScript.laptopTableSetID;
-        Debug.Log("Table ID: " + tableID);
+        // Debug.Log("Table ID: " + tableID);
 
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -81,7 +81,7 @@ public class buyUpgradeTable : MonoBehaviour
         GameManager.TableParameters tableParameters = GameManager.GetTableParameters(tableID);
         if (tableParameters != null)
         {
-            Debug.Log("Table Parameters não é null");
+            // Debug.Log("Table Parameters não é null");
             earningsBase = tableParameters.earningsBase;
             multiplier = tableParameters.multiplier;
             level = tableParameters.level;
@@ -98,8 +98,8 @@ public class buyUpgradeTable : MonoBehaviour
                 maxLevel = true;
             }
             else {
-                Debug.Log("Level não é igual ao total level");
-                Debug.Log("BuyBar.fillAmount TABLEEEEEEEE: " + tableParameters.buyBar);
+                // Debug.Log("Level não é igual ao total level");
+                // Debug.Log("BuyBar.fillAmount TABLEEEEEEEE: " + tableParameters.buyBar);
                 BuyBar.fillAmount = tableParameters.buyBar;
             }
         } else {
@@ -111,7 +111,7 @@ public class buyUpgradeTable : MonoBehaviour
         }
         if (tableInfo != null)
         {
-            Debug.Log("Table Info não é null");
+            // Debug.Log("Table Info não é null");
             earnings = tableInfo.earnings;
             delayTime = tableInfo.delayTime;
         }
@@ -149,7 +149,7 @@ public class buyUpgradeTable : MonoBehaviour
             Color tmp2 = computer.GetComponent<SpriteRenderer>().color;
             tmp2.a = 0.5f;
             computer.GetComponent<SpriteRenderer>().color = tmp2;
-            Debug.Log("COMPRA primeiro Nível");
+            // Debug.Log("COMPRA primeiro Nível");
             level += 1;
             levelText.text = level.ToString();
             canvasGroup.alpha = 1f;
@@ -168,7 +168,7 @@ public class buyUpgradeTable : MonoBehaviour
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount += 1.0f/(float)10;
             GameManager.DecrementMoney(cost);
-            Debug.Log("Money porque compreiiii: " + GameManager.money);
+            // Debug.Log("Money porque compreiiii: " + GameManager.money);
 
             // Atualizando os valores do increase
             multiplier += 2f;
@@ -179,11 +179,11 @@ public class buyUpgradeTable : MonoBehaviour
             earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
 
             //Atualizando os valores do custo
-            Debug.Log("Olha o base cost: " + baseCost + " e o growth rate: " + growthRate + " e o level: " + level + " e o balancing: " + balancing_cost);
+            // Debug.Log("Olha o base cost: " + baseCost + " e o growth rate: " + growthRate + " e o level: " + level + " e o balancing: " + balancing_cost);
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
 
         } else {
-            Debug.Log("Not enough money");
+            // Debug.Log("Not enough money");
         }
         if (level == total_level)
         {
@@ -200,7 +200,7 @@ public class buyUpgradeTable : MonoBehaviour
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SaveTableData(tableID, earnings, delayTime, room_id);
         float fillAmount = BuyBar.fillAmount;
-        Debug.Log("OLHA O FILLLLLL aMOUNT TABLE: " + fillAmount);
+        // Debug.Log("OLHA O FILLLLLL aMOUNT TABLE: " + fillAmount);
         gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
         PlayerPrefs.DeleteAll();
     }

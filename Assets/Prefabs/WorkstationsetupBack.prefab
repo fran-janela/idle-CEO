@@ -402,6 +402,78 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &3207188761408981092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6768825769747224230}
+  - component: {fileID: 9024374455781513322}
+  - component: {fileID: 4369052439488700703}
+  m_Layer: 0
+  m_Name: ManagerTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6768825769747224230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207188761408981092}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1, y: 1.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8015708965473886143}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &9024374455781513322
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207188761408981092}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.13076663, y: 0.093152285}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.73846674, y: 0.3153515}
+  m_EdgeRadius: 0
+--- !u!114 &4369052439488700703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207188761408981092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea46ee28d43c4b01ae3f32275102f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickDeskScript: {fileID: 7193035553395660723}
 --- !u!1 &3624652761976192243
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +579,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 706101965
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 1616170086, guid: 5975a0eabc2e44e09bc6eab9a403abe9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -646,7 +718,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7773890627902105664}
   - component: {fileID: 3013824424346692107}
-  m_Layer: 0
+  - component: {fileID: 1823782500658320907}
+  m_Layer: 7
   m_Name: Chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,6 +793,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1823782500658320907
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286199082203085949}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1.4375}
+    newSize: {x: 1, y: 1.3125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.32529882, y: 0.7252202}
+      - {x: -0.443622, y: 0.5892482}
+      - {x: -0.4442595, y: 0.032788515}
+      - {x: -0.44507247, y: -0.27876186}
+      - {x: 0.50647044, y: -0.2852323}
+      - {x: 0.49559012, y: 0.045092344}
+      - {x: 0.4545505, y: 0.5904808}
+      - {x: 0.3188284, y: 0.7316909}
 --- !u!1 &7502663622426330940
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8510361087721326699}
   - component: {fileID: 5560086235794902266}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Computer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,7 +1084,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 706101965
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cfd2f11f352594f67b8627dc1a1c1f8d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1003,7 +1109,7 @@ GameObject:
   - component: {fileID: 3073276357009288639}
   - component: {fileID: 7193035553395660723}
   - component: {fileID: 1466623834610384046}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Desk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1027,6 +1133,7 @@ Transform:
   - {fileID: 4170118757275281677}
   - {fileID: 7773890627902105664}
   - {fileID: 3044949508148688659}
+  - {fileID: 6768825769747224230}
   m_Father: {fileID: 2689100133949533664}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1101,7 +1208,7 @@ MonoBehaviour:
   ButtonDownSpriteRenderer: {fileID: 8314194860757315950}
   UpgradeCanvas: {fileID: 7463825847865797582}
   PVisualizer: {fileID: 1423717027071261808}
-  clickBlocker: {fileID: 2423020134225068686}
+  roomQueue: {fileID: 0}
 --- !u!61 &1466623834610384046
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1139,7 +1246,7 @@ GameObject:
   - component: {fileID: 3880449242467062465}
   - component: {fileID: 2148333133086954477}
   - component: {fileID: 5505471190659184503}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ButtonUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1200,7 +1307,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 706101965
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b014ef49e3d164e3a952b5cb00d875a4, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

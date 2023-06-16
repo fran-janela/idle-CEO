@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Text.RegularExpressions;
 
 public class buyUpgradeLaptop : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class buyUpgradeLaptop : MonoBehaviour
     public TextMeshProUGUI earningsText;
     public TextMeshProUGUI costText;
 
-    public int room_id;
+    private int room_id;
     public int total_level = 5;
 
     public float earnings = 10f;
@@ -61,13 +62,16 @@ public class buyUpgradeLaptop : MonoBehaviour
         earningsText.text = earningsBase.ToString();     
         levelText.text = level.ToString();
 
+        // Get room_id from parent name
+        room_id = ExtractNumberFromString(transform.parent.parent.parent.parent.parent.parent.name);
+        // Debug.Log("=====================================================\n" + "Room ID: " + room_id.ToString());
     }
 
 
     public void LateStart()
     {
         laptopID = clickDeskScript.laptopTableSetID;
-        Debug.Log("Laptop ID: " + laptopID);
+        // Debug.Log("Laptop ID: " + laptopID);
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         GameManager.LaptopInfo laptopInfo = GameManager.GetLaptopInfo(laptopID);
@@ -86,17 +90,17 @@ public class buyUpgradeLaptop : MonoBehaviour
             decreaseTime = laptopParameters.decreaseTime;
             baseCost = laptopParameters.baseCost;
             balancing_cost = laptopParameters.balancing_cost;
-            Debug.Log("OLHA O BALANCING COST: " + balancing_cost + "BASE COST: " + baseCost + "GROWTH RATE: " + growthRate + "LEVEL: " + level + "MULTIPLIER: " + multiplier + "BALANCING PRODUCTION: " + balancing_production + "DECREASE TIME: " + decreaseTime);
+            // Debug.Log("OLHA O BALANCING COST: " + balancing_cost + "BASE COST: " + baseCost + "GROWTH RATE: " + growthRate + "LEVEL: " + level + "MULTIPLIER: " + multiplier + "BALANCING PRODUCTION: " + balancing_production + "DECREASE TIME: " + decreaseTime);
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
-            Debug.Log("OLHA O CUSTO AQUIIIIIIIII: " + cost);
+            // Debug.Log("OLHA O CUSTO AQUIIIIIIIII: " + cost);
             costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
             if (level == total_level){
                 BuyBar.fillAmount = 1f;
                 canvasGroup.alpha = 0.2f;
                 maxLevel = true;
             } else {
-                Debug.Log("Level não é igual ao total level");
-                Debug.Log("BuyBar.fillAmount: " + laptopParameters.buyBar);
+                // Debug.Log("Level não é igual ao total level");
+                // Debug.Log("BuyBar.fillAmount: " + laptopParameters.buyBar);
                 BuyBar.fillAmount = laptopParameters.buyBar;
             }
         }
@@ -110,7 +114,7 @@ public class buyUpgradeLaptop : MonoBehaviour
         }
         if (laptopInfo != null)
         {
-            Debug.Log("Laptop Info não é null");
+            // Debug.Log("Laptop Info não é null");
             earnings = laptopInfo.earnings;
             delayTime = laptopInfo.delayTime;
         }
@@ -126,7 +130,7 @@ public class buyUpgradeLaptop : MonoBehaviour
 
         // Salvar os dados do laptop no dicionário
         gameManager.SaveLaptopData(laptopID, earnings, delayTime, room_id);
-        Debug.Log("Mandando os dados pro LaptopParameters : " + laptopID + " " + earningsBase + " " + growthRate + " " + balancing_production + " " + decreaseTime + " " + baseCost + " " + balancing_cost + " " + multiplier + " " + level + " " + BuyBar.fillAmount);
+        // Debug.Log("Mandando os dados pro LaptopParameters : " + laptopID + " " + earningsBase + " " + growthRate + " " + balancing_production + " " + decreaseTime + " " + baseCost + " " + balancing_cost + " " + multiplier + " " + level + " " + BuyBar.fillAmount);
         float fillAmount = BuyBar.fillAmount;
         gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
 
@@ -162,7 +166,7 @@ public class buyUpgradeLaptop : MonoBehaviour
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount += 1.0f/(float)10;
             GameManager.DecrementMoney(cost);
-            Debug.Log("Money porque compreiiii: " + GameManager.money);
+            // Debug.Log("Money porque compreiiii: " + GameManager.money);
 
             // Atualizando os valores do increase
             multiplier += 2f;
@@ -173,11 +177,11 @@ public class buyUpgradeLaptop : MonoBehaviour
 
             //Atualizando os valores do custo
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
-            Debug.Log("OLHAAAAAAAAAAAAA O Custo: " + cost);
+            // Debug.Log("OLHAAAAAAAAAAAAA O Custo: " + cost);
             costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
 
         } else {
-            Debug.Log("Not enough money");
+            // Debug.Log("Not enough money");
         }
         if (level == total_level)
         {
@@ -194,15 +198,27 @@ public class buyUpgradeLaptop : MonoBehaviour
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SaveLaptopData(laptopID, earnings, delayTime, room_id);
         float fillAmount = BuyBar.fillAmount;
-        Debug.Log("OLHA O FILLLLLL aMOUNT : " + fillAmount);
+        // Debug.Log("OLHA O FILLLLLL aMOUNT : " + fillAmount);
         gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
 
     }
 
 
-    void Update()
+    static int ExtractNumberFromString(string input)
     {
+        string pattern = @"\d+"; // Matches one or more digits
+        Match match = Regex.Match(input, pattern);
 
-        
+        if (match.Success)
+        {
+            int number;
+            bool success = int.TryParse(match.Value, out number);
+
+            if (success)
+                return number;
+        }
+
+        // Return a default value or throw an exception if no number found
+        return -1;
     }
 }

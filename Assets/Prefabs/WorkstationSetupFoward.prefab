@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8824528422477444169}
   - component: {fileID: 8685131465967458874}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Computer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1018650307493970337}
   - component: {fileID: 8582843247154261227}
-  m_Layer: 0
+  - component: {fileID: 6695404344964440581}
+  m_Layer: 7
   m_Name: Chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,6 +329,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &6695404344964440581
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676497198966123366}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1.3125}
+    newSize: {x: 1, y: 1.3125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.5, y: 0.65625}
+      - {x: -0.50805295, y: -0.38016784}
+      - {x: -0.32572073, y: -0.65625}
+      - {x: 0.32572067, y: -0.65625}
+      - {x: 0.5, y: -0.36021507}
+      - {x: 0.5, y: 0.65625}
 --- !u!1 &3262770651455193961
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +585,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 706101965
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b014ef49e3d164e3a952b5cb00d875a4, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -604,7 +636,7 @@ GameObject:
   - component: {fileID: 7877086955881109547}
   - component: {fileID: 6053130738156807776}
   - component: {fileID: 5356045686646414097}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Desk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,6 +660,7 @@ Transform:
   - {fileID: 166786991141478203}
   - {fileID: 1018650307493970337}
   - {fileID: 7331441965434364927}
+  - {fileID: 8978767605856591763}
   m_Father: {fileID: 6663959871977139703}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -728,7 +761,7 @@ MonoBehaviour:
   ButtonDownSpriteRenderer: {fileID: 322220889076534156}
   UpgradeCanvas: {fileID: 5645474624085039429}
   PVisualizer: {fileID: 3262770651455193961}
-  clickBlocker: {fileID: 0}
+  roomQueue: {fileID: 0}
 --- !u!1 &4866386990281931487
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,6 +832,78 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &6625852625423558634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8978767605856591763}
+  - component: {fileID: 1422810866655403832}
+  - component: {fileID: 732022284660883405}
+  m_Layer: 0
+  m_Name: ManagerTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8978767605856591763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625852625423558634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.97, y: -0.81, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4718367022009336835}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1422810866655403832
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625852625423558634}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.21545699}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.6814981}
+  m_EdgeRadius: 0
+--- !u!114 &732022284660883405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625852625423558634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea46ee28d43c4b01ae3f32275102f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickDeskScript: {fileID: 5356045686646414097}
 --- !u!1 &7612020284958110601
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +975,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 706101965
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cfd2f11f352594f67b8627dc1a1c1f8d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1110,7 +1215,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 706101965
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 1616170086, guid: 5975a0eabc2e44e09bc6eab9a403abe9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
