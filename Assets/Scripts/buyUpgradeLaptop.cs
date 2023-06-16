@@ -36,6 +36,7 @@ public class buyUpgradeLaptop : MonoBehaviour
 
     public GameObject progress;
     public GameObject runButton;
+    public GameObject employee;
 
     public float cost = 200f;
     public float baseCost = 200f;
@@ -122,6 +123,7 @@ public class buyUpgradeLaptop : MonoBehaviour
         {
             progress.SetActive(false);
             runButton.SetActive(false);
+            employee.SetActive(false);
             if (laptopID == 1)
                 cost = 0;
             else
@@ -145,6 +147,7 @@ public class buyUpgradeLaptop : MonoBehaviour
         {
             progress.SetActive(true);
             runButton.SetActive(true);
+            employee.SetActive(true);
             Color tmp = laptop.GetComponent<SpriteRenderer>().color;
             tmp.a = 1f;
             laptop.GetComponent<SpriteRenderer>().color = tmp;
