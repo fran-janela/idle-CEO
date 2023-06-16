@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -12,7 +13,7 @@ TagManager:
   - Water
   - UI
   - PopUpUpdate
-  - 
+  - Enviroment
   - 
   - 
   - 
@@ -58,6 +59,9 @@ TagManager:
     locked: 0
   - name: Props
     uniqueID: 1128456523
+    locked: 0
+  - name: Player
+    uniqueID: 779706085
     locked: 0
   - name: WallsFront
     uniqueID: 262934565

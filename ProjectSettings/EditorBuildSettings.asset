@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/InitialScene.unity
+    guid: 9bb0f88225df1b84a8f5fb0a743a8e8f
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 5862a6ac82bd7d545823b6e93d8523a8
+  - enabled: 1
+    path: Assets/Scenes/MainCopia.unity
+    guid: cbbf1ea3c8266394ba24e20f750ea6cb
   m_configObjects: {}
