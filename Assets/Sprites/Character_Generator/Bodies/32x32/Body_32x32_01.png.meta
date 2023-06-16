@@ -141,13 +141,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+      name: EmployeeLookingFront1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1248
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 204bf28dfe9a7194ba4bd9dfa1bf8eac
+      internalID: -299057017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: EmployeeLookingBack1
       rect:
         serializedVersion: 2
         x: 32
         y: 1248
         width: 32
-        height: 44
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,29 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c0a43f351962544c9eaf69da89080fb
-      internalID: 846573352
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EmployeeLookingFront1
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 1248
-        width: 32
-        height: 44
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac62636e0463a334cbc2e414e2def1c0
-      internalID: -1276825536
+      spriteID: 8baf6aa652bbf974e810a264cb90c21c
+      internalID: 1360662968
       vertices: []
       indices: 
       edges: []
@@ -193,8 +193,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      EmployeeLookingBack1: 846573352
-      EmployeeLookingFront1: -1276825536
+      EmployeeLookingBack1: 1360662968
+      EmployeeLookingFront1: -299057017
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

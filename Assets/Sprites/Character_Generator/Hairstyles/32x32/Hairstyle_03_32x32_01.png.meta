@@ -145,18 +145,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 1264
+        y: 1248
         width: 32
-        height: 32
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44a36c89f5a4169419a85a2f70fdc873
-      internalID: 1313746465
+      spriteID: 9ba4f99fdb024584e91357b6a074da27
+      internalID: -465088860
       vertices: []
       indices: 
       edges: []
@@ -165,19 +165,19 @@ TextureImporter:
       name: HairstyleFront3-2
       rect:
         serializedVersion: 2
-        x: 96
-        y: 1264
+        x: 97
+        y: 1248
         width: 32
-        height: 32
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c00c60ac10618bb47859822fd9bd4c1e
-      internalID: 743803003
+      spriteID: 2ce27ca7764063449819cf063fa7bf2d
+      internalID: -2018994215
       vertices: []
       indices: 
       edges: []
@@ -193,8 +193,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HairstyleBack3-2: 1313746465
-      HairstyleFront3-2: 743803003
+      HairstyleBack3-2: -465088860
+      HairstyleFront3-2: -2018994215
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -144,19 +144,19 @@ TextureImporter:
       name: OutfitBack5-1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 32
         y: 1248
-        width: 28
-        height: 20
+        width: 32
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e24098cc93bcb640a9d42835d33748e
-      internalID: -293296986
+      spriteID: 747a4b03553a7ee4192aa55815afec3b
+      internalID: -1507709462
       vertices: []
       indices: 
       edges: []
@@ -165,19 +165,19 @@ TextureImporter:
       name: OutfitFront5-1
       rect:
         serializedVersion: 2
-        x: 98
+        x: 96
         y: 1248
-        width: 28
-        height: 18
+        width: 32
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e71c352a9018d1a4494704398750c305
-      internalID: -958893645
+      spriteID: faf08543d416c8a46add27a900ea1821
+      internalID: -1799677003
       vertices: []
       indices: 
       edges: []
@@ -193,8 +193,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      OutfitBack5-1: -293296986
-      OutfitFront5-1: -958893645
+      OutfitBack5-1: -1507709462
+      OutfitFront5-1: -1799677003
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
