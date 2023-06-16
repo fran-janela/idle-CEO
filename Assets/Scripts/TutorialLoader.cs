@@ -11,29 +11,21 @@ public class TutorialLoader : MonoBehaviour
     public GameObject loadingScreen;
     public Slider slider;
 
-    public Canvas canvasMainGame;
-
-    public Canvas canvasTutorial;
-
     public TextMeshProUGUI progrssText;
-
-    public void Start(){
-        canvasMainGame.enabled = false;
-    }
 
     public void SceneLoader()
     {
+        Debug.Log(PlayerPrefs.GetInt("Tutorial") );
         if (PlayerPrefs.GetInt("Tutorial") == 0)
         {
+            Debug.Log("ENTREIIIIIIII AQUIIII");
             PlayerPrefs.SetInt("Tutorial", 1);
             StartCoroutine(LoadAsynchronously(1));
             // UnityEngine.SceneManagement.SceneManager.LoadScene("Tutorial");
         }
         else
         {
-            canvasTutorial.enabled = false;
-            canvasMainGame.enabled = true;
-
+            SceneManager.LoadScene(2);
             // UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
         }
     }
