@@ -47,6 +47,8 @@ public class buyUpgradeTable : MonoBehaviour
 
     public bool maxLevel = false;
 
+    int upgrade = 0;
+
 
     void Start()
     {
@@ -91,7 +93,8 @@ public class buyUpgradeTable : MonoBehaviour
             decreaseTime = tableParameters.decreaseTime;
             baseCost = tableParameters.baseCost;
             balancing_cost = tableParameters.balancing_cost;
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
+            upgrade = tableParameters.upgrade;
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, tableID);
             costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
             if (level == total_level){
                 BuyBar.fillAmount = 1f;
@@ -108,7 +111,8 @@ public class buyUpgradeTable : MonoBehaviour
             BuyBar.fillAmount = 0f;
             levelText.text = "0";
             multiplier = 0f;
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
+            upgrade = 0;
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade,tableID);
         }
         if (tableInfo != null)
         {
@@ -127,7 +131,7 @@ public class buyUpgradeTable : MonoBehaviour
             if (tableID == 1)
                 cost = 0;
             else
-                cost = baseCost;
+                cost  = baseCost*tableID*Mathf.Pow(100f, room_id-1);
         }
         else {
             desk.GetComponent<SpriteRenderer>().sprite = sprites[level-1];
@@ -136,7 +140,7 @@ public class buyUpgradeTable : MonoBehaviour
 
         gameManager.SaveTableData(tableID, earnings, delayTime, room_id);
         float fillAmount = BuyBar.fillAmount;
-        gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
+        gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount, upgrade);
     }
 
 
@@ -159,7 +163,7 @@ public class buyUpgradeTable : MonoBehaviour
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount = 0;
             GameManager.DecrementMoney(cost);
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, tableID);
         }
         else if (GameManager.money >= cost && !maxLevel){
             if (BuyBar.fillAmount >= 1f)
@@ -172,20 +176,21 @@ public class buyUpgradeTable : MonoBehaviour
             }
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount += 1.0f/(float)10;
+            upgrade += 1;
             GameManager.DecrementMoney(cost);
             // Debug.Log("Money porque compreiiii: " + GameManager.money);
 
             // Atualizando os valores do increase
-            multiplier += 2f;
-            growthRate += 1.1f;
+            multiplier += 0.7f;
+            growthRate += 0.8f;
             balancing_production += 5f;
-            earnings += GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id)*earningsBase;
+            earnings = GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id, tableID);
             // GameManager.IncrementMoney(earnings);
             earningsText.text = GameManager.formatCash(earnings);
 
             //Atualizando os valores do custo
             // Debug.Log("Olha o base cost: " + baseCost + " e o growth rate: " + growthRate + " e o level: " + level + " e o balancing: " + balancing_cost);
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, tableID);
 
         } else {
             // Debug.Log("Not enough money");
@@ -206,7 +211,7 @@ public class buyUpgradeTable : MonoBehaviour
         gameManager.SaveTableData(tableID, earnings, delayTime, room_id);
         float fillAmount = BuyBar.fillAmount;
         // Debug.Log("OLHA O FILLLLLL aMOUNT TABLE: " + fillAmount);
-        gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
+        gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount, upgrade);
     }
 
 

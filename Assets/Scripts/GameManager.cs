@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
         public int level;
 
         public float buyBar;
+
+        public int upgrade;
     }
 
     [System.Serializable]
@@ -80,6 +82,8 @@ public class GameManager : MonoBehaviour
         public int level;
 
         public float buyBar;
+
+        public int upgrade;
     }
 
 
@@ -150,14 +154,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // PlayerPrefs.DeleteAll();
-        // ResetGameData();
+        PlayerPrefs.DeleteAll();
+        ResetGameData();
         money = 0.0f;
         multiplier = 0.0f;
         musicSource.Play();
         LoadGameData(desksRoom2, desksRoom3, desksRoom4, squareRoom2, squareRoom3, squareRoom4);
-        // money = 10000000.0f;
-        // SaveGameData();
+        money = 10000000.0f;
+        SaveGameData();
     }
 
     public static void ResetGameData()
@@ -191,20 +195,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static float CalculateProduction(float multiplication, float upgrade, float growthRate, float balancing, int id_room)
+    public static float CalculateProduction(float multiplication, float level, float growthRate, float balancing, int id_room, int id_item)
     {
-        return multiplication * 10f *id_room* Mathf.Log((upgrade + 1f) * growthRate) + balancing - upgrade;
+        return id_item*multiplication * 10f *Mathf.Pow(50,id_room-1)* Mathf.Log((level + 1f) * growthRate) + balancing - level;
     }
 
-    public static float CalculateCost(float baseCost, float growthRate, float upgrade, float balancing, int id_room)
+    public static float CalculateCost(float baseCost, float growthRate, float level, float balancing, int id_room, int upgrade, int id_item)
     {
-        if (upgrade == 0f)
-        {
-            Debug.Log("Custo total: " + (baseCost*id_room + (baseCost*growthRate*balancing) + 1f));
-            return baseCost*id_room + (baseCost*growthRate*balancing) + 1f;
-        }
-        Debug.Log("Custo total: " + (baseCost*id_room + (baseCost* growthRate * upgrade  * balancing) + 1f));
-        return baseCost*id_room + (baseCost* growthRate * upgrade  * balancing) + 1f;
+        // if (upgrade == 1f)
+        // {
+        //     Debug.Log("Custo total: " + (baseCost*id_room + (baseCost*growthRate*balancing) + 1f));
+        //     return Mathf.Pow(1.005f, baseCost*id_room + (baseCost*growthRate*balancing) + 1f);
+        // }
+        // Debug.Log("Custo total: " + (baseCost*id_room + (baseCost* growthRate * upgrade  * balancing) + 1f));
+        return id_item*baseCost*Mathf.Pow(100f, id_room-1)*Mathf.Pow(1.32f,  upgrade);
     }
 
 
@@ -495,7 +499,7 @@ public class GameManager : MonoBehaviour
     }
 
     
-    public void SaveTableParameters(int tableID, float earningsBase, float growthRate, float balancing_production, float decreaseTime, float baseCost, float balancing_cost, float multiplier, int level, float buyBar)
+    public void SaveTableParameters(int tableID, float earningsBase, float growthRate, float balancing_production, float decreaseTime, float baseCost, float balancing_cost, float multiplier, int level, float buyBar, int upgrade)
     {
         TableParameters tableParameters = new TableParameters();
         tableParameters.id = tableID;
@@ -508,6 +512,7 @@ public class GameManager : MonoBehaviour
         tableParameters.multiplier = multiplier;
         tableParameters.level = level;
         tableParameters.buyBar = buyBar;
+        tableParameters.upgrade = upgrade;
 
 
         dictTableParameters[tableID-1] = tableParameters;
@@ -517,7 +522,7 @@ public class GameManager : MonoBehaviour
         SaveGameData();
     }
 
-    public void SaveLaptopParameters (int laptopID, float earningsBase, float growthRate, float balancing_production, float decreaseTime, float baseCost, float balancing_cost, float multiplier, int level, float buyBar)
+    public void SaveLaptopParameters (int laptopID, float earningsBase, float growthRate, float balancing_production, float decreaseTime, float baseCost, float balancing_cost, float multiplier, int level, float buyBar, int upgrade)
     {
         LaptopParameters laptopParameters = new LaptopParameters();
         laptopParameters.id = laptopID;
@@ -530,6 +535,7 @@ public class GameManager : MonoBehaviour
         laptopParameters.multiplier = multiplier;
         laptopParameters.level = level;
         laptopParameters.buyBar = buyBar;
+        laptopParameters.upgrade = upgrade;
 
         dictLaptopParameters[laptopID-1] = laptopParameters;
 

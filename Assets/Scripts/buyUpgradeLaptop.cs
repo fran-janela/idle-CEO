@@ -41,11 +41,15 @@ public class buyUpgradeLaptop : MonoBehaviour
     public float cost = 200f;
     public float baseCost = 200f;
     public float balancing_cost = 1f;
+
+    public int upgrade = 0;
     public int laptopID; // ID do laptop atual
     public ClickDeskScript clickDeskScript;
 
     public bool maxLevel = false;
     private bool lateStartExecuted;
+
+
 
 
     void Start()
@@ -91,13 +95,15 @@ public class buyUpgradeLaptop : MonoBehaviour
             decreaseTime = laptopParameters.decreaseTime;
             baseCost = laptopParameters.baseCost;
             balancing_cost = laptopParameters.balancing_cost;
+            upgrade = laptopParameters.upgrade;
             // Debug.Log("OLHA O BALANCING COST: " + balancing_cost + "BASE COST: " + baseCost + "GROWTH RATE: " + growthRate + "LEVEL: " + level + "MULTIPLIER: " + multiplier + "BALANCING PRODUCTION: " + balancing_production + "DECREASE TIME: " + decreaseTime);
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, laptopID);
             // Debug.Log("OLHA O CUSTO AQUIIIIIIIII: " + cost);
             costText.text = "Buy $ " + GameManager.formatCash(cost);
             if (level == total_level){
                 BuyBar.fillAmount = 1f;
                 canvasGroup.alpha = 0.2f;
+                upgrade = 40;
                 maxLevel = true;
             } else {
                 // Debug.Log("Level não é igual ao total level");
@@ -111,7 +117,7 @@ public class buyUpgradeLaptop : MonoBehaviour
             level = 0;
             levelText.text = "0";
             multiplier = 0f;
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, laptopID);
         }
         if (laptopInfo != null)
         {
@@ -127,7 +133,7 @@ public class buyUpgradeLaptop : MonoBehaviour
             if (laptopID == 1)
                 cost = 0;
             else
-                cost = baseCost;
+                cost = baseCost*laptopID*Mathf.Pow(100f, room_id-1);
         }
         else 
         {
@@ -138,7 +144,7 @@ public class buyUpgradeLaptop : MonoBehaviour
         gameManager.SaveLaptopData(laptopID, earnings, delayTime, room_id);
         // Debug.Log("Mandando os dados pro LaptopParameters : " + laptopID + " " + earningsBase + " " + growthRate + " " + balancing_production + " " + decreaseTime + " " + baseCost + " " + balancing_cost + " " + multiplier + " " + level + " " + BuyBar.fillAmount);
         float fillAmount = BuyBar.fillAmount;
-        gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
+        gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount, upgrade);
 
 
     }
@@ -160,7 +166,7 @@ public class buyUpgradeLaptop : MonoBehaviour
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount = 0;
             GameManager.DecrementMoney(cost);
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, laptopID);
         }
         if (GameManager.money >= cost && !maxLevel){
             if (BuyBar.fillAmount == 1f && level < total_level)
@@ -173,18 +179,19 @@ public class buyUpgradeLaptop : MonoBehaviour
             }
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount += 1.0f/(float)10;
+            upgrade += 1;
             GameManager.DecrementMoney(cost);
             // Debug.Log("Money porque compreiiii: " + GameManager.money);
 
             // Atualizando os valores do increase
-            multiplier += 2f;
+            multiplier += 0.7f;
             growthRate += 1.1f;
             balancing_production += 5f;
             
-            earnings += GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id)*earningsBase;
+            earnings = GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id, laptopID);
             earningsText.text = GameManager.formatCash(earnings);
             //Atualizando os valores do custo
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, laptopID);
             // Debug.Log("OLHAAAAAAAAAAAAA O Custo: " + cost);
             costText.text = "Buy $ " + GameManager.formatCash(cost);
 
@@ -207,7 +214,7 @@ public class buyUpgradeLaptop : MonoBehaviour
         gameManager.SaveLaptopData(laptopID, earnings, delayTime, room_id);
         float fillAmount = BuyBar.fillAmount;
         // Debug.Log("OLHA O FILLLLLL aMOUNT : " + fillAmount);
-        gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount);
+        gameManager.SaveLaptopParameters(laptopID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount, upgrade);
 
     }
 
