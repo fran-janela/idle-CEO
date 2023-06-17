@@ -66,7 +66,9 @@ vez mais seu meio de produção.
 
 - Imagens retiradas do Pinterest de autores não identificados.
 - UIs usadas do itch.io:
+
     https://penzilla.itch.io/handdrawn-vector-icon-pack
+
     https://limezu.itch.io/moderninteriors
 
 ### Músicas:
@@ -78,7 +80,9 @@ vez mais seu meio de produção.
 - Trechos de exemplo do ChatGPT.
 - Trechos usandos de projetos anteriores de membros do grupo.
 - Trechos de tutoriais:
+
     https://www.youtube.com/watch?v=YMj2qPq9CP8
+    
     https://www.youtube.com/watch?v=jvtFUfJ6CP8
 
 
