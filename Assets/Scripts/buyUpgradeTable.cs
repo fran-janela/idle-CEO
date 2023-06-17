@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Text.RegularExpressions;
 
 public class buyUpgradeTable : MonoBehaviour
 {
@@ -69,14 +70,15 @@ public class buyUpgradeTable : MonoBehaviour
         costText.text = "Buy $ " + GameManager.formatCash(cost);
         timeText.text = delayTime.ToString() + "s";
         earningsText.text = GameManager.formatCash(earnings);       
-        levelText.text = level.ToString(); 
+        levelText.text = level.ToString();
 
+        room_id = ExtractNumberFromString(transform.parent.parent.parent.parent.parent.parent.name);
+        tableID = ExtractNumberFromString(transform.parent.parent.parent.parent.name);
     }
 
-    public void  LateStart()
+    public void LateStart()
     {
-        tableID = clickDeskScript.laptopTableSetID;
-        // Debug.Log("Table ID: " + tableID);
+        Debug.Log("Table ID: " + tableID);
 
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -95,7 +97,7 @@ public class buyUpgradeTable : MonoBehaviour
             balancing_cost = tableParameters.balancing_cost;
             upgrade = tableParameters.upgrade;
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, tableID);
-            costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
+            costText.text = "Buy $ " + GameManager.formatCash(cost);
             if (level == total_level){
                 BuyBar.fillAmount = 1f;
                 canvasGroup.alpha = 0.2f;
@@ -132,6 +134,7 @@ public class buyUpgradeTable : MonoBehaviour
                 cost = 0;
             else
                 cost  = baseCost*tableID*Mathf.Pow(100f, room_id-1);
+            costText.text = "Buy $ " + GameManager.formatCash(cost);
         }
         else {
             desk.GetComponent<SpriteRenderer>().sprite = sprites[level-1];
@@ -214,10 +217,21 @@ public class buyUpgradeTable : MonoBehaviour
         gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount, upgrade);
     }
 
-
-    void Update()
+    static int ExtractNumberFromString(string input)
     {
+        string pattern = @"\d+"; // Matches one or more digits
+        Match match = Regex.Match(input, pattern);
 
-        
+        if (match.Success)
+        {
+            int number;
+            bool success = int.TryParse(match.Value, out number);
+
+            if (success)
+                return number;
+        }
+
+        // Return a default value or throw an exception if no number found
+        return -1;
     }
 }

@@ -69,6 +69,7 @@ public class buyUpgradeLaptop : MonoBehaviour
 
         // Get room_id from parent name
         room_id = ExtractNumberFromString(transform.parent.parent.parent.parent.parent.parent.name);
+        laptopID = ExtractNumberFromString(transform.parent.parent.parent.parent.name);
         // Debug.Log("=====================================================\n" + "Room ID: " + room_id.ToString());
     }
 
