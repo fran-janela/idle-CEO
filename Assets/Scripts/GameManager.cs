@@ -429,6 +429,7 @@ public class GameManager : MonoBehaviour
             dictExpandInfo = JsonHelper.FromJson<ExpandInfo>(expandData);
             for (int i = 0; i < dictExpandInfo.Length; i++)
             {
+                dictExpandInfo[i].room_id = i+1;
                 if (dictExpandInfo[i].room_id == 2){
                     if (dictExpandInfo[i].owned){
                         Debug.Log("DEU TRUE E O ID É 2");
@@ -464,7 +465,17 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < dictExpandInfo.Length; i++)
             {
                 dictExpandInfo[i] = new ExpandInfo();
+                dictExpandInfo[i].room_id = i+1;
             }
+
+            Debug.Log("CRIEI NOVO Expand Data: YEH" );
+
+            desksRoom2.SetActive(false);
+            squareRoom2.SetActive(true);
+            desksRoom3.SetActive(false);
+            squareRoom3.SetActive(true);
+            desksRoom4.SetActive(false);
+            squareRoom4.SetActive(true);
         }
 
     }
