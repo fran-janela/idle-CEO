@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickDelay: 3
-  laptopTableSetID: 0
+  desk_id: 0
   RunButtonCollider: {fileID: 2509012800143723067}
   ButtonUpSpriteRenderer: {fileID: 891020863402540669}
   ButtonDownSpriteRenderer: {fileID: 322220889076534156}
@@ -1778,6 +1778,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
+      propertyPath: cost
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
       propertyPath: desk
       value: 
       objectReference: {fileID: 4765579806649939916}
@@ -1788,6 +1792,10 @@ PrefabInstance:
     - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
       propertyPath: room_id
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
+      propertyPath: baseCost
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2630375457833389578, guid: 96e5086d252220b4e8a7b5a80a79f304, type: 3}
       propertyPath: computer

@@ -1088,8 +1088,8 @@ MonoBehaviour:
   computer: {fileID: 0}
   chair: {fileID: 0}
   laptopCode: {fileID: 0}
-  cost: 100
-  baseCost: 100
+  cost: 30
+  baseCost: 30
   balancing_cost: 1
   tableID: 0
   clickDeskScript: {fileID: 0}

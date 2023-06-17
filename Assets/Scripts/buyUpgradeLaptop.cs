@@ -37,8 +37,8 @@ public class buyUpgradeLaptop : MonoBehaviour
     public GameObject runButton;
     public GameObject employee;
 
-    public float cost = 200f;
-    public float baseCost = 200f;
+    public float cost = 50f;
+    public float baseCost = 50f;
     public float balancing_cost = 1f;
 
     public int upgrade = 0;

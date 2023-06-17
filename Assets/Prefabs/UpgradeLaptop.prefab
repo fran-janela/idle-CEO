@@ -367,7 +367,6 @@ MonoBehaviour:
   BuyBar: {fileID: 4569441711385126449}
   button: {fileID: 218127367595615789}
   laptop: {fileID: 0}
-  timeText: {fileID: 0}
   earningsText: {fileID: 479944384767561563}
   costText: {fileID: 218127366652530906}
   total_level: 5
@@ -383,8 +382,8 @@ MonoBehaviour:
   progress: {fileID: 0}
   runButton: {fileID: 0}
   employee: {fileID: 0}
-  cost: 200
-  baseCost: 200
+  cost: 50
+  baseCost: 50
   balancing_cost: 1
   upgrade: 0
   laptopID: 0

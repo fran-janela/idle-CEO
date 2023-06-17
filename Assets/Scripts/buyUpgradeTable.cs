@@ -39,8 +39,8 @@ public class buyUpgradeTable : MonoBehaviour
     public GameObject chair;
     public GameObject laptopCode;
 
-    public float cost = 100f;
-    public float baseCost = 100f;
+    public float cost = 30f;
+    public float baseCost = 30f;
     public float balancing_cost = 1f;
     public int tableID; // ID do table atual
     public ClickDeskScript clickDeskScript;
