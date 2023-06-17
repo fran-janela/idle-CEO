@@ -69,11 +69,9 @@ public class ClickDeskScript : MonoBehaviour
 
                 // Debug.Log ("Olha o ID do laptop: " + laptopTableSetID);
                 GameManager.LaptopInfo laptopInfo = GameManager.GetLaptopInfo(desk_id);
-                GameManager.TableInfo tableInfo = GameManager.GetTableInfo(desk_id);
                 // Debug.Log("Os earnings do laptop: " + laptopInfo.earnings + " e o delayTime: " + laptopInfo.delayTime);
                 // Debug.Log("Os earnings da mesa: " + tableInfo.earnings + " e o delayTime: " + tableInfo.delayTime);
 
-                clickDelay = tableInfo.delayTime;
                 GameManager.IncrementMoney(laptopInfo.earnings);
                 
                 canClick = true;
@@ -87,6 +85,7 @@ public class ClickDeskScript : MonoBehaviour
                 roomQueue.AddDeskTrigger(ManagerTrigger);
             }
         }
+        clickDelay = GameManager.GetTableInfo(desk_id).delayTime;
     }
 
     public void StartClickDelay()
