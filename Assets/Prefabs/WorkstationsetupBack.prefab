@@ -517,6 +517,7 @@ GameObject:
   - component: {fileID: 8586593363504863006}
   - component: {fileID: 2235268639839919396}
   - component: {fileID: 2125967330653620044}
+  - component: {fileID: 542073218741382484}
   - component: {fileID: 5667320957124356399}
   m_Layer: 0
   m_Name: PopUpMoneySprite
@@ -612,6 +613,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &542073218741382484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4447176558245377509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949305970917c50499acac0bae1d9cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackAudioSource: {fileID: 5667320957124356399}
+  minVolumeDistance: 10
+  maxVolumeDistance: 30
+  listenerTransform: {fileID: 0}
 --- !u!82 &5667320957124356399
 AudioSource:
   m_ObjectHideFlags: 0

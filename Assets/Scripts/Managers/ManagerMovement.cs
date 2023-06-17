@@ -18,6 +18,7 @@ public class ManagerMovement : MonoBehaviour
     public Animator bodyAnimator;
 
     // Targets for the AI to follow
+    public AudioSource audioSource;
 
     void Start()
     {
@@ -31,10 +32,23 @@ public class ManagerMovement : MonoBehaviour
         if (aiPath.desiredVelocity.sqrMagnitude > 0.2f)
         {
             speed = 1.0f;
+
         }
         else
         {
             speed = 0f;
+        }
+
+        if (speed > 0.1f)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            audioSource.Stop();
         }
 
         animator.SetFloat("Horizontal", movement.x);
