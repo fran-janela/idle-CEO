@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -64,7 +65,7 @@ public class buyUpgradeTable : MonoBehaviour
 
         // Atualizando os textos
         costText.text = "Buy $ " + GameManager.formatCash(cost);
-        timeText.text = delayTime.ToString() + "s";
+        timeText.text = (Math.Round(delayTime, 2)).ToString() + "s";
         levelText.text = level.ToString();
 
         room_id = ExtractNumberFromString(transform.parent.parent.parent.parent.parent.parent.name);
@@ -217,7 +218,7 @@ public class buyUpgradeTable : MonoBehaviour
         }
 
         costText.text = "Buy $ " + GameManager.formatCash(cost);
-        timeText.text = delayTime.ToString() + "s";
+        timeText.text = (Math.Round(delayTime, 2)).ToString() + "s";
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SaveTableData(tableID, earnings, delayTime, room_id);

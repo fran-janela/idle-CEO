@@ -34,7 +34,7 @@ public class buyActions : MonoBehaviour
     {
         LateStart();
         BuyBar.fillAmount = 0;
-        timeText.text = Timer.ToString() + "s";
+        timeText.text = (Mathf.Round(Timer * 10f) / 10f).ToString() + "s";
         costText.text = "Buy $ " + GameManager.formatCash(cost);
         earningsText.text = GameManager.formatCash(earnings);
 
@@ -102,8 +102,6 @@ public class buyActions : MonoBehaviour
         {
             currentTimer -= Time.deltaTime;
 
-            // Atualizar a exibição do tempo na UI
-            timeText.text = Timer.ToString("0.0") + "s";
 
             // Calcular a porcentagem completada do timer
             float fillPercentage = 1f - (currentTimer / Timer);
