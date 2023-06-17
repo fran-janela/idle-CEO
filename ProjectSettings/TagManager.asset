@@ -67,11 +67,11 @@ TagManager:
   - name: WallsFront
     uniqueID: 262934565
     locked: 0
-  - name: UI
-    uniqueID: 706101965
-    locked: 0
   - name: BlockColision
     uniqueID: 567784111
+    locked: 0
+  - name: UI
+    uniqueID: 706101965
     locked: 0
   - name: Canvas
     uniqueID: 2250336491

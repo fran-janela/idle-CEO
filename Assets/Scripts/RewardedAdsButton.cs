@@ -79,7 +79,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             Debug.Log("Grant a reward to the player of 10 coins.");
             // Load another ad:
             if (CR_running == false)
-                StartCoroutine(Cooldown(5));
+                StartCoroutine(Cooldown(180));
         }
     }
  
