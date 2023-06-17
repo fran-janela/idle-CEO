@@ -146,10 +146,17 @@ public class buyUpgradeLaptop : MonoBehaviour
             runButton.SetActive(false);
             employee.SetActive(false);
             if (laptopID == 1)
+            {
                 cost = 0;
+                earnings = GameManager.CalculateProduction(multiplier+0.7f, level+1, growthRate+1.1f, balancing_production+5f, room_id, laptopID, earningsBase);
+            }
             else
+            {
                 cost = baseCost*laptopID*Mathf.Pow(100f, room_id-1);
+                earnings = GameManager.CalculateProduction(multiplier+0.7f, level+1, growthRate+1.1f, balancing_production+5f, room_id, laptopID, earningsBase);
+            }
             costText.text = "Buy $ " + GameManager.formatCash(cost);
+            earningsText.text = GameManager.formatCash(earnings);
         }
         else 
         {
@@ -179,12 +186,17 @@ public class buyUpgradeLaptop : MonoBehaviour
             laptop.GetComponent<SpriteRenderer>().color = tmp;
             level += 1;
             upgrade += 1;
+            multiplier += 0.7f;
+            growthRate += 1.1f;
+            balancing_production += 5f;
             levelText.text = level.ToString();
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount = 0;
             GameManager.DecrementMoney(cost);
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, laptopID);
             costText.text = "Buy $ " + GameManager.formatCash(cost);
+            earnings = GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id, laptopID, earningsBase);
+            earningsText.text = GameManager.formatCash(earnings);
         }
         else if (GameManager.money >= cost && !maxLevel){
             if (BuyBar.fillAmount == 1f && level < total_level)
@@ -206,7 +218,7 @@ public class buyUpgradeLaptop : MonoBehaviour
             growthRate += 1.1f;
             balancing_production += 5f;
             
-            earnings = GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id, laptopID);
+            earnings = GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id, laptopID, earningsBase);
             earningsText.text = GameManager.formatCash(earnings);
             //Atualizando os valores do custo
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, laptopID);

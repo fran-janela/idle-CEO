@@ -199,7 +199,7 @@ public class buyUpgradeTable : MonoBehaviour
             multiplier += 0.7f;
             growthRate += 0.8f;
             balancing_production += 5f;
-            earnings = GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id, tableID);
+            earnings = GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id, tableID, earningsBase);
             // GameManager.IncrementMoney(earnings);
 
             //Atualizando os valores do custo

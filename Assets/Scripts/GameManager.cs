@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
         multiplier = 0.0f;
         musicSource.Play();
         LoadGameData(desksRoom2, desksRoom3, desksRoom4, squareRoom2, squareRoom3, squareRoom4);
-        money = 100000000000000.0f;
+        money = 1000000000000.0f;
         SaveGameData();
     }
 
@@ -195,9 +195,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static float CalculateProduction(float multiplication, float level, float growthRate, float balancing, int id_room, int id_item)
+    public static float CalculateProduction(float multiplication, float level, float growthRate, float balancing, int id_room, int id_item, float earningsBase)
     {
-        return id_item*multiplication * 10f *Mathf.Pow(50,id_room-1)* Mathf.Log((level + 1f) * growthRate) + balancing - level;
+        return id_item*multiplication * earningsBase *Mathf.Pow(50,id_room-1)* Mathf.Log((level + 1f) * growthRate) + balancing - level;
     }
 
     public static float CalculateCost(float baseCost, float growthRate, float level, float balancing, int id_room, int upgrade, int id_item)
