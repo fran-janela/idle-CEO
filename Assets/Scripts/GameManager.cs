@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
         multiplier = 0.0f;
         musicSource.Play();
         LoadGameData(desksRoom2, desksRoom3, desksRoom4, squareRoom2, squareRoom3, squareRoom4);
-        money = 10000.0f;
+        money = 100000000000000.0f;
         SaveGameData();
     }
 
