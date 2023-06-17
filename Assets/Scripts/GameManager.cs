@@ -102,8 +102,8 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     public class ManagerInfo
     {
-        public int room_id;
-        public int managers_room;
+        public int id;
+        public bool bought;
     }
 
     [System.Serializable]
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
 
     public static ActionInfo[] dictActionInfo = new ActionInfo[4];
 
-    public static ManagerInfo[] dictManagerInfo = new ManagerInfo[4];
+    public static ManagerInfo[] dictManagerInfo = new ManagerInfo[10];
 
     public static ExpandInfo[] dictExpandInfo = new ExpandInfo[4];
 
@@ -150,8 +150,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // PlayerPrefs.DeleteAll();
-        // ResetGameData();
+        //PlayerPrefs.DeleteAll();
+        //ResetGameData();
         money = 0.0f;
         multiplier = 0.0f;
         musicSource.Play();
@@ -248,12 +248,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public static ManagerInfo GetManagerInfo(int room_id_passado)
+    public static ManagerInfo GetManagerInfo(int id)
     {
         // Retorna as informações do laptop com o ID especificado
-        if (dictManagerInfo[room_id_passado-1].room_id == room_id_passado)
+        if (dictManagerInfo[id-1].id == id)
         {
-            return dictManagerInfo[room_id_passado-1];
+            return dictManagerInfo[id-1];
         }
         else
         {
@@ -413,7 +413,7 @@ public class GameManager : MonoBehaviour
             dictManagerInfo = JsonHelper.FromJson<ManagerInfo>(managerData);
         }
         else {
-            dictManagerInfo = new ManagerInfo[4];
+            dictManagerInfo = new ManagerInfo[10];
             for (int i = 0; i < dictManagerInfo.Length; i++)
             {
                 dictManagerInfo[i] = new ManagerInfo();
@@ -551,16 +551,16 @@ public class GameManager : MonoBehaviour
         SaveGameData();
     }
 
-    public void SaveManagerData(int room_id, int managers_room)
+    public void SaveManagerData(int id_manager, bool bought)
     {
         // Salvar os dados do laptop no dicionário
         ManagerInfo managerInfo = new ManagerInfo();
-        managerInfo.room_id = room_id;
-        managerInfo.managers_room = managers_room;
+        managerInfo.id = id_manager;
+        managerInfo.bought = bought;
 
-        dictManagerInfo[room_id-1] = managerInfo;
+        dictManagerInfo[id_manager-1] = managerInfo;
 
-        Debug.Log("Manager ID: " + room_id + " | Managers: " + managers_room);
+        Debug.Log("Manager ID: " + id_manager + " | Managers: " + bought);
 
         SaveGameData();
     }

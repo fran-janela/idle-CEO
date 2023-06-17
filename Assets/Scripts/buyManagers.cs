@@ -7,74 +7,64 @@ using TMPro;
 public class buyManagers : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Image BuyBar; 
     public CanvasGroup canvasGroup;
 
     public Button button;
 
-
-    public TextMeshProUGUI num_managers_text;
-
-    public int managers_room = 0;
-
-    public int total_managers_room = 0;
-
     public float cost = 200f;
 
-    public int room_id;
+    public int id_manager;
 
-    private bool max_managers = false;
+    public bool bought = false;
+
 
     void Start()
     {
-        BuyBar.fillAmount = 0;
-        num_managers_text.text = managers_room.ToString() + "/" + total_managers_room.ToString();
         LateStart();
     }
 
     public void LateStart(){
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        GameManager.ManagerInfo managerInfo = GameManager.GetManagerInfo(room_id);
+        GameManager.ManagerInfo managerInfo = GameManager.GetManagerInfo(id_manager);
 
         if (managerInfo != null){
-            Debug.Log("MANAGER INFO É DIFERENTE DE NULL");
-            managers_room = managerInfo.managers_room;
-            BuyBar.fillAmount = (float)managers_room/(float)total_managers_room;
-            if (managers_room == total_managers_room){
-                max_managers = true;
-            } else {
-                max_managers = false;
-                if (managers_room > 0){
-                    canvasGroup.alpha = 1.0f;
-                } else {
-                    canvasGroup.alpha = 0.2f;
-                }
+            bought = managerInfo.bought;
+            if (bought == true){
+                Image buttonImage = button.GetComponent<Image>();
+                Color buttonColor = buttonImage.color;
+                buttonColor.a = 0.2f;
+                buttonImage.color = buttonColor;
+                button.interactable = false;
+            } else{
+                Image buttonImage = button.GetComponent<Image>();
+                Color buttonColor = buttonImage.color;
+                buttonColor.a = 1.0f;
+                buttonImage.color = buttonColor;
+                canvasGroup.alpha = 0.2f;
             }
         } else {
             Debug.Log("MANAGER INFO É NULL");
+            bought = false;
             canvasGroup.alpha = 0.2f;
         }
 
-        gameManager.SaveManagerData(room_id, managers_room);
+        gameManager.SaveManagerData(id_manager, bought);
 
     }
 
     public void buyManager(){
-        if (GameManager.money >= cost && !max_managers){
+        if (GameManager.money >= cost && !bought){
+            bought = true;
             canvasGroup.alpha = 1.0f;
             GameManager.DecrementMoney(cost);
-            managers_room += 1;
-            num_managers_text.text = managers_room.ToString() + "/" + total_managers_room.ToString();
-            BuyBar.fillAmount += 1.0f/(float)total_managers_room; 
-        }else if (managers_room == total_managers_room){
-            max_managers = true;
-            Debug.Log("Não tem mais espaço para gerentes");
-        } else {
-            Debug.Log("Não tem dinheiro suficiente");
-        }
+            Image buttonImage = button.GetComponent<Image>();
+            Color buttonColor = buttonImage.color;
+            buttonColor.a = 0.2f;
+            buttonImage.color = buttonColor;
+        } 
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.SaveManagerData(room_id, managers_room);
+        gameManager.SaveManagerData(id_manager, bought);
     }
 
     // Update is called once per frame
