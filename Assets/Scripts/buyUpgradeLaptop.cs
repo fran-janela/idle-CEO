@@ -76,7 +76,6 @@ public class buyUpgradeLaptop : MonoBehaviour
 
     public void LateStart()
     {
-        laptopID = clickDeskScript.laptopTableSetID;
         // Debug.Log("Laptop ID: " + laptopID);
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();

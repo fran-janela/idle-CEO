@@ -32,7 +32,7 @@ public class buyUpgradeTable : MonoBehaviour
 
 
     
-    public float decreaseTime = 1f;
+    public float decreaseTime = 0.07f;
 
     public float delayTime = 7f;
 
@@ -170,10 +170,11 @@ public class buyUpgradeTable : MonoBehaviour
         }
         else if (GameManager.money >= cost && !maxLevel){
             if (BuyBar.fillAmount >= 1f)
+            delayTime -= decreaseTime;
             {
-                delayTime -= decreaseTime;
-                BuyBar.fillAmount = 0;
+                delayTime -= 7-(level*1.25f);
                 level += 1;
+                BuyBar.fillAmount = 0;
                 levelText.text = level.ToString();
                 desk.GetComponent<SpriteRenderer>().sprite = sprites[level-1];
             }
