@@ -5,9 +5,16 @@ using UnityEngine;
 public class PanZoom : MonoBehaviour
 {
     Vector3 touchStart;
+    Vector3 prevPosition;
 
-    public float zoomOutMin = 1;
-    public float zoomOutMax = 8;
+    public float zoomOutMin = 6;
+    public float zoomOutMax = 17;
+
+
+    public float minX = -3f;
+    public float maxX = 50f;
+    public float minY = 4.7f;
+    public float maxY = -26f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +28,7 @@ public class PanZoom : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // Somente verdadeiro no começo do toque
         {
             touchStart = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            prevPosition = touchStart;
         }
         if (Input.touchCount == 2){
             Touch touchZero = Input.GetTouch(0);
@@ -36,10 +44,24 @@ public class PanZoom : MonoBehaviour
 
             Zoom(difference * 0.01f);
         }
+
         if (Input.GetMouseButton(0) && GameManager.menuOpen == false)
         {
             Vector3 direction = touchStart - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Camera.main.transform.position += direction;
+            if (Camera.main.transform.position.x <= maxX && Camera.main.transform.position.x >= minX && Camera.main.transform.position.y <= minY && Camera.main.transform.position.y >= maxY){
+                Camera.main.transform.position += direction;
+            } else {
+                if (Camera.main.transform.position.x > maxX){
+                    Camera.main.transform.position = new Vector3(maxX, Camera.main.transform.position.y, Camera.main.transform.position.z);
+                } else if (Camera.main.transform.position.x < minX){
+                    Camera.main.transform.position = new Vector3(minX, Camera.main.transform.position.y, Camera.main.transform.position.z);
+                }
+                if (Camera.main.transform.position.y > minY){
+                    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, minY, Camera.main.transform.position.z);
+                } else if (Camera.main.transform.position.y < maxY){
+                    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, maxY, Camera.main.transform.position.z);
+                }
+            }
         }
         if (GameManager.menuOpen == false){
             Zoom(Input.GetAxis("Mouse ScrollWheel"));

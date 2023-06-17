@@ -150,12 +150,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //PlayerPrefs.DeleteAll();
-        //ResetGameData();
+        // PlayerPrefs.DeleteAll();
+        // ResetGameData();
         money = 0.0f;
         multiplier = 0.0f;
         musicSource.Play();
         LoadGameData(desksRoom2, desksRoom3, desksRoom4, squareRoom2, squareRoom3, squareRoom4);
+        // money = 10000000.0f;
+        // SaveGameData();
     }
 
     public static void ResetGameData()
@@ -189,20 +191,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static float CalculateProduction(float multiplication, float upgrade, float growthRate, float balancing)
+    public static float CalculateProduction(float multiplication, float upgrade, float growthRate, float balancing, int id_room)
     {
-        return multiplication * 10f * Mathf.Log((upgrade + 1f) * growthRate) + balancing - upgrade;
+        return multiplication * 10f *id_room* Mathf.Log((upgrade + 1f) * growthRate) + balancing - upgrade;
     }
 
-    public static float CalculateCost(float baseCost, float growthRate, float upgrade, float balancing)
+    public static float CalculateCost(float baseCost, float growthRate, float upgrade, float balancing, int id_room)
     {
         if (upgrade == 0f)
         {
-            Debug.Log("Custo total: " + (baseCost + (baseCost*growthRate*balancing) + 1f));
-            return baseCost + (baseCost*growthRate*balancing) + 1f;
+            Debug.Log("Custo total: " + (baseCost*id_room + (baseCost*growthRate*balancing) + 1f));
+            return baseCost*id_room + (baseCost*growthRate*balancing) + 1f;
         }
-        Debug.Log("Custo total: " + (baseCost + (baseCost* growthRate * upgrade  * balancing) + 1f));
-        return baseCost + (baseCost* growthRate * upgrade  * balancing) + 1f;
+        Debug.Log("Custo total: " + (baseCost*id_room + (baseCost* growthRate * upgrade  * balancing) + 1f));
+        return baseCost*id_room + (baseCost* growthRate * upgrade  * balancing) + 1f;
     }
 
 
