@@ -18,7 +18,7 @@ public class buyUpgradeTable : MonoBehaviour
     public TextMeshProUGUI earningsText;
     public TextMeshProUGUI costText;
 
-    List<Sprite> sprites = new List<Sprite>();
+    public List<Sprite> sprites = new List<Sprite>();
 
     public int total_level = 5;
 
@@ -129,6 +129,9 @@ public class buyUpgradeTable : MonoBehaviour
             else
                 cost = baseCost;
         }
+        else {
+            desk.GetComponent<SpriteRenderer>().sprite = sprites[level-1];
+        }
 
 
         gameManager.SaveTableData(tableID, earnings, delayTime, room_id);
@@ -165,6 +168,7 @@ public class buyUpgradeTable : MonoBehaviour
                 BuyBar.fillAmount = 0;
                 level += 1;
                 levelText.text = level.ToString();
+                desk.GetComponent<SpriteRenderer>().sprite = sprites[level-1];
             }
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount += 1.0f/(float)10;
