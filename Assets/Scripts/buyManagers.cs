@@ -19,6 +19,8 @@ public class buyManagers : MonoBehaviour
 
     public bool bought = false;
 
+    public Color normalColor = Color.white;
+    public Color notEnoughMoneyColor = new Color(1f, 0.6f, 0.6f); // Vermelho claro
 
     void Start()
     {
@@ -73,6 +75,15 @@ public class buyManagers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.money >= cost)
+        {
+            // Define a cor normal quando o jogador tem dinheiro suficiente
+            button.image.color = normalColor;
+        }
+        else
+        {
+            // Define a cor quando o jogador não tem dinheiro suficiente
+            button.image.color = notEnoughMoneyColor;
+        }
     }
 }

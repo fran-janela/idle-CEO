@@ -49,15 +49,12 @@ public class buyUpgradeTable : MonoBehaviour
 
     int upgrade = 0;
 
+    public Color normalColor = Color.white;
+    public Color notEnoughMoneyColor = new Color(1f, 0.6f, 0.6f); // Vermelho claro
+
 
     void Start()
     {
-
-        // cor do upgrade começa bem clarinha, a barra de níveis começa zerada e o nível começa em 0
-        // canvasGroup.alpha = 0.2f;
-        // BuyBar.fillAmount = 0;
-        // levelText.text = "0";
-        // multiplier = 0f;
 
         // cor do botão começa toda em 1
         Image buttonImage = button.GetComponent<Image>();
@@ -144,6 +141,19 @@ public class buyUpgradeTable : MonoBehaviour
         gameManager.SaveTableParameters(tableID, earningsBase, growthRate, balancing_production, decreaseTime, baseCost, balancing_cost, multiplier, level, fillAmount, upgrade);
     }
 
+    void Update()
+    {
+        if (GameManager.money >= cost)
+        {
+            // Define a cor normal quando o jogador tem dinheiro suficiente
+            button.image.color = normalColor;
+        }
+        else
+        {
+            // Define a cor quando o jogador não tem dinheiro suficiente
+            button.image.color = notEnoughMoneyColor;
+        }
+    }
 
     public void buy()
     {

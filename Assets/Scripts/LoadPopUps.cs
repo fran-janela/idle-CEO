@@ -9,12 +9,6 @@ public class LoadPopUps : MonoBehaviour
     public GameObject popUpActions;
     public GameObject popUpManagers;
 
-    public buyActions popUpActionsScript;
-    public buyRooms popUpExpansionScript;
-    public buyManagers popUpManagersScript;
-    private bool open = false;
-
-
     void Start()
     {
         popUpManagers.SetActive(false);
@@ -22,41 +16,45 @@ public class LoadPopUps : MonoBehaviour
         popUpActions.SetActive(false);
     }
 
-
-    public void loadpopUpExpansion(){
-        if (!open && GameManager.menuOpen == false){
-            open = true;
-            GameManager.menuOpen = true;
+    public void openpopUpExpansion(){
+        if (GameManager.menuOpen == false){
             popUpExpansion.SetActive(true);
-        } else {
-            open = false;
-            GameManager.menuOpen = false;
-            popUpExpansion.SetActive(false);
-        }
+            GameManager.menuOpen = true;
+        } 
     }
 
-    public void loadPopUpActions(){
-        if (!open && GameManager.menuOpen == false){
-            open = true;
-            GameManager.menuOpen = true;
+    public void closepopUpExpansion(){
+        popUpExpansion.SetActive(false);
+        GameManager.menuOpen = false;
+    }
+
+
+    public void openpopUpActions(){
+        if (GameManager.menuOpen == false){
             popUpActions.SetActive(true);
+            GameManager.menuOpen = true;
         } else {
-            open = false;
-            GameManager.menuOpen = false;
             popUpActions.SetActive(false);
         }
     }
 
-    public void loadPopUpManagers(){
-        if (!open && GameManager.menuOpen == false){
-            open = true;
-            GameManager.menuOpen = true;
+    public void closepopUpActions(){
+        popUpActions.SetActive(false);
+        GameManager.menuOpen = false;
+    }
+
+    public void openpopUpManagers(){
+        if (GameManager.menuOpen == false){
             popUpManagers.SetActive(true);
+            GameManager.menuOpen = true;
         } else {
-            open = false;
-            GameManager.menuOpen = false;
             popUpManagers.SetActive(false);
         }
+    }
+
+    public void closepopUpManagers(){
+        popUpManagers.SetActive(false);
+        GameManager.menuOpen = false;
     }
 
 }
