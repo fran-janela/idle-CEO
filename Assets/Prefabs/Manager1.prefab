@@ -627,6 +627,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 6532721574024181420}
   button: {fileID: 1496449773441785195}
   cost: 200
+  costText: {fileID: 7835535990377736257}
   id_manager: 0
   bought: 0
 --- !u!1 &7571904526461604479

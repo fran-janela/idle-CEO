@@ -28,11 +28,11 @@ public class buyUpgradeLaptop : MonoBehaviour
     public float growthRate = 0.2f;
     public float balancing_production = 1f;
 
-
+    public List<Sprite> sprites = new List<Sprite>();
     
-    public float decreaseTime = 0.5f;
+    public float decreaseTime = 1f;
 
-    public float delayTime = 5f;
+    public float delayTime = 8f;
 
     public GameObject progress;
     public GameObject runButton;
@@ -58,9 +58,9 @@ public class buyUpgradeLaptop : MonoBehaviour
         buttonImage.color = buttonColor;
 
         // Atualizando os textos
-        costText.text = "Buy $ " + cost.ToString();
+        costText.text = "Buy $ " + GameManager.formatCash(cost);
         timeText.text = delayTime.ToString() + "s";
-        earningsText.text = earningsBase.ToString();     
+        earningsText.text = GameManager.formatCash(earnings);     
         levelText.text = level.ToString();
 
         // Get room_id from parent name
@@ -94,7 +94,7 @@ public class buyUpgradeLaptop : MonoBehaviour
             // Debug.Log("OLHA O BALANCING COST: " + balancing_cost + "BASE COST: " + baseCost + "GROWTH RATE: " + growthRate + "LEVEL: " + level + "MULTIPLIER: " + multiplier + "BALANCING PRODUCTION: " + balancing_production + "DECREASE TIME: " + decreaseTime);
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
             // Debug.Log("OLHA O CUSTO AQUIIIIIIIII: " + cost);
-            costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
+            costText.text = "Buy $ " + GameManager.formatCash(cost);
             if (level == total_level){
                 BuyBar.fillAmount = 1f;
                 canvasGroup.alpha = 0.2f;
@@ -128,6 +128,10 @@ public class buyUpgradeLaptop : MonoBehaviour
                 cost = 0;
             else
                 cost = baseCost;
+        }
+        else 
+        {
+            laptop.GetComponent<SpriteRenderer>().sprite = sprites[level-1];
         }
 
         // Salvar os dados do laptop no dicionário
@@ -165,6 +169,7 @@ public class buyUpgradeLaptop : MonoBehaviour
                 BuyBar.fillAmount = 0;
                 level += 1;
                 levelText.text = level.ToString();
+                laptop.GetComponent<SpriteRenderer>().sprite = sprites[level-1];
             }
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount += 1.0f/(float)10;
@@ -175,13 +180,13 @@ public class buyUpgradeLaptop : MonoBehaviour
             multiplier += 2f;
             growthRate += 1.1f;
             balancing_production += 5f;
+            
             earnings += GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id)*earningsBase;
-            earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
-
+            earningsText.text = GameManager.formatCash(earnings);
             //Atualizando os valores do custo
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
             // Debug.Log("OLHAAAAAAAAAAAAA O Custo: " + cost);
-            costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
+            costText.text = "Buy $ " + GameManager.formatCash(cost);
 
         } else {
             // Debug.Log("Not enough money");
@@ -193,9 +198,9 @@ public class buyUpgradeLaptop : MonoBehaviour
             canvasGroup.alpha = 0.2f;
             maxLevel = true;
         }
-        costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
+        costText.text = "Buy $ " + GameManager.formatCash(cost);
         timeText.text = delayTime.ToString() + "s";
-        earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
+        earningsText.text = GameManager.formatCash(earnings);
 
         //carrega o script do gamemanager e salva os dados do laptop no dicionário
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();

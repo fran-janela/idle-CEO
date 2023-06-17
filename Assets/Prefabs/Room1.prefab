@@ -1539,8 +1539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7850ce102e4c2145a06acedf3d2cd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  room1: {fileID: 0}
   canvasGroupPopUp: {fileID: 3793649470828955843}
-  canvasGroupRoom: {fileID: 0}
   button: {fileID: 3793649470976021921}
+  costText: {fileID: 3793649471215777528}
   roomCollider: {fileID: 0}
   cost_room: 100000
+  id_room: 0

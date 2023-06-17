@@ -13,6 +13,8 @@ public class buyManagers : MonoBehaviour
 
     public float cost = 200f;
 
+    public TextMeshProUGUI costText;
+
     public int id_manager;
 
     public bool bought = false;
@@ -20,6 +22,7 @@ public class buyManagers : MonoBehaviour
 
     void Start()
     {
+        costText.text = "Buy $ " + GameManager.formatCash(cost);
         LateStart();
     }
 
