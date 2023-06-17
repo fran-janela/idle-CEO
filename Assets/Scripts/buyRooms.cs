@@ -20,6 +20,9 @@ public class buyRooms : MonoBehaviour
 
     private bool bought = false;
 
+    public Color normalColor = Color.white;
+    public Color notEnoughMoneyColor = new Color(1f, 0.6f, 0.6f); // Vermelho claro
+
     void Start()
     {
         costText.text = "Buy $ " + GameManager.formatCash(cost_room);
@@ -77,6 +80,15 @@ public class buyRooms : MonoBehaviour
     }
     void Update()
     {
-        
+        if (GameManager.money >= cost_room)
+        {
+            // Define a cor normal quando o jogador tem dinheiro suficiente
+            button.image.color = normalColor;
+        }
+        else
+        {
+            // Define a cor quando o jogador não tem dinheiro suficiente
+            button.image.color = notEnoughMoneyColor;
+        }
     }
 }

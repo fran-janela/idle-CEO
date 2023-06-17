@@ -27,6 +27,9 @@ public class buyActions : MonoBehaviour
 
     public int actionsID;
 
+    public Color normalColor = Color.white;
+    public Color notEnoughMoneyColor = new Color(1f, 0.6f, 0.6f); // Vermelho claro
+
     void Start()
     {
         LateStart();
@@ -69,6 +72,16 @@ public class buyActions : MonoBehaviour
 
     public void buyActionOnClick()
     {
+        if (GameManager.money >= cost)
+        {
+            // Define a cor normal quando o jogador tem dinheiro suficiente
+            button.image.color = normalColor;
+        }
+        else
+        {
+            // Define a cor quando o jogador não tem dinheiro suficiente
+            button.image.color = notEnoughMoneyColor;
+        }
         if (StartTimer == false && GameManager.money >= cost){
             canvasGroup.alpha = 1f;
             GameManager.DecrementMoney(cost);
@@ -110,6 +123,18 @@ public class buyActions : MonoBehaviour
                 StartTimer = true;
                 currentTimer = Timer;
             }
-        }
+        } else{
+            if (GameManager.money >= cost)
+            {
+                // Define a cor normal quando o jogador tem dinheiro suficiente
+                button.image.color = normalColor;
+            }
+            else
+            {
+                // Define a cor quando o jogador não tem dinheiro suficiente
+                button.image.color = notEnoughMoneyColor;
+            }
+
+            }
     }
 }

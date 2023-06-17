@@ -48,6 +48,9 @@ public class buyUpgradeLaptop : MonoBehaviour
     public bool maxLevel = false;
     private bool lateStartExecuted;
 
+    public Color normalColor = Color.white;
+    public Color notEnoughMoneyColor = new Color(1f, 0.6f, 0.6f); // Vermelho claro
+
 
 
 
@@ -69,6 +72,20 @@ public class buyUpgradeLaptop : MonoBehaviour
         room_id = ExtractNumberFromString(transform.parent.parent.parent.parent.parent.parent.name);
         laptopID = ExtractNumberFromString(transform.parent.parent.parent.parent.name);
         // Debug.Log("=====================================================\n" + "Room ID: " + room_id.ToString());
+    }
+
+    void Update()
+    {
+        if (GameManager.money >= cost)
+        {
+            // Define a cor normal quando o jogador tem dinheiro suficiente
+            button.image.color = normalColor;
+        }
+        else
+        {
+            // Define a cor quando o jogador não tem dinheiro suficiente
+            button.image.color = notEnoughMoneyColor;
+        }
     }
 
 
