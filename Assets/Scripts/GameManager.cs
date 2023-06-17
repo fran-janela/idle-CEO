@@ -154,8 +154,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // PlayerPrefs.DeleteAll();
-        // ResetGameData();
+        PlayerPrefs.DeleteAll();
+        ResetGameData();
         money = 0.0f;
         multiplier = 0.0f;
         musicSource.Play();
