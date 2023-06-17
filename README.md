@@ -1,13 +1,13 @@
 # Jogo mobile
 
-# Projeto 3: Idle-CEO <img src="https://img.shields.io/static/v1?label=Projeto3&message=inProgress&color=success&style=flat-square&logo=ghost"/>
+# Projeto 3: Idle-CEO <img src="https://img.shields.io/static/v1?label=Projeto3&message=Concluido&color=success&style=flat-square&logo=ghost"/>
 
 ## Feito por :raising_hand_woman: :raising_hand_man: :raising_hand_man: :raising_hand_man:
 
-- Lívia Sayuri Makuta.
 - Bernardo Cunha Capoferri.
-- Guilherme Dantas Rameh.
 - Francisco Pinheiro Janela.
+- Guilherme Dantas Rameh.
+- Lívia Sayuri Makuta.
 
 ## Linguagem, ferramenta e plataforma utilizadas:
 
@@ -57,31 +57,28 @@ vez mais seu meio de produção.
 ## Link no itch.io e GDD
 
 - Link do GDD: https://app.milanote.com/1PUSXJ1dEzSn6m/idle-ceo?p=Qa3dDFXM9DZ
-- Link da JAM:  
-- Link para jogar na web:  
-
-
-## Alguns screeshots do jogo
+- Link para teste na PlayStore: https://play.google.com/store/apps/details?id=com.idleceocompany.idleceo 
 
 
 ## Referências:
 
 ### Construção do mundo:
 
-
-### Animações:
-
-
-### Imagens:
-
+- Imagens retiradas do Pinterest de autores não identificados.
+- UIs usadas do itch.io:
+    https://penzilla.itch.io/handdrawn-vector-icon-pack
+    https://limezu.itch.io/moderninteriors
 
 ### Músicas:
 
-- ****Watermelon Man Instrumental - Celestial Bodies **** [[https://www.youtube.com/watch?v=Oi9OtE_fYzY]
-
-### Fontes:
-
+- Watermelon Man Instrumental - Celestial Bodies [[https://www.youtube.com/watch?v=Oi9OtE_fYzY]
 
 ### Códigos:
 
 - Trechos de exemplo do ChatGPT.
+- Trechos usandos de projetos anteriores de membros do grupo.
+- Trechos de tutoriais:
+    https://www.youtube.com/watch?v=YMj2qPq9CP8
+    https://www.youtube.com/watch?v=jvtFUfJ6CP8
+
+
