@@ -14,7 +14,6 @@ public class buyUpgradeLaptop : MonoBehaviour
     public Image BuyBar; 
     public Button button;
     public GameObject laptop;
-    public TextMeshProUGUI timeText;
     public TextMeshProUGUI earningsText;
     public TextMeshProUGUI costText;
 
@@ -63,7 +62,6 @@ public class buyUpgradeLaptop : MonoBehaviour
 
         // Atualizando os textos
         costText.text = "Buy $ " + GameManager.formatCash(cost);
-        timeText.text = delayTime.ToString() + "s";
         earningsText.text = GameManager.formatCash(earnings);     
         levelText.text = level.ToString();
 
@@ -76,7 +74,6 @@ public class buyUpgradeLaptop : MonoBehaviour
 
     public void LateStart()
     {
-        laptopID = clickDeskScript.laptopTableSetID;
         // Debug.Log("Laptop ID: " + laptopID);
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -210,7 +207,6 @@ public class buyUpgradeLaptop : MonoBehaviour
             maxLevel = true;
         }
         costText.text = "Buy $ " + GameManager.formatCash(cost);
-        timeText.text = delayTime.ToString() + "s";
         earningsText.text = GameManager.formatCash(earnings);
 
         //carrega o script do gamemanager e salva os dados do laptop no dicionário

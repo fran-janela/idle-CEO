@@ -371,6 +371,7 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < dictTableInfo.Length; i++)
             {
                 dictTableInfo[i] = new TableInfo();
+                dictTableInfo[i].delayTime = 7f;
             }
         }
         if (laptopParametersData != "")

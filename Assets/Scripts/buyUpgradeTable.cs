@@ -16,7 +16,6 @@ public class buyUpgradeTable : MonoBehaviour
     public Button button;
     public GameObject desk;
     public TextMeshProUGUI timeText;
-    public TextMeshProUGUI earningsText;
     public TextMeshProUGUI costText;
 
     public List<Sprite> sprites = new List<Sprite>();
@@ -32,7 +31,7 @@ public class buyUpgradeTable : MonoBehaviour
 
 
     
-    public float decreaseTime = 1f;
+    public float decreaseTime = 0.07f;
 
     public float delayTime = 7f;
 
@@ -69,7 +68,6 @@ public class buyUpgradeTable : MonoBehaviour
         // Atualizando os textos
         costText.text = "Buy $ " + GameManager.formatCash(cost);
         timeText.text = delayTime.ToString() + "s";
-        earningsText.text = GameManager.formatCash(earnings);       
         levelText.text = level.ToString();
 
         room_id = ExtractNumberFromString(transform.parent.parent.parent.parent.parent.parent.name);
@@ -171,11 +169,12 @@ public class buyUpgradeTable : MonoBehaviour
             costText.text = "Buy $ " + GameManager.formatCash(cost);
         }
         else if (GameManager.money >= cost && !maxLevel){
+            delayTime -= decreaseTime;
             if (BuyBar.fillAmount >= 1f)
             {
-                delayTime -= decreaseTime;
-                BuyBar.fillAmount = 0;
+                delayTime = 7-(level*1.25f);
                 level += 1;
+                BuyBar.fillAmount = 0;
                 levelText.text = level.ToString();
                 desk.GetComponent<SpriteRenderer>().sprite = sprites[level-1];
             }
@@ -191,7 +190,6 @@ public class buyUpgradeTable : MonoBehaviour
             balancing_production += 5f;
             earnings = GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id, tableID);
             // GameManager.IncrementMoney(earnings);
-            earningsText.text = GameManager.formatCash(earnings);
 
             //Atualizando os valores do custo
             // Debug.Log("Olha o base cost: " + baseCost + " e o growth rate: " + growthRate + " e o level: " + level + " e o balancing: " + balancing_cost);
@@ -210,7 +208,6 @@ public class buyUpgradeTable : MonoBehaviour
 
         costText.text = "Buy $ " + GameManager.formatCash(cost);
         timeText.text = delayTime.ToString() + "s";
-        earningsText.text = GameManager.formatCash(earnings);
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SaveTableData(tableID, earnings, delayTime, room_id);

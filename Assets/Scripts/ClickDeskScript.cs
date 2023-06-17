@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 public class ClickDeskScript : MonoBehaviour
 {
     private bool canClick = true;
     private float clickDelayTimer = 0f;
 
-    public float clickDelay = 10.0f;
+    public float clickDelay = 7.0f;
 
-
-    public static int laptopTableSetCounter = 1; // Variável estática para controlar o ID dos laptops
-
-    public int laptopTableSetID; // ID do laptop atual
+    public int desk_id; // ID do laptop atual
 
     Collider2D collider;
 
@@ -34,13 +32,7 @@ public class ClickDeskScript : MonoBehaviour
 
     void Start()
     {
-        if (laptopTableSetID != 0)
-        {
-            laptopTableSetCounter++; 
-        } else {
-            laptopTableSetID = laptopTableSetCounter;
-            laptopTableSetCounter++;
-        }
+        desk_id = ExtractNumberFromString(transform.parent.name);
         // Debug.Log("DeskSet ID: " + laptopTableSetID);
         collider = GetComponent<Collider2D>();
         ManagerTrigger = transform.Find("ManagerTrigger").transform;
@@ -76,29 +68,24 @@ public class ClickDeskScript : MonoBehaviour
                 // Debug.Log(clickDelay);
 
                 // Debug.Log ("Olha o ID do laptop: " + laptopTableSetID);
-                GameManager.LaptopInfo laptopInfo = GameManager.GetLaptopInfo(laptopTableSetID);
-                GameManager.TableInfo tableInfo = GameManager.GetTableInfo(laptopTableSetID);
+                GameManager.LaptopInfo laptopInfo = GameManager.GetLaptopInfo(desk_id);
                 // Debug.Log("Os earnings do laptop: " + laptopInfo.earnings + " e o delayTime: " + laptopInfo.delayTime);
                 // Debug.Log("Os earnings da mesa: " + tableInfo.earnings + " e o delayTime: " + tableInfo.delayTime);
 
-                clickDelay = (laptopInfo.delayTime + tableInfo.delayTime)/(float)2;
-                if (clickDelay < 0.0f)
-                {
-                    clickDelay = 0.0f;
-                }
-                GameManager.IncrementMoney(laptopInfo.earnings + tableInfo.earnings);
+                GameManager.IncrementMoney(laptopInfo.earnings);
                 
                 canClick = true;
                 BrightenAssets();
                 PVisualizer.GetComponent<ProgressVisualizer>().PlayMoneyAnimation();
             }
         }
-        if (canClick && GameManager.GetLaptopParameters(laptopTableSetID).level > 0){
+        if (canClick && GameManager.GetLaptopParameters(desk_id).level > 0){
             if (!roomQueue.CheckIfTriggerInQueue(ManagerTrigger))
             {
                 roomQueue.AddDeskTrigger(ManagerTrigger);
             }
         }
+        clickDelay = GameManager.GetTableInfo(desk_id).delayTime;
     }
 
     public void StartClickDelay()
@@ -124,5 +111,23 @@ public class ClickDeskScript : MonoBehaviour
     {
         ButtonUpSpriteRenderer.enabled = true;
         ButtonDownSpriteRenderer.enabled = false;
+    }
+
+    static int ExtractNumberFromString(string input)
+    {
+        string pattern = @"\d+"; // Matches one or more digits
+        Match match = Regex.Match(input, pattern);
+
+        if (match.Success)
+        {
+            int number;
+            bool success = int.TryParse(match.Value, out number);
+
+            if (success)
+                return number;
+        }
+
+        // Return a default value or throw an exception if no number found
+        return -1;
     }
 }
