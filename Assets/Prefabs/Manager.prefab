@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9b918d8fa5b451db434c6ba28764d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 1
   moveSpeed: 5
   aiPath: {fileID: 7823131218045675768}
   aiDestinationSetter: {fileID: 7823131218045675769}

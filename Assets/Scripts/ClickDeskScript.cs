@@ -91,7 +91,6 @@ public class ClickDeskScript : MonoBehaviour
                 canClick = true;
                 BrightenAssets();
                 PVisualizer.GetComponent<ProgressVisualizer>().PlayMoneyAnimation();
-                roomQueue.AddDeskTrigger(ManagerTrigger);
             }
         }
         if (canClick && GameManager.GetLaptopParameters(laptopTableSetID).level > 0){

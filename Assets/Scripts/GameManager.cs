@@ -150,8 +150,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //PlayerPrefs.DeleteAll();
-        //ResetGameData();
+        // PlayerPrefs.DeleteAll();
+        // ResetGameData();
         money = 0.0f;
         multiplier = 0.0f;
         musicSource.Play();
@@ -248,12 +248,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public static ManagerInfo GetManagerInfo(int id)
+    public static ManagerInfo GetManagerInfo(int Manager_id)
     {
         // Retorna as informações do laptop com o ID especificado
-        if (dictManagerInfo[id-1].id == id)
+        if (dictManagerInfo[Manager_id-1].id == Manager_id)
         {
-            return dictManagerInfo[id-1];
+            return dictManagerInfo[Manager_id-1];
         }
         else
         {
@@ -417,6 +417,7 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < dictManagerInfo.Length; i++)
             {
                 dictManagerInfo[i] = new ManagerInfo();
+                dictManagerInfo[i].id = i+1;
             }
         }
         if (expandData != ""){

@@ -5,6 +5,7 @@ using Pathfinding;
 
 public class ManagerMovement : MonoBehaviour
 {
+    public int id = 0;
     public float moveSpeed = 5f;
 
     public AIPath aiPath;

@@ -166,6 +166,10 @@ PrefabInstance:
       propertyPath: constrainInsideGraph
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7823131218045675769, guid: 499be6a8c661c40118d3cea464681869, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 5546122373667739789}
     - target: {fileID: 7823131218045675770, guid: 499be6a8c661c40118d3cea464681869, type: 3}
       propertyPath: m_Name
       value: Manager

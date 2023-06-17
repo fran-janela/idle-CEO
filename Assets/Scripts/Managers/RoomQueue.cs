@@ -12,22 +12,30 @@ public class RoomQueue : MonoBehaviour
 
     private Transform CurrentManagerTarget;
 
+    private bool managerEnabled = false;
+
     void Start()
     {
+        Manager.gameObject.SetActive(false);
         deskTriggers = new List<Transform>();
         CurrentManagerTarget = ManagerIdleTarget;
     }
 
     void Update()
     {
-        if (Manager.aiPath.reachedDestination && CurrentManagerTarget != ManagerIdleTarget){
-            Debug.Log("Manager reached destination");
-            SetNextManagerTarget();
-        } else if (CurrentManagerTarget == ManagerIdleTarget && deskTriggers.Count > 0){
-            Debug.Log("Manager is idle and there are desks in queue");
-            SetNextManagerTarget();
-        } else {
-            Debug.Log("Manager is not idle and its not moving to idle target");
+        if (!managerEnabled && GameManager.GetManagerInfo(Manager.id).bought){
+            managerEnabled = true;
+            Manager.gameObject.SetActive(true);
+        } else if (managerEnabled){
+            if (Manager.aiPath.reachedDestination && CurrentManagerTarget != ManagerIdleTarget){
+                Debug.Log("Manager reached destination");
+                SetNextManagerTarget();
+            } else if (CurrentManagerTarget == ManagerIdleTarget && deskTriggers.Count > 0){
+                Debug.Log("Manager is idle and there are desks in queue");
+                SetNextManagerTarget();
+            } else {
+                Debug.Log("Manager is not idle and its not moving to idle target");
+            }
         }
     }
 
@@ -54,14 +62,16 @@ public class RoomQueue : MonoBehaviour
 
     public void SetNextManagerTarget()
     {
-        if (deskTriggers.Count > 0)
-        {
-            CurrentManagerTarget = deskTriggers[0];
-            Manager.setManagerTarget(deskTriggers[0]);
-            deskTriggers.RemoveAt(0);
-        } else {
-            CurrentManagerTarget = ManagerIdleTarget;
-            Manager.setManagerTarget(ManagerIdleTarget);
+        if (managerEnabled){
+            if (deskTriggers.Count > 0)
+            {
+                CurrentManagerTarget = deskTriggers[0];
+                Manager.setManagerTarget(deskTriggers[0]);
+                deskTriggers.RemoveAt(0);
+            } else {
+                CurrentManagerTarget = ManagerIdleTarget;
+                Manager.setManagerTarget(ManagerIdleTarget);
+            }
         }
     }
 }
