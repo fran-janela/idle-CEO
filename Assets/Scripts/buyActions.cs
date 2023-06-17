@@ -32,8 +32,8 @@ public class buyActions : MonoBehaviour
         LateStart();
         BuyBar.fillAmount = 0;
         timeText.text = Timer.ToString() + "s";
-        costText.text = "Buy $ " + cost.ToString();
-        earningsText.text = earnings.ToString();
+        costText.text = "Buy $ " + GameManager.formatCash(cost);
+        earningsText.text = GameManager.formatCash(earnings);
 
     }
 
@@ -104,7 +104,7 @@ public class buyActions : MonoBehaviour
 
                 // Executar as ações de incrementar o dinheiro
                 GameManager.IncrementMoney(5000);
-                earningsText.text = GameManager.money.ToString();
+                earningsText.text = GameManager.formatCash(earnings);
 
                 // Reiniciar o timer
                 StartTimer = true;

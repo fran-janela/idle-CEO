@@ -628,6 +628,7 @@ MonoBehaviour:
   BuyBar: {fileID: 1861716840694978934}
   canvasGroup: {fileID: 6532721574024181420}
   button: {fileID: 1496449773441785195}
+  costText: {fileID: 7835535990377736257}
   num_managers_text: {fileID: 1520581676257012248}
   managers_room: 0
   total_managers_room: 0

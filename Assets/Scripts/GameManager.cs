@@ -609,5 +609,27 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
+    public static string formatCash(float cash)
+    {
+        char[] alpha = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
+        string strCash = "TOO MUCH MONEY";
+        if (cash < 1000)
+        {
+            strCash = Mathf.Round(cash).ToString();
+        }
+        else if (cash < Mathf.Pow(10, 26))
+        {
+            for (int i = 0; i <26; i++)
+                {
+                    if (cash >= Mathf.Pow(10, 3*(i+1)) && cash < Mathf.Pow(10, 3*(i+2)))
+                    {
+                        strCash = Math.Round(cash / Mathf.Pow(10, 3*(i+1)), 2).ToString() + alpha[i];
+                    }
+                }
+        }
+        return strCash;
+
+    }
+
 
 }

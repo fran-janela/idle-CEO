@@ -12,6 +12,8 @@ public class buyManagers : MonoBehaviour
 
     public Button button;
 
+    public TextMeshProUGUI costText;
+
 
     public TextMeshProUGUI num_managers_text;
 
@@ -29,6 +31,8 @@ public class buyManagers : MonoBehaviour
     {
         BuyBar.fillAmount = 0;
         num_managers_text.text = managers_room.ToString() + "/" + total_managers_room.ToString();
+        costText.text = "Buy $ " + GameManager.formatCash(cost);
+        Debug.Log("MANAGERS ROOM: " + managers_room);
         LateStart();
     }
 

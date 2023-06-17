@@ -18,6 +18,7 @@ public class buyUpgradeTable : MonoBehaviour
     public TextMeshProUGUI earningsText;
     public TextMeshProUGUI costText;
 
+    List<Sprite> sprites = new List<Sprite>();
 
     public int total_level = 5;
 
@@ -30,9 +31,9 @@ public class buyUpgradeTable : MonoBehaviour
 
 
     
-    public float decreaseTime = 0.2f;
+    public float decreaseTime = 1f;
 
-    public float delayTime = 4f;
+    public float delayTime = 7f;
 
     public GameObject computer;
     public GameObject chair;
@@ -63,9 +64,9 @@ public class buyUpgradeTable : MonoBehaviour
         buttonImage.color = buttonColor;
 
         // Atualizando os textos
-        costText.text = "Buy $ " + cost.ToString();
+        costText.text = "Buy $ " + GameManager.formatCash(cost);
         timeText.text = delayTime.ToString() + "s";
-        earningsText.text = earningsBase.ToString();       
+        earningsText.text = GameManager.formatCash(earnings);       
         levelText.text = level.ToString(); 
 
     }
@@ -176,7 +177,7 @@ public class buyUpgradeTable : MonoBehaviour
             balancing_production += 5f;
             earnings += GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production)*earningsBase;
             // GameManager.IncrementMoney(earnings);
-            earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
+            earningsText.text = GameManager.formatCash(earnings);
 
             //Atualizando os valores do custo
             // Debug.Log("Olha o base cost: " + baseCost + " e o growth rate: " + growthRate + " e o level: " + level + " e o balancing: " + balancing_cost);
@@ -193,9 +194,9 @@ public class buyUpgradeTable : MonoBehaviour
             maxLevel = true;
         }
 
-        costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
+        costText.text = "Buy $ " + GameManager.formatCash(cost);
         timeText.text = delayTime.ToString() + "s";
-        earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
+        earningsText.text = GameManager.formatCash(earnings);
 
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SaveTableData(tableID, earnings, delayTime, room_id);

@@ -9,6 +9,6 @@ public class GameCanvasManager : MonoBehaviour
 
     public void Update()
     {
-        moneyUI.text = GameManager.money.ToString();
+        moneyUI.text = GameManager.formatCash(GameManager.money);
     }
 }

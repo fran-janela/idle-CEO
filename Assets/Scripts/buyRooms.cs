@@ -11,6 +11,7 @@ public class buyRooms : MonoBehaviour
     public GameObject room1;
     public CanvasGroup canvasGroupPopUp;
     public Button button;
+    public TextMeshProUGUI costText;
     public Collider2D roomCollider;
 
     public float cost_room = 100000f;
@@ -21,6 +22,7 @@ public class buyRooms : MonoBehaviour
 
     void Start()
     {
+        costText.text = "Buy $ " + GameManager.formatCash(cost_room);
         LateStart();
     }
 
