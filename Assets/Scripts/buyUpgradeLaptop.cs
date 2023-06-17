@@ -161,13 +161,15 @@ public class buyUpgradeLaptop : MonoBehaviour
             tmp.a = 1f;
             laptop.GetComponent<SpriteRenderer>().color = tmp;
             level += 1;
+            upgrade += 1;
             levelText.text = level.ToString();
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount = 0;
             GameManager.DecrementMoney(cost);
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, laptopID);
+            costText.text = "Buy $ " + GameManager.formatCash(cost);
         }
-        if (GameManager.money >= cost && !maxLevel){
+        else if (GameManager.money >= cost && !maxLevel){
             if (BuyBar.fillAmount == 1f && level < total_level)
             {
                 delayTime -= decreaseTime;
