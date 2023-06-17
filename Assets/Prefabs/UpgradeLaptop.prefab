@@ -366,7 +366,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 1613600991941345380}
   BuyBar: {fileID: 4569441711385126449}
   button: {fileID: 218127367595615789}
-  desk: {fileID: 0}
+  laptop: {fileID: 0}
   timeText: {fileID: 1938113998764596697}
   earningsText: {fileID: 479944384767561563}
   costText: {fileID: 218127366652530906}
@@ -377,11 +377,16 @@ MonoBehaviour:
   level: 0
   growthRate: 0.2
   balancing_production: 1
+  sprites: []
   decreaseTime: 0.5
   delayTime: 5
+  progress: {fileID: 0}
+  runButton: {fileID: 0}
+  employee: {fileID: 0}
   cost: 200
   baseCost: 200
   balancing_cost: 1
+  upgrade: 0
   laptopID: 0
   clickDeskScript: {fileID: 0}
   maxLevel: 0
@@ -421,7 +426,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -237, y: 0}
-  m_SizeDelta: {x: 112.09, y: 49.34}
+  m_SizeDelta: {x: 80, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &218127367414276686
 CanvasRenderer:

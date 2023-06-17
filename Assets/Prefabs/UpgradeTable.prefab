@@ -803,7 +803,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -237, y: 0}
-  m_SizeDelta: {x: 112.09, y: 49.34}
+  m_SizeDelta: {x: 120, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2630375457335595413
 CanvasRenderer:
@@ -1281,6 +1281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelText: {fileID: 2630375457213966136}
+  room_id: 0
   canvasGroup: {fileID: 2630375456676748925}
   BuyBar: {fileID: 2630375457649156744}
   button: {fileID: 2630375457171655899}
@@ -1288,6 +1289,7 @@ MonoBehaviour:
   timeText: {fileID: 2630375457852457398}
   earningsText: {fileID: 2630375457680589510}
   costText: {fileID: 2630375457392959836}
+  sprites: []
   total_level: 5
   earnings: 5
   earningsBase: 5
@@ -1295,8 +1297,11 @@ MonoBehaviour:
   level: 0
   growthRate: 0.1
   balancing_production: 1
-  decreaseTime: 0.2
+  decreaseTime: 1
   delayTime: 4
+  computer: {fileID: 0}
+  chair: {fileID: 0}
+  laptopCode: {fileID: 0}
   cost: 100
   baseCost: 100
   balancing_cost: 1
