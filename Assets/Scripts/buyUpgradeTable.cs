@@ -90,7 +90,7 @@ public class buyUpgradeTable : MonoBehaviour
             decreaseTime = tableParameters.decreaseTime;
             baseCost = tableParameters.baseCost;
             balancing_cost = tableParameters.balancing_cost;
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
             costText.text = "Buy $ " + Mathf.Round(cost*100f/100f).ToString();
             if (level == total_level){
                 BuyBar.fillAmount = 1f;
@@ -107,7 +107,7 @@ public class buyUpgradeTable : MonoBehaviour
             BuyBar.fillAmount = 0f;
             levelText.text = "0";
             multiplier = 0f;
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
         }
         if (tableInfo != null)
         {
@@ -155,7 +155,7 @@ public class buyUpgradeTable : MonoBehaviour
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount = 0;
             GameManager.DecrementMoney(cost);
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
         }
         else if (GameManager.money >= cost && !maxLevel){
             if (BuyBar.fillAmount >= 1f)
@@ -174,13 +174,13 @@ public class buyUpgradeTable : MonoBehaviour
             multiplier += 2f;
             growthRate += 1.1f;
             balancing_production += 5f;
-            earnings += GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production)*earningsBase;
+            earnings += GameManager.CalculateProduction(multiplier, level, growthRate, balancing_production, room_id)*earningsBase;
             // GameManager.IncrementMoney(earnings);
             earningsText.text = Mathf.Round(earnings*100f/100f).ToString();
 
             //Atualizando os valores do custo
             // Debug.Log("Olha o base cost: " + baseCost + " e o growth rate: " + growthRate + " e o level: " + level + " e o balancing: " + balancing_cost);
-            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost);
+            cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id);
 
         } else {
             // Debug.Log("Not enough money");
