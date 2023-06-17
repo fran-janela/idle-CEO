@@ -12,7 +12,7 @@ public class ClickDeskScript : MonoBehaviour
 
     public int desk_id; // ID do laptop atual
 
-    Collider2D collider;
+    public Collider2D UIColider;
 
     public Collider2D RunButtonCollider;
 
@@ -34,7 +34,6 @@ public class ClickDeskScript : MonoBehaviour
     {
         desk_id = ExtractNumberFromString(transform.parent.name);
         // Debug.Log("DeskSet ID: " + laptopTableSetID);
-        collider = GetComponent<Collider2D>();
         ManagerTrigger = transform.Find("ManagerTrigger").transform;
 
     }
@@ -44,11 +43,10 @@ public class ClickDeskScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && GameManager.menuOpen == false)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Collider2D clickCollider = Physics2D.OverlapPoint(mousePosition);
             List<GameObject> unityGameObjects = new List<GameObject>();
-            if (collider.OverlapPoint(mousePosition)){
+            if (UIColider.OverlapPoint(mousePosition)){
                 UpgradeCanvas.GetComponent<loadMainUpdate>().openUpdateAll();
-            } else if (RunButtonCollider.OverlapPoint(mousePosition) && clickCollider.gameObject == RunButtonCollider.gameObject){
+            } else if (RunButtonCollider.OverlapPoint(mousePosition)){
                 // Debug.Log("Clique no botão de execução");
                 StartClickDelay();
                 if (roomQueue.CheckIfTriggerInQueue(ManagerTrigger))

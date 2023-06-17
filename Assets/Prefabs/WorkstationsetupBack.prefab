@@ -708,6 +708,69 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4484358889876906307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7433543015098920777}
+  - component: {fileID: 596151720067879290}
+  m_Layer: 7
+  m_Name: OpenUICollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7433543015098920777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4484358889876906307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8015708965473886143}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &596151720067879290
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4484358889876906307}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.43330574, y: 0.7015004}
+      - {x: -0.43108946, y: 0.24161366}
+      - {x: -1.296341, y: 0.23385215}
+      - {x: -1.2714467, y: -0.37571096}
+      - {x: 1.2810751, y: -0.36608183}
+      - {x: 1.2784433, y: 0.7134358}
 --- !u!1 &6286199082203085949
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,14 +881,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.32529882, y: 0.7252202}
-      - {x: -0.443622, y: 0.5892482}
-      - {x: -0.4442595, y: 0.032788515}
-      - {x: -0.44507247, y: -0.27876186}
+    - - {x: -0.2656217, y: 0.8170314}
+      - {x: -0.40830457, y: 0.6245661}
+      - {x: -0.39716896, y: 0.056333542}
+      - {x: -0.3979829, y: -0.27876186}
       - {x: 0.50647044, y: -0.2852323}
       - {x: 0.49559012, y: 0.045092344}
-      - {x: 0.4545505, y: 0.5904808}
-      - {x: 0.3188284, y: 0.7316909}
+      - {x: 0.43159747, y: 0.6088431}
+      - {x: 0.30964738, y: 0.8028445}
 --- !u!1 &7502663622426330940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,7 +1172,6 @@ GameObject:
   - component: {fileID: 8015708965473886143}
   - component: {fileID: 3073276357009288639}
   - component: {fileID: 7193035553395660723}
-  - component: {fileID: 1466623834610384046}
   m_Layer: 7
   m_Name: Desk
   m_TagString: Untagged
@@ -1135,6 +1197,7 @@ Transform:
   - {fileID: 7773890627902105664}
   - {fileID: 3044949508148688659}
   - {fileID: 6768825769747224230}
+  - {fileID: 7433543015098920777}
   m_Father: {fileID: 2689100133949533664}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1203,39 +1266,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickDelay: 3
-  laptopTableSetID: 0
+  desk_id: 0
+  UIColider: {fileID: 596151720067879290}
   RunButtonCollider: {fileID: 5505471190659184503}
   ButtonUpSpriteRenderer: {fileID: 2148333133086954477}
   ButtonDownSpriteRenderer: {fileID: 8314194860757315950}
   UpgradeCanvas: {fileID: 7463825847865797582}
   PVisualizer: {fileID: 1423717027071261808}
   roomQueue: {fileID: 0}
---- !u!61 &1466623834610384046
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8350688396344495430}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5625, y: 1.4375}
-    newSize: {x: 2.5625, y: 1.4375}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.5625, y: 1.4375}
-  m_EdgeRadius: 0
 --- !u!1 &9094214147835725064
 GameObject:
   m_ObjectHideFlags: 0
