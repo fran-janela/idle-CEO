@@ -89,8 +89,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.92651176, y: 0.48556048}
+  m_Offset: {x: 0.012672721, y: -0.01900876}
+  m_Size: {x: 0.72375005, y: 0.37150773}
   m_Direction: 1
 --- !u!114 &7823131218045675775
 MonoBehaviour:
@@ -155,9 +155,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 0.3
-  endReachedDistance: 0.75
+  slowdownDistance: 0
+  pickNextWaypointDist: 0.23
+  endReachedDistance: 0.5
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
