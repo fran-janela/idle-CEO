@@ -162,11 +162,13 @@ public class buyUpgradeTable : MonoBehaviour
             computer.GetComponent<SpriteRenderer>().color = tmp2;
             // Debug.Log("COMPRA primeiro Nível");
             level += 1;
+            upgrade += 1;
             levelText.text = level.ToString();
             canvasGroup.alpha = 1f;
             BuyBar.fillAmount = 0;
             GameManager.DecrementMoney(cost);
             cost = GameManager.CalculateCost(baseCost, growthRate, level, balancing_cost, room_id, upgrade, tableID);
+            costText.text = "Buy $ " + GameManager.formatCash(cost);
         }
         else if (GameManager.money >= cost && !maxLevel){
             if (BuyBar.fillAmount >= 1f)
